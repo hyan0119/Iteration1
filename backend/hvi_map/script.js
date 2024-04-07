@@ -41,11 +41,51 @@ let drawMap = () => {
     .style("stroke-width", 0.5)
     .on("mouseover", function(event, d) {
                 // マウスオーバー時の処理
-        tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index (HVI):" + d.properties.HVI)
-        .style("left", (event.pageX + 10) + "px")
-        .style("top", (event.pageY - 10) + "px")
-        .style("display", "block")
-        .style("visibility", "visible");
+        // tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI)
+        // .style("left", (event.pageX + 10) + "px")
+        // .style("top", (event.pageY - 10) + "px")
+        // .style("display", "block")
+        // .style("visibility", "visible")
+
+        if (d.properties.HVI == 0) {
+            tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is not vulnerable to Urban Heat Island.")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .style("display", "block")
+            .style("visibility", "visible")
+        } else if (d.properties.HVI == 1) {
+            tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is slightly vulnerable to Urban Heat Island.")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .style("display", "block")
+            .style("visibility", "visible")
+        } else if (d.properties.HVI == 2) {
+            tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" +  "This suburb is moderately vulnerable to Urban Heat Island.")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .style("display", "block")
+            .style("visibility", "visible")
+        } else if (d.properties.HVI == 3) {
+            tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is highly vulnerable to Urban Heat Island.")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .style("display", "block")
+            .style("visibility", "visible")
+        } else if (d.properties.HVI == 4) {
+            tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is extremely vulnerable to Urban Heat Island.")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .style("display", "block")
+            .style("visibility", "visible")
+        } else if (d.properties.HVI == 5) { 
+            tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is severely vulnerable to Urban Heat Island.")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .style("display", "block")
+            .style("visibility", "visible")
+        } else {return "blue"}
+
+
     })
     .on("mouseout", function(d) {
                 // マウスアウト時の処理
@@ -77,7 +117,7 @@ let drawMap = () => {
             });
         }
         // 新しいパスの色を変更
-        d3.select(this).style("fill", "green");
+        d3.select(this).style("fill", "pink");
         // 選択されたパスを更新
         selectedPath = d3.select(this);
         
@@ -94,19 +134,8 @@ let drawMap = () => {
     isClicking = false;
     });
 
-    canvas.on("mousemove", function(event,d) {
-    if (isClicking && selectedPath) {
-        // マウスがクリックされており、選択されたパスがある場合のみ、情報を表示
-        tooltip.html("Suburb: " + selectedPath.datum().properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index (HVI):" + selectedPath.datum().properties.HVI)
-            .style("left", (d3.event.pageX + 10) + "px")
-            .style("top", (d3.event.pageY - 10) + "px")
-            .style("display", "block")
-            .style("visibility", "visible");
-    } else {
-        // マウスがクリックされていない場合や、選択されたパスがない場合は情報を非表示
-        // tooltip.style("display", "none");
-    }
-});
+
+
 }
 
 d3.json(hvi).then(

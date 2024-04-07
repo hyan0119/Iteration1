@@ -9,7 +9,7 @@ html, body{
 }
 
 body {
-    background-color: #2A2D2D;
+    background-color: #373a3a;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,16 +19,16 @@ body {
 }
 
 svg{
-    /* background-color: #305555; */
+    background-color: #058237;
     /*box-shadow: 0px 3px 15px rgba(0,0,0,0.2); */
     /*border-radius: 5px; */
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 5px;
 }
 
 #canvas{
-    min-height: 800px;
-    min-width: 800px;
+    min-height: 700px;
+    min-width: 950px;
 }
 
 
@@ -41,6 +41,9 @@ g{
 }
 
 #tooltip{
+    background-color: #128ee1;
+    padding: 10px;
+    border-radius: 5px;
     visibility: hidden;
     height: auto;
     width: auto;
@@ -52,12 +55,12 @@ g{
 
 #legend{
     color: rgb(56, 58, 74);
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
-    min-height: 260px;
+    min-height: 240px;
     max-width: 180px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 
@@ -86,4 +89,14 @@ g{
     flex-direction: column;
     align-items: center;
     margin-left: 50px;
+}
+
+#legend_area {
+    background-color: #058237;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
 }
