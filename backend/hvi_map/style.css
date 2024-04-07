@@ -19,7 +19,7 @@ body {
 }
 
 svg{
-    background-color: #058237;
+    background-color: #4d865c;
     /*box-shadow: 0px 3px 15px rgba(0,0,0,0.2); */
     /*border-radius: 5px; */
     padding: 10px;
@@ -40,6 +40,18 @@ g{
     color: #FDF1E7
 }
 
+#promotion {
+    font-size: 20px;
+    margin-right: 80px;
+    margin-left: 80px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    background-color: #413ccc;
+    border-radius: 5px;
+    padding: 15px
+
+}
+
 #tooltip{
     background-color: #128ee1;
     padding: 10px;
@@ -49,7 +61,7 @@ g{
     width: auto;
     margin-top: 2px;
     color: #FDF1E7;
-    font-size: 24px;
+    font-size: 18px;
     margin-bottom: 5px;
 }
 
@@ -65,10 +77,10 @@ g{
 
 
 #title{
-    font-size: 28px;
+    font-size: 40px;
     color: #FDF1E7;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-bottom: 30px;
 }
 
@@ -92,11 +104,11 @@ g{
 }
 
 #legend_area {
-    background-color: #058237;
+    background-color: #4d865c;
     padding: 10px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
