@@ -93,7 +93,6 @@ def get_plant(balcony_size,sunlight,cycle,watering):
             print("No plants meet the criteria or failed to fetch plant data.")
             return pd.DataFrame()
 
-    # 假设这里是根据输入的数据进行植物匹配的逻辑
     # plant_name = 'Aloe Vera'
     # lifespan = 5
     # maintaining_guide = 'Water once a week'
