@@ -18,7 +18,7 @@
                     <router-link to="/my-plants">
                         <li>MY PLANTS</li>
                     </router-link>
-                    <router-link to="/info">
+                    <router-link to="/info-page">
                         <li>INFO</li>
                     </router-link>
                     <router-link to="/about-us">
