@@ -12,40 +12,51 @@ a {
 }
 
 .router-link-active {
-text-decoration: none;
+    text-decoration: none;
 }
 
-.header {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 20px;
-margin-top: 0px !important; /* 调整菜单栏与顶部的距离 */
+.menu-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    padding: 10px 20px;
+    margin-top: -100px;
 }
 
-.logo h1 {
-margin-top: -100px;
+.menu-bar ul {
+    display: flex;
+    list-style-type: none;
 }
 
-.menu ul {
-list-style-type: none;
-margin-top: -90px;
-padding: 0;
+.menu-bar li {
+    margin-right: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.menu ul li {
-display: inline-block;
-margin-right: 20px;
-cursor: pointer;
+.menu-bar li:hover {
+    background-color: rgb(84, 123, 34);
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    margin-right: 10px;
+    width: 13%;
+    height: 13%;
+}
+
 .filler {
-    height: 30vh; /* 使用视口高度作为填充高度 */
+    height: 10vh;
 }
 
 
 * {
     color: white !important;
 }
-.input-text {
-    color: black !important;
-}
+

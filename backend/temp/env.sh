@@ -1,2 +1,0 @@
-export GOOGLE_CLIENT_SECRET=""
-export GOOGLE_CLIENT_ID=""

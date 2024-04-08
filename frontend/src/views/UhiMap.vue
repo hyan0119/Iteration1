@@ -1,66 +1,273 @@
 <template>
-<div class="uhi-map">
-    <div class="header">
-    <div class="logo">
-        <router-link to="/"><h1>SHADE OF GREEN</h1></router-link>
-    </div>
-    <div class="menu">
-        <ul>
-        <router-link to="/uhi-map"><li>UHI MAP</li></router-link>
-        <router-link to="/plant-planner"><li>PLANT PLANNER</li></router-link>
-        <router-link to="/my-plants"><li>MY PLANTS</li></router-link>
-        <router-link to="/info"><li>INFO</li></router-link>
-        <router-link to="/about-us"><li>ABOUT US</li></router-link>
-        </ul>
-        <!-- <img src="avatar.png" alt="Avatar"> -->
-    </div>
-    </div>
-    
-    <div class="map-section">
-        <h2>UHI (URBAN HEAT ISLAND) MAP</h2>
-        <p>check the Current heat island index in your location</p>
-        <div class="postcode-input">
-            <input type="text" placeholder="Enter postcode" v-model="postcode" class="input-text">
-            <button @click="viewMap">View</button>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <div class="uhi-map">
+        <div class="menu-bar">
+            <div class="logo">
+                <img src="@/assets/logo.png" alt="Logo" />
+                <router-link to="/">
+                    <h2>Home</h2>
+                </router-link>
+            </div>
+            <div class="menu">
+                <ul>
+                    <router-link to="/uhi-map">
+                        <li>UHI MAP</li>
+                    </router-link>
+                    <router-link to="/plant-planner">
+                        <li>PLANT PLANNER</li>
+                    </router-link>
+                    <router-link to="/my-plants">
+                        <li>MY PLANTS</li>
+                    </router-link>
+                    <router-link to="/info">
+                        <li>INFO</li>
+                    </router-link>
+                    <router-link to="/about-us">
+                        <li>ABOUT US</li>
+                    </router-link>
+                </ul>
+            </div>
         </div>
-        <div class="map">
-            <!-- 在这里展示澳大利亚的地图 -->
-            <p>这里展示地图</p>
-            <p v-if="index">当前地图的 UHI 索引：{{ index }}</p>
-        </div>
-    </div>
-    <div class="filler"></div>
-</div>
-</template>
-  
-<script>
-import axios from 'axios';
-export default {
-name: 'UhiMap',
-data() {
-return {
-    postcode: '',
-    index: null
-};
-},
-methods: {
-async viewMap() {
-    try {
-    const response = await axios.get('http://127.0.0.1:8000/get_head_index', {
-        params: {
-        postcode: this.postcode
-        }
-    });
+        <div id='container'>
+            <svg id='canvas'>
 
-    this.index = response.data.index;
-    } catch (error) {
-    console.error('Error fetching data:', error);
-    }
-    }
-}
-}
-</script>
+            </svg>
+            <div id='rightSide'>
+
+
+                <div id='tooltip'>
+
+                </div>
+                <!-- <style>
   
+                </style> -->
+                <div id="legend_area">
+                    <div id='description'>Heat Island Vulnerability Index</div>
+                    <svg id='legend'>
+                        <g>
+                            <rect x="10" y="0" width="40" height="40" fill="#fff5e6"></rect>
+                            <text x="60" y="20" fill="black">0 - Very Low</text>
+                        </g>
+                        <g>
+                            <rect x="10" y="40" width="40" height="40" fill="#ffd699"></rect>
+                            <text x="60" y="60" fill="black">1 - Low</text>
+                        </g>
+                        <g>
+                            <rect x="10" y="80" width="40" height="40" fill="#ffc266"></rect>
+                            <text x="60" y="100" fill="black">2 - Moderate</text>
+                        </g>
+                        <g>
+                            <rect x="10" y="120" width="40" height="40" fill="#ffad33"></rect>
+                            <text x="60" y="140" fill="black">3 - High</text>
+                        </g>
+                        <g>
+                            <rect x="10" y="160" width="40" height="40" fill="#ff9900"></rect>
+                            <text x="60" y="180" fill="black">4 - Very High</text>
+                        </g>
+                        <g>
+                            <rect x="10" y="200" width="40" height="40" fill="#e68a00"></rect>
+                            <text x="60" y="220" fill="black">5 - Extreme</text>
+                        </g>
+                    </svg>
+                    <!-- <div id='description'>Melbourne Urban Heat Island Vulnerability Map</a></div> -->
+                </div>
+            </div>
+
+        </div>
+        <div id="promotion-container">
+
+            <div id="promotion">Are you interested in learning how you, as an individual, can contribute to making your
+                suburb cooler, more comfortable, and less vulnerable to the threats posed by heatwaves? We have outlined
+                features that offer solutions to the urban heat island effect – a phenomenon responsible for higher
+                temperatures in Melbourne's CBD suburbs compared to the countryside. Discover how you can help reduce
+                heat
+                in your area by growing plants in your home on our 'Plant Planner' page. <br> If you would like to know
+                more
+                about what is “urban heat island effect” and its potential adverse effect on your well-being, you can
+                check
+                our “Urban Heat Island Encyclopedia” feature and educate yourself about the issue.</div>
+        </div>
+        <div class="filler"></div>
+    </div>
+</template>
+
+
+<script>
+import * as d3 from 'd3'
+export default {
+    name: 'UhiMap',
+    data() {
+        return {
+            hviData: null
+        };
+    },
+    mounted() {
+        this.loadMapData();
+    },
+    methods: {
+        loadMapData() {
+            // 使用import引入hvi.json数据
+            let hvi = '/hvi.json'
+
+            d3.json(hvi).then(
+                (data, error) => {
+                    if (error) {
+                        console.log('err')
+                    } else {
+                        this.hviData = data
+                        // console.log(this.hviData)
+                        this.drawMap()
+                        // drawMap()
+                    }
+                }
+            )
+        },
+        drawMap() {
+            let selectedPath = null
+
+            let canvas = d3.select('#canvas')
+            let tooltip = d3.select('#tooltip')
+            // 这里使用D3.js的代码绘制地图
+            // 您需要将原始JavaScript代码适配到Vue的方法中
+            var projection = d3.geoMercator()
+                .fitSize([800, 800], this.hviData);
+
+            var path = d3.geoPath()
+                .projection(projection);
+            // console.log(this.hviData)
+            // console.log(projection)
+            // console.log(path)
+
+            canvas.selectAll("path")
+                .data(this.hviData.features)
+                .enter().append("path")
+                .attr("d", path)
+                .attr('data-fips', (d) => d.properties.id) // FIPSコードをデータ属性として追加
+                .style("fill", function (d) {
+                    // データに基づいた色を適用
+                    if (d.properties.HVI == 0) {
+                        return "#fff5e6";
+                    } else if (d.properties.HVI == 1) {
+                        return "#ffd699";
+                    } else if (d.properties.HVI == 2) {
+                        return "#ffc266";
+                    } else if (d.properties.HVI == 3) {
+                        return "#ffad33";
+                    } else if (d.properties.HVI == 4) {
+                        return "#ff9900";
+                    } else if (d.properties.HVI == 5) {
+                        return "#e68a00";
+                    } else { return "blue" }
+                })
+                .style("stroke", "white")
+                .style("stroke-width", 0.5)
+                .on("mouseover", function (event, d) {
+                    // マウスオーバー時の処理
+                    // tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI)
+                    // .style("left", (event.pageX + 10) + "px")
+                    // .style("top", (event.pageY - 10) + "px")
+                    // .style("display", "block")
+                    // .style("visibility", "visible")
+
+                    if (d.properties.HVI == 0) {
+                        tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is not vulnerable to Urban Heat Island.")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 10) + "px")
+                            .style("display", "block")
+                            .style("visibility", "visible")
+                    } else if (d.properties.HVI == 1) {
+                        tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is slightly vulnerable to Urban Heat Island.")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 10) + "px")
+                            .style("display", "block")
+                            .style("visibility", "visible")
+                    } else if (d.properties.HVI == 2) {
+                        tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is moderately vulnerable to Urban Heat Island.")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 10) + "px")
+                            .style("display", "block")
+                            .style("visibility", "visible")
+                    } else if (d.properties.HVI == 3) {
+                        tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is highly vulnerable to Urban Heat Island.")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 10) + "px")
+                            .style("display", "block")
+                            .style("visibility", "visible")
+                    } else if (d.properties.HVI == 4) {
+                        tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is extremely vulnerable to Urban Heat Island.")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 10) + "px")
+                            .style("display", "block")
+                            .style("visibility", "visible")
+                    } else if (d.properties.HVI == 5) {
+                        tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is severely vulnerable to Urban Heat Island.")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 10) + "px")
+                            .style("display", "block")
+                            .style("visibility", "visible")
+                    } else { return "blue" }
+
+
+                })
+                .on("mouseout", function (d) {
+                    console.log(d)
+                    // マウスアウト時の処理
+                    tooltip.style("display", "none");
+                })
+                .on("click", function (event, d) {
+                    console.log(event, d)
+
+                    d3.select(this).style("fill", "orange");
+                })
+                .on("click", function (event, d) {
+                    console.log(event, d)
+                    // クリックされたパスの色を変更
+                    if (selectedPath) {
+                        // 以前に選択されたパスがある場合、その色を元に戻す
+                        selectedPath.style("fill", function (d) {
+                            if (d.properties.HVI == 0) {
+                                return "#fff5e6";
+                            } else if (d.properties.HVI == 1) {
+                                return "#ffd699";
+                            } else if (d.properties.HVI == 2) {
+                                return "#ffc266";
+                            } else if (d.properties.HVI == 3) {
+                                return "#ffad33";
+                            } else if (d.properties.HVI == 4) {
+                                return "#ff9900";
+                            } else if (d.properties.HVI == 5) {
+                                return "#e68a00";
+                            } else {
+                                return "blue"
+                            }
+                        });
+                    }
+                    // 新しいパスの色を変更
+                    d3.select(this).style("fill", "pink");
+                    // 選択されたパスを更新
+                    selectedPath = d3.select(this);
+
+
+
+
+                });
+
+            let isClicking = false; // マウスがクリックされているかどうかの状態
+
+            canvas.on("mousedown", function () {
+                isClicking = true;
+            }).on("mouseup", function () {
+                isClicking = false;
+                console.log(isClicking)
+            });
+        }
+
+    }
+}
+// console.log('test')
+
+</script>
+
 <style scoped>
 /* Add your CSS styles here */
 
@@ -113,20 +320,39 @@ async viewMap() {
     margin-top: 20px;
 }
 
-.uhi-map{
+.uhi-map {
     text-align: center;
     padding: 100px 0;
     background-color: #f4f4f4;
     background-image: url('../assets/uhimap_bg.jpg');
 
-    background-size:contain;
+    background-size: contain;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Prevent scrollbars from affecting the layout */
+}
 
+.uhi-map {
+  min-height: 100vh; /* Make sure it's at least the full height of the viewport */
+  min-width: 100vw; /* Make sure it's at least the full width of the viewport */
+  background-image: url('../assets/uhimap_bg.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* This will ensure the background is fixed during scrolling */
+}
 
+#canvas{
+    margin-left: 15%;
+}
 </style>
 <style src="./style.css"></style>
-  
+<style src="./uhi_map.css"></style>
