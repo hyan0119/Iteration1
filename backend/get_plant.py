@@ -1,8 +1,6 @@
 import requests
 import pandas as pd
-
-#       xxx index
-
+#
 # def get_decrease_index(dimensions):
 #     reduce_UHI = (dimensions/dimensions+9,992 * 0.19)* 0.0385
 #     return reduce_UHI
@@ -12,9 +10,9 @@ import pandas as pd
 def get_plant(balcony_size,sunlight,cycle,watering):
     #
     #
-    api_key = "sk-Gxoq6613e77d2ac0f4868"
+    api_key = "sk-S99W661515f986e344868"
     def fetch_plants_info(sunlight, cycle, watering):
-        # Your API key and other parameters
+        # API key and other parameters
         indoor = 1
         poisonous = 0
         page = 1
