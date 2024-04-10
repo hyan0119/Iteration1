@@ -28,6 +28,11 @@
                 </ul>
             </div>
         </div>
+        <!-- title and description of the map -->
+        <div id="map_title">Melbourne Urban Heat Island Vulnerability Map</div>
+        <div id="map_description">Find out the Urban Heat Island Vulnerability (UHI) index across Melbourne CBD’s suburbs. <br> See how your area measures up against other suburbs!</div>
+        <div id="map_instruction">Move your cursor over the suburbs and discover its Urban Heat Island Vulnerability Index</div>
+
         <div id='container'>
             <svg id='canvas'>
 

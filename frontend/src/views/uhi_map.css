@@ -127,4 +127,27 @@ g{
     max-width: 800px; /* 或您希望的宽度 */
     text-align: center; /* 文本居中 */
   }
-  
+
+/* Pls change the style for the map's description */
+
+#map_title{
+    font-size: 28px;
+    color: #FDF1E7;
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+#map_description a{
+    text-decoration: none;
+    color: #FDF1E7;
+    text-align: center;
+}
+
+#map_instruction{
+    font-size: 20px;
+    color: #FDF1E7;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
