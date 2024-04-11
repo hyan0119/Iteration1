@@ -25,11 +25,10 @@ def plant_match():
     
     balcony_size = data.get('apartmentSize')
     sunlight = data.get('sunlight')
-    cycle = data.get('cycle')
     watering = data.get('watering')
     
-    print(balcony_size, sunlight, cycle, watering)
-    response_data = get_plant(balcony_size, sunlight, cycle, watering)
+    print(balcony_size, sunlight, watering)
+    response_data = get_plant(float(balcony_size), sunlight, watering)
     # print(response_data)
     
     return jsonify(response_data)

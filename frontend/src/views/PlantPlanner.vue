@@ -1,100 +1,128 @@
 <template>
-    <div class="plant_planner">
-        <div class="menu-bar">
-            <div class="logo">
-                <img src="@/assets/logo.png" alt="Logo" />
-                <router-link to="/">
-                    <h2>Home</h2>
-                </router-link>
-            </div>
-            <div class="menu">
-                <ul>
-                    <router-link to="/uhi-map">
-                        <li>UHI MAP</li>
-                    </router-link>
-                    <router-link to="/plant-planner">
-                        <li>PLANT PLANNER</li>
-                    </router-link>
-                    <router-link to="/my-plants">
-                        <li>MY PLANTS</li>
-                    </router-link>
-                    <router-link to="/info-page">
-                        <li>INFO</li>
-                    </router-link>
-                    <router-link to="/about-us">
-                        <li>ABOUT US</li>
-                    </router-link>
-                </ul>
-            </div>
-        </div>
+    <div class="common-layout">
+    <el-container>
+        <el-header class="header">
+                <div class="menu-container">
+                    <el-menu mode="horizontal" class="menu left-menu" background-color="transparent">
+                        <el-menu-item index="0" class="menu-item logo-item">
+                            <router-link to="/">
+                                <img src="@/assets/logo.png" alt="Logo" class="logo" />
+                            </router-link>
+                        </el-menu-item>
+                        <el-menu-item index="1" class="menu-item home">
+                            <router-link to="/">Home</router-link>
+                        </el-menu-item>
+                    </el-menu>
 
-        <div class="plant-section">
-            <h2>PLANT PLANNER</h2>
-            <p>Discover what type of plants suit your needs</p>
-            <div class="postcode-input">
-
-                <div class="input-fields">
-                    <div class="input-group">
-                        <label for="apartmentSize">Apartment Size:</label>
-                        <input placeholder="Apartment Size" type="text" id="apartmentSize" v-model="apartmentSize"
-                            class="input-field">
-                    </div>
-
-                    <div class="input-group">
-                        <label for="sunlight">Sunlight:</label>
-                        <select id="sunlight" v-model="sunlight" class="input-field">
-                            <!-- <option disabled value="" selected>Sunlight</option> -->
-                            <option selected value="full_shade">full_shade</option>
-                            <option value="part_shade">part_shade</option>
-                            <option value="sun-part_shade">sun-part_shade</option>
-                            <option value="full_sun ">full_sun</option>
-                        </select>
-                    </div>
-
-                    <!-- <div class="input-group">
-                        <label for="cycle">Cycle:</label>
-                        <select id="cycle" v-model="cycle" class="input-text">
-                            <option selected value="perennial">perennial</option>
-                            <option value="annual">annual</option>
-                            <option value="biennial">biennial</option>
-                            <option value="biannual">biannual</option>
-                        </select>
-                    </div> -->
-
-                    <div class="input-group">
-                        <label for="watering">Watering:</label>
-                        <select id="watering" v-model="watering" class="input-field">
-                            <!-- <option selected value="">Watering</option> -->
-                            <option selected value="frequent">frequent</option>
-                            <option value="average">average</option>
-                            <option value="minimum">minimum</option>
-                            <option value="none">none</option>
-                        </select>
-                    </div>
+                    <el-menu mode="horizontal" class="menu right-menu" background-color="transparent">
+                        <el-menu-item index="2" class="menu-item">
+                            <router-link to="/uhi-map">UHI MAP</router-link>
+                        </el-menu-item>
+                        <el-menu-item index="3" class="menu-item">
+                            <router-link to="/plant-planner">PLANT PLANNER</router-link>
+                        </el-menu-item>
+                        <el-menu-item index="4" class="menu-item">
+                            <router-link to="/my-plants">MY PLANTS</router-link>
+                        </el-menu-item>
+                        <el-menu-item index="5" class="menu-item">
+                            <router-link to="/info-page">INFO</router-link>
+                        </el-menu-item>
+                        <el-menu-item index="6" class="menu-item">
+                            <router-link to="/about-us">ABOUT US</router-link>
+                        </el-menu-item>
+                    </el-menu>
                 </div>
+            </el-header>
+            <el-main class="main-content">
+                <div class="plant-section">
+                    <h2>PLANT PLANNER</h2>
+                    <p>Discover what type of plants suit your needs</p>
+                    <div class="postcode-input">
+                        <div class="input-fields">
+                            <div class="input-group">
+                                <label for="apartmentSize">Apartment Size:</label>
+                                <input placeholder="Balcony Size" type="text" id="apartmentSize" v-model="apartmentSize"
+                                    class="input-field">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="sunlight">Sunlight:</label>
+                                <select id="sunlight" v-model="sunlight" class="input-field">
+                                    <!-- <option disabled value="" selected>Sunlight</option> -->
+                                    <option selected value="high">high</option>
+                                    <option value="medium">medium</option>
+                                    <option value="low">low</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="watering">Watering:</label>
+                                <select id="watering" v-model="watering" class="input-field">
+                                    <!-- <option selected value="">Watering</option> -->
+                                    <option selected value="high">high</option>
+                                    <option value="medium">medium</option>
+                                    <option value="low">low</option>
+                                </select>
+                            </div>
+                        </div>
 
 
-                <button @click="viewPlantMatch">Match</button>
-            </div>
-            <div>
-                <p v-if="plantImageUrl" class="image-container">
-                    <img :src="plantImageUrl" alt="Plant Image" class="plant-image">
-                </p>
-                <div class="info-container">
-                    <p v-if="no_image">image: {{ no_image }}</p>
-                    <p v-if="plantName">Name of the plant: {{ plantName }}</p>
-                    <p v-if="lifespan">Lifespan: {{ lifespan }}</p>
-                    <p v-if="maintainingGuide">Maintaining Guide: {{ maintainingGuide }}</p>
-                    <p v-if="text">Contribution to the heat island effect: {{ text }}</p>
-                    <p v-if="no_matched_plant">Error: {{ no_matched_plant }}</p>
-                </div>
+                        <button @click="viewPlantMatch">Match</button>
+                    </div>
+                    <div>
+                        <p v-if="plantImageUrl" class="image-container">
+                            <img :src="plantImageUrl" alt="Plant Image" class="plant-image">
+                        </p>
+                        <div class="info-container">
+                            <p v-if="no_image">image: {{ no_image }}</p>
+                            <p v-if="plantName">Name of the plant: {{ plantName }}</p>
+                            <p v-if="lifespan">Lifespan: {{ lifespan }}</p>
+                            <p v-if="maintainingGuide">Maintaining Guide: {{ maintainingGuide }}</p>
+                            <p v-if="text">Contribution to the heat island effect: {{ text }}</p>
+                            <p v-if="no_matched_plant">Error: {{ no_matched_plant }}</p>
+                        </div>
 
-                <!-- <p v-if="temperatureContribution">Contribution towards temperature reduce: {{ temperatureContribution }}
+                        <!-- <p v-if="temperatureContribution">Contribution towards temperature reduce: {{ temperatureContribution }}
                 </p>
                 <p v-if="requiredTools">Required tools to grow the plant: {{ requiredTools }}</p> -->
-            </div>
+                    </div>
+                </div>
+            </el-main>
+            <el-footer class="footer">
+    <el-row class="footer-top" type="flex" justify="space-around" align="middle">
+      <el-col :span="8" class="footer-section">
+        <div>
+          <h3 class="el-typography">COOLDOWN MELBOURNE</h3>
+          <p><i class="el-icon-location"></i> Wellington Rd, Clayton, VIC 3800</p>
+          <p><i class="el-icon-phone"></i> 0424281773</p>
+          <p><i class="el-icon-message"></i> info@cooldownmelbourne.com</p>
         </div>
-        <div class="filler"></div>
+      </el-col>
+
+      <el-col :span="8" class="footer-section">
+        <div>
+          <h3 class="el-typography">USEFUL LINKS</h3>
+          <el-link type="primary" underline="false">Home</el-link>
+          <el-link type="primary" underline="false">About Us</el-link>
+          <el-link type="primary" underline="false">Service</el-link>
+          <el-link type="primary" underline="false">Terms of Service</el-link>
+          <el-link type="primary" underline="false">Privacy Policy</el-link>
+        </div>
+      </el-col>
+
+      <el-col :span="8" class="footer-section">
+        <div>
+          <h3 class="el-typography">FOLLOW US</h3>
+          <!-- ...你的社交媒体图标... -->
+        </div>
+      </el-col>
+    </el-row>
+
+    <div class="footer-bottom">
+      <p>© Copyright Team Colon D All Rights Reserved | Designed by Monash IE Team TA 14</p>
+    </div>
+  </el-footer>
+        </el-container>
     </div>
 </template>
 
@@ -120,7 +148,7 @@ export default {
                 this.lifespan = 0,
                 this.maintainingGuide = '',
                 this.no_matched_plant = ''
-                this.text = ''
+            this.text = ''
             try {
                 const response = await axios.post('https://cooldownmelbourne.com/api/plant_match', {
                     apartmentSize: this.apartmentSize,
@@ -162,49 +190,11 @@ export default {
 </script>
 
 <style scoped>
-/* Add your CSS styles here */
-
-
-.title h2 {
-    margin: 0;
-    font-size: 36px;
-}
-
-.title p {
-    margin-top: 20px;
-    font-size: 18px;
-}
-
-
 .plant-section {
     text-align: center;
     padding: 50px 0;
-    margin-top: -100px;
 }
 
-.plant-section h2 {
-    font-size: 24px;
-}
-
-.plant-section p {
-    font-size: 16px;
-    color: #666;
-}
-
-/* .postcode-input {
-    margin-top: 20px;
-} */
-
-/* .postcode-input {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-} */
-
-.input-labels {
-    display: flex;
-    font-size: smaller;
-}
 
 .postcode-input {
     margin-top: 20px;
@@ -230,17 +220,6 @@ export default {
     margin-top: 20px;
 }
 
-.plant_planner {
-    text-align: center;
-    padding: 100px 0;
-    background-color: #f4f4f4;
-    background-image: url('../assets/plant_planner_bg.jpg');
-
-    background-size: contain;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
 
 .image-container {
     display: inline-block;
@@ -284,20 +263,7 @@ export default {
     /* Add space between input groups */
 }
 
-.input-text {
-    width: 180px;
-    /* Set a consistent width for all input fields */
-    padding: 8px;
-    /* Add some padding for better appearance */
-    border: 1px solid #ccc;
-    /* Add a border */
-    border-radius: 5px;
-    /* Add rounded corners */
-    background-color: white;
-    /* Ensure the background is white for better visibility */
-    color: black !important;
-    /* Set text color to black for visibility */
-}
+
 
 .input-group label {
     display: block;
@@ -306,57 +272,56 @@ export default {
     /* Add space between label and input field */
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow-x: hidden; /* 防止水平滚动导致的空白 */
-}
 
-body {
-  background-image: url('../assets/plant_planner_bg.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; /* 使背景图像固定不动，滚动条滚动时背景不变 */
-}
-
-.plant_planner {
-  min-height: 100vh; /* 确保至少有100%视口高度 */
-  width: 100vw; /* 确保宽度覆盖整个视口宽度 */
-  /* 其他样式保持不变 */
-}
 
 .input-field {
-  width: 200px; /* Adjust width as needed */
-  height: 35px; /* Adjust height as needed */
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
-  color: black !important;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+    width: 200px;
+    /* Adjust width as needed */
+    height: 35px;
+    /* Adjust height as needed */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: black !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 /* Apply this class to both inputs and selects */
 input.input-field,
 select.input-field {
-  font-size: 16px; /* Adjust font size as needed */
-  line-height: 1.5; /* This can affect the height, so it should be the same for both */
+    font-size: 16px;
+    /* Adjust font size as needed */
+    line-height: 1.5;
+    /* This can affect the height, so it should be the same for both */
 }
 
 /* Additional styling for selects */
 select.input-field {
-  background-size: 12px 12px; /* Adjust size as needed */
-  padding-right: 14px; /* Add padding to not overlap the arrow icon */
+    background-size: 12px 12px;
+    /* Adjust size as needed */
+    padding-right: 14px;
+    /* Add padding to not overlap the arrow icon */
 }
 
 /* Ensuring text is visible in the select options */
 select.input-field option {
-  color: black !important; /* This will make the text visible */
+    color: black !important;
+    /* This will make the text visible */
 }
+
+
+
+
+
+
+
+
+
+
 
 </style>
 <style src="./style.css"></style>
+

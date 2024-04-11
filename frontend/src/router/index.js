@@ -5,7 +5,6 @@ import PlantPlanner from '@/views/PlantPlanner.vue';
 import MyPlants from '@/views/MyPlants.vue'
 import InfoPage from '@/views/InfoPage.vue'
 import AboutUs from '@/views/AboutUs.vue'
-
 const routes = [
   {
     path: '/',
@@ -35,6 +34,7 @@ const routes = [
     name:  'AboutUs' ,
     component: AboutUs 
   },
+
   // Add more routes for other pages
 ];
 

@@ -1,13 +1,4 @@
-/* .router-link-exact-active {
-    color: inherit; 
-    text-decoration: none; 
-  }
-.router-link-exact-active h1{
-    color: inherit; 
-    text-decoration: none; 
-} */
 a {
-    color: #409EFF;
     text-decoration: none;
 }
 
@@ -15,41 +6,7 @@ a {
     text-decoration: none;
 }
 
-.menu-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: transparent;
-    padding: 10px 20px;
-    margin-top: -100px;
-}
 
-.menu-bar ul {
-    display: flex;
-    list-style-type: none;
-}
-
-.menu-bar li {
-    margin-right: 20px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.menu-bar li:hover {
-    background-color: rgb(84, 123, 34);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    margin-right: 10px;
-    width: 13%;
-    height: 13%;
-}
 
 .filler {
     height: 10vh;
@@ -60,3 +17,143 @@ a {
     color: white !important;
 }
 
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    /* margin-bottom: 80px; */
+    background-color: #56A05B;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+}
+
+.menu-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.left-menu,
+.right-menu {
+    display: flex;
+}
+
+.menu-item {
+    font-size: 1rem;
+    padding: 0 15px;
+    align-items: center;
+    display: flex;
+}
+
+.logo-item {
+    padding-right: 20px;
+}
+
+.logo {
+    height: auto;
+    max-height: 80px;
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: 60px;
+    }
+
+    .logo {
+        max-height: 60px;
+    }
+
+    .menu-item {
+        font-size: 0.75rem;
+        padding: 0 8px;
+    }
+
+    .main-content {
+        padding-top: 60px;
+        /* 调整以适应响应式布局 */
+    }
+}
+
+.footer-bottom {
+    background-color: rgb(28, 61, 52);
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.footer-top {
+    display: flex;
+    background-color: #4CAF50;
+    padding: 8vh;
+    align-items: center;
+}
+
+.el-typography {
+    color: white;
+    /* 可以添加更多排版样式，如字体大小、行高等 */
+}
+
+.footer-section {
+    flex-grow: 1; /* 添加这个属性 */
+    padding: 20px;
+    border-right: 2px solid white;
+    margin-right: 20px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-section:last-child {
+    border-right: none;
+    margin-right: 0;
+}
+
+.el-footer, .footer {
+    width: 100%;
+    margin: 0;
+}
+
+html, body {
+    margin: 0; /* 移除默认边距 */
+    padding: 0; /* 移除默认内边距 */
+    height: 100%; /* 设置为整个视口高度 */
+  }
+  
+  #app {
+    min-height: 100vh; /* 确保 app 至少有 100% 的视口高度 */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .el-container {
+    flex: 1; /* 使用 flex 1 让 container 占据所有可用空间 */
+  }
+  
+  .el-header {
+    height: 80px; /* 你的 header 高度 */
+  }
+  
+  .el-main {
+    flex: 1; /* 让 main 占据所有剩余空间 */
+    /* 确保没有外边距或内边距影响高度 */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .el-footer {
+    height: 80px; /* 你的 footer 高度 */
+  }
+
+  .common-layout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  

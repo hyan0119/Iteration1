@@ -1,4 +1,4 @@
-import requests
+import re
 import pandas as pd
 #
 # def get_decrease_index(dimensions):
@@ -7,133 +7,72 @@ import pandas as pd
     
 
 
-def get_plant(balcony_size,sunlight,cycle,watering):
-    #
-    #
-    api_key = "sk-S99W661515f986e344868"
-    def fetch_plants_info(sunlight, cycle, watering):
-        # API key and other parameters
-        indoor = 1
-        poisonous = 0
-        page = 1
-
-        # Constructing the URL with the given parameters
-        url = f"https://perenual.com/api/species-list?key={api_key}&indoor={indoor}&poisonous={poisonous}" \
-              f"&sunlight={sunlight}&cycle={cycle}&watering={watering}&page={page}"
-        # print(url)
-        # Sending a GET request to the API
+def get_plant(balcony_size,sunlight,watering):
+    plant_data = pd.read_csv("./plant_deltail_clean.csv")
+    def plant_recommender(plant_data, watering, sunlight, balcony_size_meters):
+        # 检查balcony_size_meters是否为数字
+        if not isinstance(balcony_size_meters, (int, float)) or balcony_size_meters <= 0:
+            return ("balcony_size_meters must be a number greater than 0.")
         
-        response = requests.get(url)
-        if response.status_code == 200:
-            json_data = response.json()
-            # print("debug: ")
-            # print(json_data)
-            # print(json_data)
-            # Extracting information from the response
-            plants_data = {
-                'id': [i['id'] for i in json_data['data']],
-                'common_name': [i['common_name'] for i in json_data['data']],
-                'scientific_name':
-                    [i['scientific_name'] for i in json_data['data']],
-                'cycle': [i['cycle'] for i in json_data['data']],
-                'watering': [i['watering'] for i in json_data['data']],
-                'sunlight': [i['sunlight'] for i in json_data['data']],
-            }
-
-            # convert to pandas format
-            # delete the rows we dont need
-            plants_df = pd.DataFrame(plants_data)
-            plants_df = plants_df[~plants_df.apply(lambda row: row.astype(
-                str).str.contains('Upgrade Plans To Premium/Supreme').any(),
-                                                   axis=1)]
-
-            return plants_df
-        else:
-            print("Failed to fetch data. Status code:", response.status_code)
-            return {}
-
-    def detail_plant_info(balcony_size_ft, plants_df):
-        plants_data = []
-        for ids in plants_df['id']:
-            url = f"https://perenual.com/api/species/details/{ids}?key={api_key}"
-            response = requests.get(url)
-            if response.status_code == 200:
-                json_data = response.json()
-                # print('index: ', json_data.get('dimensions', {}).get('min value', float('inf')))
-                # index = get_decrease_index(json_data.get('dimensions', {}).get('min value', float('inf')))
-                # Assuming 'dimensions' is directly accessible and 'min_value' is directly comparable
-                if json_data.get('dimensions', {}).get('min_value', float('inf')) <= (balcony_size_ft * 0.3):
-                    plant_details = {
-                        'id': ids,
-                        'common_name': json_data.get('common_name'),
-                        'scientific_name': json_data.get('scientific_name'),
-                        'cycle': json_data.get('cycle'),
-                        'watering': json_data.get('watering'),
-                        'sunlight': json_data.get('sunlight'),
-                        'flowers': json_data.get('flowers'),
-                        'fruits': json_data.get('fruits'),
-                        'growth_rate': json_data.get('growth_rate'),
-                        'maintenance': json_data.get('maintenance'),
-                        'care_level': json_data.get('care_level'),
-                        'description': json_data.get('description'),
-                        'image': json_data.get('default_image'),
-                        # 'index': index
-                    }
-                    plants_data.append(plant_details)
-                    break
-            else:
-                print(f"Failed to get data for plant id {ids}")
-        # print("detail_plant_info")
-        if plants_data:
-            plants_data_detail_df = pd.DataFrame(plants_data)
-            return plants_data_detail_df
-        else:
-            print("No plants meet the criteria or failed to fetch plant data.")
-            return pd.DataFrame()
-
-    # plant_name = 'Aloe Vera'
-    # lifespan = 5
-    # maintaining_guide = 'Water once a week'
-    # temperature_contribution = 'High'
-    # required_tools = 'Watering can'
-    plant_image_url = None
-    plant_name = None
-    lifespan = None
-    maintaining_guide = None
-    index = 0
-    try:
-        plant_df = fetch_plants_info(sunlight, cycle, watering)
-        # print(plant_df)
-        # print('========')
-        plants_data_detail_df = None
-        if len(plant_df):
-            plants_data_detail_df = detail_plant_info(float(balcony_size), plant_df)
-        # print(plants_data_detail_df)
-        # for i in plants_data_detail_df:
-        #     print(i, plants_data_detail_df[i])
-        try:
-            plant_image_url = plants_data_detail_df['image'][0]['original_url']
-        except Exception as e:
-            plant_image_url = None
-        # print('========')
-            
-        plant_name = plants_data_detail_df['common_name'][0]
-        lifespan = plants_data_detail_df['cycle'][0]
-        maintaining_guide = plants_data_detail_df['watering'][0]
-        index = plants_data_detail_df[index]
-    except Exception as e:
-        print("errr")
-    finally: 
-        response_data = {
-            'plantImageUrl': plant_image_url,
-            'plantName': plant_name,
-            'lifespan': lifespan,
-            'maintainingGuide': maintaining_guide
-            # 'index': index
+        
+        # 创建浇水和日照条件的映射
+        watering_mapping = {
+            'high': ['frequent'],
+            'medium': ['average'],
+            'low': ['minimum']
         }
-        # print("=" * 10)
-        # print(response_data)
-        return response_data
+        
+        sunlight_mapping = {
+            'high': ['full sun'],
+            'medium': ['part shade', 'filtered shade'],
+            'low': ['full shade', 'deep shade']
+        }
+        # 通过映射找到对应的浇水和日照条件列表
+        watering_conditions = watering_mapping[watering]
+        sunlight_conditions = sunlight_mapping[sunlight]
+        
+        # 定义一个函数来使用正则表达式解析size字符串并转换为米
+        def parse_size_to_meters(size_str):
+            match = re.search(r"'max_value': (\d+(\.\d+)?)", size_str)
+            if match:
+                max_value_feet = float(match.group(1))
+                return max_value_feet * 0.3048
+            else:
+                return 0
+        
+        # 应用解析函数并筛选符合条件的植物
+        suitable_plants = plant_data[
+            plant_data['watering'].apply(lambda x: any(condition in x for condition in watering_conditions)) &
+            plant_data['sunlight'].apply(lambda x: any(condition in x for condition in sunlight_conditions))
+        ]
+        
+        suitable_plants['Size_meters'] = suitable_plants['dimensions'].apply(parse_size_to_meters)
+        suitable_plants = suitable_plants[suitable_plants['Size_meters'] <= balcony_size_meters*0.3]
+        
+        # 检查是否找到了符合条件的植物
+        if suitable_plants.empty:
+            return "No plants match the given criteria."
+    
+        return suitable_plants.drop(columns=['dimensions'])[['original_url', 'watering_guide', 'common_name']]
+
+    df = plant_recommender(plant_data,watering,sunlight,balcony_size)
+    original_url = list(df['original_url'])[0]
+    watering_guide = list(df['watering_guide'])[0]
+    common_name = list(df['common_name'])[0]
+    # print(type(original_url))
+    # print(original_url[0])
+    # print(common_name[0])
+    # print(watering_guide[0])
+    response_data = {
+        'plantImageUrl': original_url,
+        'plantName': common_name,
+        'watering_guide': watering_guide
+        # 'index': index
+    }
+    
+    # print("=" * 10)
+    # print(response_data)
+    return response_data
     
 # res = get_plant(3.3, "part_shade", "perennial", "frequent")
 # res = get_plant(3.3, "sun-part_shade", "perennial", "frequent")
