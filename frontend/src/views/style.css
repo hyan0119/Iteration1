@@ -125,7 +125,11 @@ html, body {
     padding: 0; /* 移除默认内边距 */
     height: 100%; /* 设置为整个视口高度 */
   }
-  
+body {
+    background-color: #373a3a;
+
+
+}
   #app {
     min-height: 100vh; /* 确保 app 至少有 100% 的视口高度 */
     display: flex;

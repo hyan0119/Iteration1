@@ -46,23 +46,23 @@
                             </div>
 
                             <div class="input-group">
-                                <label for="sunlight">Sunlight:</label>
-                                <select id="sunlight" v-model="sunlight" class="input-field">
+                                <label>Sunlight:</label>
+                                <el-select v-model="sunlight" placeholder="Select Sunlight" class="input-field">
                                     <!-- <option disabled value="" selected>Sunlight</option> -->
-                                    <option selected value="high">high</option>
-                                    <option value="medium">medium</option>
-                                    <option value="low">low</option>
-                                </select>
+                                    <el-option label="high" value="high"></el-option>
+                                    <el-option label="medium" value="medium"></el-option>
+                                    <el-option label="low" value="low"></el-option>
+                                </el-select>
                             </div>
 
                             <div class="input-group">
-                                <label for="watering">Watering:</label>
-                                <select id="watering" v-model="watering" class="input-field">
+                                <label >Watering:</label>
+                                <el-select v-model="watering" placeholder="Select Watering" class="input-field">
                                     <!-- <option selected value="">Watering</option> -->
-                                    <option selected value="high">high</option>
-                                    <option value="medium">medium</option>
-                                    <option value="low">low</option>
-                                </select>
+                                    <el-option label="high" value="high"></el-option>
+                                    <el-option label="medium" value="medium"></el-option>
+                                    <el-option label="low" value="low"></el-option>
+                                </el-select>
                             </div>
                         </div>
 
@@ -128,8 +128,26 @@
 
 <script>
 import axios from 'axios';
+import { ElSelect,ElOption } from 'element-plus';
+import 'element-plus/dist/index.css';
+import { ref } from 'vue'
+
+
 export default {
     name: 'PlantPlanner',
+    components: {
+    ElSelect,
+    ElOption
+    },
+    setup() {
+    const sunlight = ref('');
+    const watering = ref('');
+
+    return {
+      sunlight,
+      watering,
+    };
+  },
     data() {
         return {
             no_image: '',
@@ -138,7 +156,8 @@ export default {
             lifespan: 0,
             maintainingGuide: '',
             no_matched_plant: '',
-            text: ''
+            text: '',
+
         };
     },
     methods: {
@@ -192,7 +211,7 @@ export default {
 <style scoped>
 .plant-section {
     text-align: center;
-    padding: 50px 0;
+    padding: 80px;
 }
 
 
