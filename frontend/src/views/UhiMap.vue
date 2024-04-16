@@ -425,7 +425,7 @@ g{
 }
 
 #legend_area {
-    background-color: #058237;
+    background-color: darkcyan;
     padding: 10px;
     border-radius: 5px;
     display: flex;
