@@ -302,7 +302,7 @@ export default {
                       });
                   }
                   // 新しいパスの色を変更
-                  d3.select(this).style("fill", "pink");
+                  d3.select(this).style("fill", "limegreen");
                   // 選択されたパスを更新
                   selectedPath = d3.select(this);
 
@@ -356,7 +356,12 @@ svg{
 
 #canvas{
     min-height: 700px;
-    min-width: 950px;
+    min-width: 900px;
+    max-width: 900px;
+    max-height: 800px;
+    margin-top: 50px;
+    top: 500px;
+
 }
 
 
@@ -420,7 +425,7 @@ g{
 }
 
 #legend_area {
-    background-color: #058237;
+    background-color: darkcyan;
     padding: 10px;
     border-radius: 5px;
     display: flex;
