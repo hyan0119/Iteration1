@@ -35,49 +35,84 @@
       </el-header>
       <el-main class="main-content">
 
+<!-- HVI map content -->
+<!-- Starting here -->
+    <div id='title'>Melbourne Urban Heat Island Vulnerability Map</div>
+    <div id="intro">Find out the Urban Heat Island Vulnerability (UHI) index across Melbourne CBD’s suburbs.</div>
+    <!-- <div id='title'>Melbourne Urban Heat Island Vulnerability Map</div> -->
 
-          <div id='container' style="width: 100vw; height: 100vh;">
-              <svg id='canvas'>
+    <div id='container'>
 
-              </svg>
-              <div id='rightSide'>
+        <div id='leftSide'>
+
+            <div id="legendArea">
+                <div id = 'legendTitle'>HVI</div>
+                <svg id='legend'>
+                    <g>
+                        <rect x="10" y="0" width="40" height="40" fill="#fff5e6"></rect>
+                        <text x="60" y="20" fill="white">0 Vey Low</text>
+                    </g>
+                    <g>
+                        <rect x="10" y="40" width="40" height="40" fill="#ffd699"></rect>
+                        <text x="60" y="60" fill="white">1 Low</text>
+                    </g>
+                    <g>
+                        <rect x="10" y="80" width="40" height="40" fill="#ffc266"></rect>
+                        <text x="60" y="100" fill="white">2 Moderate</text>
+                    </g>
+                    <g>
+                        <rect x="10" y="120" width="40" height="40" fill="#ffad33"></rect>
+                        <text x="60" y="140" fill="white">3 High</text>
+                    </g>
+                    <g>
+                        <rect x="10" y="160" width="40" height="40" fill="#ff9900"></rect>
+                        <text x="60" y="180" fill="white">4 Very High</text>
+                    </g>
+                    <g>
+                        <rect x="10" y="200" width="40" height="40" fill="#e68a00"></rect>
+                        <text x="60" y="220" fill="white">5 Extreme</text>
+                    </g>
+                </svg>
 
 
-                  <div id='tooltip'>
+                
 
-                  </div>
-                  <div id="legend_area">
-                      <div id='description'>Heat Island Vulnerability Index</div>
-                      <svg id='legend'>
-                          <g>
-                              <rect x="10" y="0" width="40" height="40" fill="#fff5e6"></rect>
-                              <text x="60" y="20" fill="black">0 - Very Low</text>
-                          </g>
-                          <g>
-                              <rect x="10" y="40" width="40" height="40" fill="#ffd699"></rect>
-                              <text x="60" y="60" fill="black">1 - Low</text>
-                          </g>
-                          <g>
-                              <rect x="10" y="80" width="40" height="40" fill="#ffc266"></rect>
-                              <text x="60" y="100" fill="black">2 - Moderate</text>
-                          </g>
-                          <g>
-                              <rect x="10" y="120" width="40" height="40" fill="#ffad33"></rect>
-                              <text x="60" y="140" fill="black">3 - High</text>
-                          </g>
-                          <g>
-                              <rect x="10" y="160" width="40" height="40" fill="#ff9900"></rect>
-                              <text x="60" y="180" fill="black">4 - Very High</text>
-                          </g>
-                          <g>
-                              <rect x="10" y="200" width="40" height="40" fill="#e68a00"></rect>
-                              <text x="60" y="220" fill="black">5 - Extreme</text>
-                          </g>
-                      </svg>
-                  </div>
-              </div>
+            </div>
 
-          </div>
+            <svg id='canvas'>
+                
+            </svg>
+            <div id="leftPane">
+                <div id='description'>
+                    description text here!
+                </div>
+
+                <!-- <div id='description'>
+                    Urban Heat Island (UHI) is a phenomenon where urban areas experience higher temperatures than their rural surroundings. This is due to the high concentration of buildings, roads, and other heat-absorbing structures in cities. The Urban Heat Island Vulnerability Index (HVI) is a measure of how vulnerable a region is to the effects of UHI. This map shows the HVI of Melbourne, Australia, with darker shades indicating higher vulnerability.
+                </div> -->
+                <div id='tooltip'>
+    
+                </div>
+                <button id="resetButton">Reset</button>
+
+            </div>
+    
+
+    
+
+        </div>
+
+        
+
+        
+
+
+        
+    </div>
+
+<!-- view contets end here -->
+
+
           <div id="promotion-container">
 
               <div id="promotion">Are you interested in learning how you, as an individual, can contribute to making
@@ -154,174 +189,166 @@
 <script>
 import * as d3 from 'd3'
 export default {
-  name: 'UhiMap',
-  data() {
-      return {
-          hviData: null
-      };
-  },
-  mounted() {
-      this.loadMapData();
-  },
-  methods: {
-      loadMapData() {
-          // 使用import引入hvi.json数据
-          let hvi = '/hvi.json'
+    name: 'UhiMap',
+    data() {
+        return {
+            hviData: null
+        };
+    },
+    mounted() {
+    this.loadMapData();
+    },
+        methods: {
+            loadMapData() {
+                // 使用import引入hvi.json数据
+                let hvi = '/hvi.json'
 
-          d3.json(hvi).then(
-              (data, error) => {
-                  if (error) {
-                      console.log('err')
-                  } else {
-                      this.hviData = data
-                      // console.log(this.hviData)
-                      this.drawMap()
-                      // drawMap()
-                  }
-              }
-          )
-      },
-      drawMap() {
-          let selectedPath = null
+                d3.json(hvi).then(
+                    (data, error) => {
+                        if (error) {
+                            console.log('err')
+                        } else {
+                            this.hviData = data
+                            // console.log(this.hviData)
+                            this.drawMap()
+                            // drawMap()
+                            // this.resetMap()
+                        }
+                    }
+                )
+            },
+            drawMap() {
+                //   let selectedPath = null
+                    
 
-          let canvas = d3.select('#canvas')
-          let tooltip = d3.select('#tooltip')
-          // 这里使用D3.js的代码绘制地图
-          // 您需要将原始JavaScript代码适配到Vue的方法中
-          var projection = d3.geoMercator()
-              .fitSize([800, 800], this.hviData);
+                let canvas = d3.select('#canvas')
+                let tooltip = d3.select('#tooltip')
+                // 这里使用D3.js的代码绘制地图
+                // 您需要将原始JavaScript代码适配到Vue的方法中
+                var projection = d3.geoMercator().fitSize([700, 700], this.hviData);
 
-          var path = d3.geoPath()
-              .projection(projection);
-          // console.log(this.hviData)
-          // console.log(projection)
-          // console.log(path)
+                // Description: create a path generator
+                var path = d3.geoPath().projection(projection);
+                // console.log(this.hviData)
+                    // console.log(projection)
+                    // console.log(path)
+                let resetButton = d3.select('#resetButton');
+                resetButton.style("display", "none");
 
-          canvas.selectAll("path")
-              .data(this.hviData.features)
-              .enter().append("path")
-              .attr("d", path)
-              .attr('data-fips', (d) => d.properties.id) // FIPSコードをデータ属性として追加
-              .style("fill", function (d) {
-                  // データに基づいた色を適用
-                  if (d.properties.HVI == 0) {
-                      return "#fff5e6";
-                  } else if (d.properties.HVI == 1) {
-                      return "#ffd699";
-                  } else if (d.properties.HVI == 2) {
-                      return "#ffc266";
-                  } else if (d.properties.HVI == 3) {
-                      return "#ffad33";
-                  } else if (d.properties.HVI == 4) {
-                      return "#ff9900";
-                  } else if (d.properties.HVI == 5) {
-                      return "#e68a00";
-                  } else { return "blue" }
-              })
-              .style("stroke", "white")
-              .style("stroke-width", 0.5)
-              .on("mouseover", function (event, d) {
-                  // マウスオーバー時の処理
-                  // tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI)
-                  // .style("left", (event.pageX + 10) + "px")
-                  // .style("top", (event.pageY - 10) + "px")
-                  // .style("display", "block")
-                  // .style("visibility", "visible")
-
-                  if (d.properties.HVI == 0) {
-                      tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is not vulnerable to Urban Heat Island.")
-                          .style("left", (event.pageX + 10) + "px")
-                          .style("top", (event.pageY - 10) + "px")
-                          .style("display", "block")
-                          .style("visibility", "visible")
-                  } else if (d.properties.HVI == 1) {
-                      tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is slightly vulnerable to Urban Heat Island.")
-                          .style("left", (event.pageX + 10) + "px")
-                          .style("top", (event.pageY - 10) + "px")
-                          .style("display", "block")
-                          .style("visibility", "visible")
-                  } else if (d.properties.HVI == 2) {
-                      tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is moderately vulnerable to Urban Heat Island.")
-                          .style("left", (event.pageX + 10) + "px")
-                          .style("top", (event.pageY - 10) + "px")
-                          .style("display", "block")
-                          .style("visibility", "visible")
-                  } else if (d.properties.HVI == 3) {
-                      tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is highly vulnerable to Urban Heat Island.")
-                          .style("left", (event.pageX + 10) + "px")
-                          .style("top", (event.pageY - 10) + "px")
-                          .style("display", "block")
-                          .style("visibility", "visible")
-                  } else if (d.properties.HVI == 4) {
-                      tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is extremely vulnerable to Urban Heat Island.")
-                          .style("left", (event.pageX + 10) + "px")
-                          .style("top", (event.pageY - 10) + "px")
-                          .style("display", "block")
-                          .style("visibility", "visible")
-                  } else if (d.properties.HVI == 5) {
-                      tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Urban Heat Island Vulnerability Index: " + d.properties.HVI + "<br>" + "<br>" + "This suburb is severely vulnerable to Urban Heat Island.")
-                          .style("left", (event.pageX + 10) + "px")
-                          .style("top", (event.pageY - 10) + "px")
-                          .style("display", "block")
-                          .style("visibility", "visible")
-                  } else { return "blue" }
+                
+                canvas.selectAll("path")
+                .data(this.hviData.features)
+                .enter()
+                .append("path")
+                .attr("d", path)
+                .attr("data-fips", (d) => d.properties.id)
+                .style("fill", function(d) {
+                    if (d.properties.HVI == 0) {
+                        return "#fff5e6";
+                    } else if (d.properties.HVI == 1) {
+                        return "#ffd699";
+                    } else if (d.properties.HVI == 2) {
+                        return "#ffc266";
+                    } else if (d.properties.HVI == 3) {
+                        return "#ffad33";
+                    } else if (d.properties.HVI == 4) {
+                        return "#ff9900";
+                    } else if (d.properties.HVI == 5) {
+                        return "#e68a00";
+                    } else {
+                        return "blue";
+                    }
+                })
+                .style("stroke", "green")
+                .style("stroke-width", 0.8)
+                .style("cursor", "pointer")
+                .style("border", "1px solid black")
+                .style("box-shadow", "0px 0px 10px rgba(0, 0, 0, 0.5)")
+                .on("click", function(event, d) {
 
 
-              })
-              .on("mouseout", function (d) {
-                  console.log(d)
-                  // マウスアウト時の処理
-                  tooltip.style("display", "none");
-              })
-              .on("click", function (event, d) {
-                  console.log(event, d)
+                    if (d3.select(this).style("fill") !== "darkcyan") {
+                        // Add your code here for when the path is not clicked
+                        // let tooltip_base = 
+                        tooltip.html("You have selected <br><br>" + "Suburb: " + d.properties.SA2_NAME16 + "<br>" + "HVI: " + d.properties.HVI)
+                        .style("display", "block")
+                        .style("visibility", "visible")
+                        .style("text-align", "center");
 
-                  d3.select(this).style("fill", "orange");
-              })
-              .on("click", function (event, d) {
-                  console.log(event, d)
-                  // クリックされたパスの色を変更
-                  if (selectedPath) {
-                      // 以前に選択されたパスがある場合、その色を元に戻す
-                      selectedPath.style("fill", function (d) {
-                          if (d.properties.HVI == 0) {
-                              return "#fff5e6";
-                          } else if (d.properties.HVI == 1) {
-                              return "#ffd699";
-                          } else if (d.properties.HVI == 2) {
-                              return "#ffc266";
-                          } else if (d.properties.HVI == 3) {
-                              return "#ffad33";
-                          } else if (d.properties.HVI == 4) {
-                              return "#ff9900";
-                          } else if (d.properties.HVI == 5) {
-                              return "#e68a00";
-                          } else {
-                              return "blue"
-                          }
-                      });
-                  }
-                  // 新しいパスの色を変更
-                  d3.select(this).style("fill", "limegreen");
-                  // 選択されたパスを更新
-                  selectedPath = d3.select(this);
+                        canvas.selectAll("path")
+                            .style("fill", function(d) {
+                                if (d.properties.HVI == 0) {
+                                    return "#fff5e6";
+                                } else if (d.properties.HVI == 1) {
+                                    return "#ffd699";
+                                } else if (d.properties.HVI == 2) {
+                                    return "#ffc266";
+                                } else if (d.properties.HVI == 3) {
+                                    return "#ffad33";
+                                } else if (d.properties.HVI == 4) {
+                                    return "#ff9900";
+                                } else if (d.properties.HVI == 5) {
+                                    return "#e68a00";
+                                } else {
+                                    return "blue";
+                                }
+                                
+                            })
+
+                            d3.select(this)
+                            .style("fill", "darkcyan");
+
+                            if (d3.select(this).style("fill") == "darkcyan"){
+                                
+                                resetButton.style("display", "block");
+                                resetButton.style('visibility', 'visible');
+                                resetButton.on('click', function(){
+                                    canvas.selectAll("path")
+                                    .style('fill', function(d){
+                                        if (d.properties.HVI == 0) {
+                                            return "#fff5e6";
+                                        } else if (d.properties.HVI == 1) {
+                                            return "#ffd699";
+                                        } else if (d.properties.HVI == 2) {
+                                            return "#ffc266";
+                                        } else if (d.properties.HVI == 3) {
+                                            return "#ffad33";
+                                        } else if (d.properties.HVI == 4) {
+                                            return "#ff9900";
+                                        } else if (d.properties.HVI == 5) {
+                                            return "#e68a00";
+                                        } else {
+                                            return "blue";
+                                        }
+                                    })
+
+                                })
+
+
+                            }
+
+                        }    
+                })
+                .on("mouseover", function(event, d) {
+                    if (d3.selectAll('path').filter(function() { return d3.select(this).style("fill") === "darkcyan"; }).size() < 1) {
+                        tooltip.html("Suburb: " + d.properties.SA2_NAME16 + "<br>" + "Heat Vulnerability Index (HVI): " + d.properties.HVI)
+                        .style("display", "block")
+                        .style("visibility", "visible");
+                    } 
+                });
+                
+ 
 
 
 
+            }
 
-              });
 
-          let isClicking = false; // マウスがクリックされているかどうかの状態
 
-          canvas.on("mousedown", function () {
-              isClicking = true;
-          }).on("mouseup", function () {
-              isClicking = false;
-              console.log(isClicking)
-          });
-      }
 
-  }
+
+
+        }
 }
 // console.log('test')
 
@@ -337,36 +364,42 @@ export default {
 }
 
 html, body{
-    margin: 0; /* 移除默认边距 */
-    padding: 0; /* 移除默认内边距 */
-    height: 100%; /* 设置为整个视口高度 */
+    min-height: 100%
 }
 
-
+/* body {
+    background-color: #2A2D2D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #FDF1E7;
+    margin: none;
+} */
 
 svg{
-    /* 图的背景色 */
-    /* background-color: rgb(65, 67, 93); */
-    background-color: rgba(0, 0, 0, 0.3); 
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    /* background-color: #305555; */
+    /*box-shadow: 0px 3px 15px rgba(0,0,0,0.2); */
     /*border-radius: 5px; */
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
+    margin: auto;
 }
 
 #canvas{
-    min-height: 700px;
-    min-width: 900px;
-    max-width: 900px;
-    max-height: 800px;
-    margin-top: 50px;
-    top: 500px;
-
-}
-
-
-.county:hover{
-    fill: black
+    /* min-height: 00px;
+    min-width: 600px; */
+    height: 750px;
+    width: 750px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    /* margin: auto;
+    inset: 0;
+    position: absolute; */
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
 }
 
 g{
@@ -374,9 +407,6 @@ g{
 }
 
 #tooltip{
-    background-color: #128ee1;
-    padding: 10px;
-    border-radius: 5px;
     visibility: hidden;
     height: auto;
     width: auto;
@@ -384,108 +414,133 @@ g{
     color: #FDF1E7;
     font-size: 24px;
     margin-bottom: 5px;
+    background-color: darkcyan;
+    border-radius: 5px;
+    position: relative;
+    padding: 20px;
+    margin-right: 0px;
+
 }
 
 #legend{
     color: rgb(56, 58, 74);
-    font-size: 20px;
+    font-size: 18px;
     text-align: center;
-    min-height: 240px;
-    max-width: 180px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    height: 240px;
+    width: 150px;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-left: 50px; */
+    margin-right: 0px;
+    margin-left: 0px;
+
 }
+
 
 
 #title{
     font-size: 28px;
     color: #FDF1E7;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-top: 130px;
     margin-bottom: 30px;
+    text-align: center;
 }
 
-#description a{
+#description {
     text-decoration: none;
     color: #FDF1E7;
     text-align: center;
+    margin: auto;
+}
+
+#leftSide{
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 200px;
+    margin-right: 200px; */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    align-self: center;
+}
+
+#resetButton{
+    background-color: darkcyan;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px; 
+    margin-bottom: 10px;
+    cursor: pointer;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+#legendArea{
+    display: flex;
+    flex-direction: column;
+    align-items: top;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: darkcyan;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: top;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-align: center;
+    /* padding: 10px; */
+    }
+
+#legendTitle{
+    font-size: 25px;
+    color: #FDF1E7;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+
+#intro{
+    font-size: 18px;
+    color: #FDF1E7;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 200px;
+    margin-right: 200px;
 }
 
 #container{
     display: flex;
-    align-items: center;
-    width: 100%;
-}
-
-#rightSide{
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-left: 50px;
-}
-
-#legend_area {
-    background-color: darkcyan;
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-}
-
-
-#promotion-container {
-    display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100vh; 使用视口高度，确保div在视口中垂直居中 */
-  }
-#promotion {
-    font-family: 'Arial', sans-serif; /* 使用网站常用的字体 */
-    font-size: 1em; /* 根据需要调整字号 */
-    color: #f5f5f5; /* 字体颜色，选择对比度适中的颜色 */
-    background-color: rgba(0, 0, 0, 0.6); /* 半透明的黑色背景，提高可读性 */
-    padding: 20px; /* 文本四周的填充 */
-    border-radius: 10px; /* 圆角边框 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
-    margin: 20px; /* 与其他元素的距离 */
-    line-height: 1.6; /* 行间距 */
-    max-width: 800px; /* 最大宽度，确保文本不会过长 */
-    text-align: justify; /* 文本两端对齐 */
-    max-width: 800px; /* 或您希望的宽度 */
-    text-align: center; /* 文本居中 */
-  }
-  
-
-
-
-.uhi-map {
-display: flex;
-flex-direction: column;
-min-height: 100%; /* 确保至少与视口一样高 */
-
+    /* margin-left: 200px;
+    margin-right: 200px; */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    align-self: center;
 }
 
-
-
-.main-content {
-  width: 100% ;
-}
-
-
-/* @media only screen and (max-width: 600px) {
-  .uhi-map {
-      padding: 50px 0; 
-  }
-  #container, #canvas {
-      width: 100%;
-      height: auto; 
-  }
-}
-  */
-#canvas {
-  margin-left: 15%;
+#leftPane{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* margin-left: 200px;
+    margin-right: 200px; */
+    margin-top: 0px;
+    margin-bottom: 0px;
+    align-self: center;
 }
 </style>
-<style src="./style.css"></style>
+<!-- <style src="./style.css"></style> -->
