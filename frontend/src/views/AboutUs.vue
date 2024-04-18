@@ -39,67 +39,19 @@
           <img src="@/assets/comingsoon.png" alt="Coming Soon" />
         </div>
       </el-main>
-      <el-footer class="footer">
-        <div class="footer-top">
-
-          <!-- Column for COOLDOWN MELBOURNE -->
-          <div class="footer-section"
-            style="flex: 1; padding-right: 20px; border-right: 2px solid white; margin-right: 20px; height: 150px; display: flex; flex-direction: column; justify-content: space-between;">
-            <h2 style="color: white; margin-top: 0;">COOLDOWN MELBOURNE</h2>
-            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-around;">
-              <p style="color: white;"><i class="el-icon-location"></i> Wellington Rd, Clayton, VIC 3800</p>
-              <p style="color: white;"><i class="el-icon-phone"></i> 0424281773</p>
-              <p style="color: white;"><i class="el-icon-message"></i> info@cooldownmelbourne.com</p>
-            </div>
-          </div>
-
-          <!-- Column for USEFUL LINKS -->
-          <div class="footer-section"
-            style="flex: 1; padding-right: 20px; border-right: 2px solid white; margin-right: 20px; height: 150px; display: flex; flex-direction: column; justify-content: space-between;">
-            <h2 style="color: white; margin-top: 0;">USEFUL LINKS</h2>
-            <ul
-              style="list-style: none; padding: 0; color: white; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-around;">
-              <li>Home</li>
-              <li>About Us</li>
-              <li>Service</li>
-              <li>Terms of Service</li>
-              <li>Privacy Policy</li>
-            </ul>
-          </div>
-
-          <!-- Column for FOLLOW US -->
-          <div class="footer-section"
-            style="flex: 1; height: 150px; display: flex; flex-direction: column; justify-content: space-between;">
-            <h2 style="color: white; margin-top: 0;">FOLLOW US</h2>
-            <div class="social-icons"
-              style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center;">
-              <i class="el-icon-facebook" style="color: white;"></i>
-              <i class="el-icon-instagram" style="color: white;"></i>
-              <!-- Replace placeholder with actual icon class -->
-              <i class="custom-icon-x" style="color: white;"></i> <!-- Placeholder for the actual icon -->
-              <i class="el-icon-linkedin" style="color: white;"></i>
-              <i class="el-icon-tiktok" style="color: white;"></i>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Separate line for Copyright notice -->
-        <!-- <div class="footer-bottom" style="background-color: #4CAF50; color: white; text-align: center; padding: 10px;"> -->
-        <div class="footer-bottom">
-          <p>© Copyright Team Colon D All Rights Reserved | Designed by Monash IE Team TA 14</p>
-        </div>
-      </el-footer>
-
-
-
+      <footer-column></footer-column>
     </el-container>
   </div>
 </template>
 
 <script>
+import footerColumn from "../components/footer-column";
+
 export default {
-  name: 'AboutUs'
+  name: 'AboutUs',
+  components: {
+    footerColumn
+  },
 }
 </script>
 

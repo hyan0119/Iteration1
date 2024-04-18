@@ -6,15 +6,8 @@ a {
     text-decoration: none;
 }
 
-
-
 .filler {
     height: 10vh;
-}
-
-
-* {
-    color: white !important;
 }
 
 .header {
@@ -30,7 +23,7 @@ a {
     align-items: center;
     padding: 0 20px;
     box-sizing: border-box;
-
+    z-index: 1;
 }
 
 .menu-container {
@@ -49,6 +42,10 @@ a {
     padding: 0 15px;
     align-items: center;
     display: flex;
+    
+}
+.menu-item a{
+    color: white;
 }
 
 .logo-item {
@@ -80,40 +77,6 @@ a {
     }
 }
 
-.footer-bottom {
-    background-color: rgb(28, 61, 52);
-    color: white;
-    text-align: center;
-    padding: 10px;
-}
-
-.footer-top {
-    display: flex;
-    background-color: #4CAF50;
-    padding: 8vh;
-    align-items: center;
-}
-
-.el-typography {
-    color: white;
-    /* 可以添加更多排版样式，如字体大小、行高等 */
-}
-
-.footer-section {
-    flex-grow: 1; /* 添加这个属性 */
-    padding: 20px;
-    border-right: 2px solid white;
-    margin-right: 20px;
-    height: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.footer-section:last-child {
-    border-right: none;
-    margin-right: 0;
-}
 
 .el-footer, .footer {
     width: 100%;
@@ -125,11 +88,11 @@ html, body {
     padding: 0; /* 移除默认内边距 */
     height: 100%; /* 设置为整个视口高度 */
   }
-body {
+
+  body {
     background-color: #373a3a;
+  }
 
-
-}
   #app {
     min-height: 100vh; /* 确保 app 至少有 100% 的视口高度 */
     display: flex;

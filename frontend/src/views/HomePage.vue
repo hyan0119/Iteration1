@@ -33,30 +33,31 @@
           </el-menu>
         </div>
       </el-header>
-      <div class="filler"></div>
+      <!-- <div class="filler"></div> -->
       <el-main class="main-content">
         <section class="hero-section">
-          <el-row :gutter="20">
-            <el-col :span="12" class="content-and-image">
-              <div class="text-content">
-                <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1>
-                <p>The Urban Heat Island effect has caused overheat to our city for a long time!</p>
-                <p>Find out the easiest ways for residents of Melbourne CBD to combat its dangers.</p>
-                <div class="scorll-logo">
-                  <img src="@/assets/arrow_down.png" style="width: 10%; height: 10%;" alt="Logo"
-                    @click="scrollToElement" />
-                  <el-button @click="scrollToElement">Learn More</el-button>
+          <div class="section first" >
+              <div class="content-and-image">
+                <div class="content">
+                  <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1>
+                  <p>The Urban Heat Island effect has caused overheat to our city for a long time!</p>
+                  <p>Find out the easiest ways for residents of Melbourne CBD to combat its dangers.</p>
+                  <div class="scorll-logo">
+                    <img src="@/assets/arrow_down.png" style="width: 20px; height: 20px;" alt="Logo"
+                      @click="scrollToElement" />
+                    <el-button @click="scrollToElement">Learn More</el-button>
+                  </div>
+                  <div ref="contentToScrollTo"></div>
                 </div>
-                <div ref="contentToScrollTo"></div>
+                <div class="image-container">
+                  <img src="@/assets/impact_image.png" alt="City" class="transform img-1">
+                </div>
               </div>
-              <div class="image-content">
-                <img src="@/assets/impact_image.png" alt="City">
-              </div>
-            </el-col>
-          </el-row>
+          </div>
+          
           <div class="section" id="urban-heat-effect">
             <div class="image-container">
-              <img src="@/assets/city_image.png" alt="City">
+              <img src="@/assets/city_image.png" alt="City" class="transform img-2">
               <span>Photo by Pat Wheelen on Unsplash</span>
             </div>
             <div class="content">
@@ -89,14 +90,14 @@
               </ul>
             </div>
             <div class="image-container">
-              <img src="@/assets/city_image.png" alt="City">
+              <img src="@/assets/home2.png" alt="City" class="transform img-3">
               <span>Photo by Chromatograph on Wnsplash</span>
             </div>
           </div>
 
           <div class="section" id="mitigate">
             <div class="image-container">
-              <img src="@/assets/city_image.png" alt="City">
+              <img src="@/assets/home3.png" alt="City" class="transform img-4">
               <span>Photo by Chromatograph on Wnsplash</span>
             </div>
             <div class="content">
@@ -114,48 +115,18 @@
           </div>
         </section>
       </el-main>
-      <el-footer class="footer">
-    <el-row class="footer-top" type="flex" justify="space-around" align="middle">
-      <el-col :span="8" class="footer-section">
-        <div>
-          <h3 class="el-typography">COOLDOWN MELBOURNE</h3>
-          <p><i class="el-icon-location"></i> Wellington Rd, Clayton, VIC 3800</p>
-          <p><i class="el-icon-phone"></i> 0424281773</p>
-          <p><i class="el-icon-message"></i> info@cooldownmelbourne.com</p>
-        </div>
-      </el-col>
-
-      <el-col :span="8" class="footer-section">
-        <div>
-          <h3 class="el-typography">USEFUL LINKS</h3>
-          <el-link type="primary" underline="false">Home</el-link>
-          <el-link type="primary" underline="false">About Us</el-link>
-          <el-link type="primary" underline="false">Service</el-link>
-          <el-link type="primary" underline="false">Terms of Service</el-link>
-          <el-link type="primary" underline="false">Privacy Policy</el-link>
-        </div>
-      </el-col>
-
-      <el-col :span="8" class="footer-section">
-        <div>
-          <h3 class="el-typography">FOLLOW US</h3>
-          <!-- ...你的社交媒体图标... -->
-        </div>
-      </el-col>
-    </el-row>
-
-    <div class="footer-bottom">
-      <p>© Copyright Team Colon D All Rights Reserved | Designed by Monash IE Team TA 14</p>
-    </div>
-  </el-footer>
+      <footer-column></footer-column>
     </el-container>
   </div>
 </template>
 
-
 <script>
+import footerColumn from "../components/footer-column";
 export default {
   name: 'HomePageNew',
+  components: {
+    footerColumn
+  },
   methods: {
     scrollToElement() {
       // 使用 `this.$refs` 来获取模板中的元素
@@ -169,10 +140,6 @@ export default {
 </script>
 
 <style scoped>
-/* ... 省略已有样式 ... */
-
-
-
 .content-and-image {
   display: flex;
   align-items: center;
@@ -195,22 +162,35 @@ export default {
   /* 在文本和图片之间添加一些间隔 */
 }
 
-.content-and-image .text-content .scorll-logo {
+.content-and-image .content .scorll-logo {
   display: flex;
   flex-direction: column;
   /* 以列的方式排列子元素 */
   align-items: center;
   /* 水平居中对齐子元素 */
-  justify-content: center;
+  justify-content: left;
   /* 如果需要，也可以在垂直方向上居中 */
 
 }
 
-.content-and-image .image-content {
+.content-and-image .image-container {
   flex: 1;
   /* 图片内容也占用可用空间 */
   text-align: center;
   /* 图片居中显示 */
+}
+
+.transform.img-1{
+   transform: rotate(0deg) translate(0, 0);
+}
+.transform.img-2{
+   transform: rotate(0deg) translate(0, 0);
+}
+.transform.img-3{
+   transform: rotate(0deg) translate(0, 0);
+}
+.transform.img-4{
+   transform: rotate(0deg) translate(0, 0);
 }
 
 .header-content {
@@ -257,6 +237,7 @@ export default {
 .main-content {
   padding-top: 200px;
   /* 设置一个与头部高度相等的顶部边距 */
+  color: white;
 }
 
 .urban-heat-container {
@@ -271,6 +252,7 @@ export default {
   margin-bottom: 2em;
   display: flex;
   align-content: center;
+  justify-content: center;
 }
 
 .section .content {
@@ -295,5 +277,30 @@ export default {
   font-size: 0.8em;
   margin-top: 5px;
 }
+
+.section.first{
+  height: 100vh;
+  margin-bottom: 0;
+}
+
+.section.first .content-and-image{
+   width: 1200px;
+}
+.section.first .content{
+   max-width: 60%;
+}
+.section.first .content h1{
+   margin-bottom: 65px;
+}
+.section.first .content p{
+   margin-bottom: 45px;
+}
+.section.first .image-container {
+  margin-right: 0;
+}
+.section.first .image-container img {
+  width: 100%;
+}
+
 </style>
 <style src="./style.css"></style>

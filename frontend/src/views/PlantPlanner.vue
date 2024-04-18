@@ -40,8 +40,8 @@
                     <div class="postcode-input">
                         <div class="input-fields">
                             <div class="input-group">
-                                <label for="apartmentSize">Apartment Size:</label>
-                                <input placeholder="Balcony Size" type="text" id="apartmentSize" v-model="apartmentSize"
+                                <label for="apartmentSize">Balcony Size:</label>
+                                <input placeholder="Input Balcony Size" type="text" id="apartmentSize" v-model="apartmentSize"
                                     class="input-field">
                             </div>
 
@@ -70,7 +70,7 @@
                         <button @click="viewPlantMatch">Match</button>
                     </div>
                     <div>
-                        <p v-if="plantImageUrl" class="image-container">
+                        <!-- <p v-if="plantImageUrl" class="image-container">
                             <img :src="plantImageUrl" alt="Plant Image" class="plant-image">
                         </p>
                         <div class="info-container">
@@ -80,48 +80,25 @@
                             <p v-if="maintainingGuide">Maintaining Guide: {{ maintainingGuide }}</p>
                             <p v-if="text">Contribution to the heat island effect: {{ text }}</p>
                             <p v-if="no_matched_plant">Error: {{ no_matched_plant }}</p>
-                        </div>
+                        </div> -->
 
+                        <div class="info-container" v-if="plantImageUrl">
+                            <img :src="plantImageUrl" alt="Plant Image" class="plant-image" >
+                            <p v-if="no_image">image: {{ no_image }}</p>
+                            <p v-if="plantName">Name of the plant: {{ plantName }}</p>
+                            <p v-if="lifespan">Lifespan: {{ lifespan }}</p>
+                            <p v-if="maintainingGuide">Maintaining Guide: {{ maintainingGuide }}</p>
+                            <p v-if="text">Contribution to the heat island effect: {{ text }}</p>
+                            <p v-if="no_matched_plant">Error: {{ no_matched_plant }}</p>
+                        </div>
                         <!-- <p v-if="temperatureContribution">Contribution towards temperature reduce: {{ temperatureContribution }}
                 </p>
                 <p v-if="requiredTools">Required tools to grow the plant: {{ requiredTools }}</p> -->
                     </div>
+                    
                 </div>
             </el-main>
-            <el-footer class="footer">
-    <el-row class="footer-top" type="flex" justify="space-around" align="middle">
-      <el-col :span="8" class="footer-section">
-        <div>
-          <h3 class="el-typography">COOLDOWN MELBOURNE</h3>
-          <p><i class="el-icon-location"></i> Wellington Rd, Clayton, VIC 3800</p>
-          <p><i class="el-icon-phone"></i> 0424281773</p>
-          <p><i class="el-icon-message"></i> info@cooldownmelbourne.com</p>
-        </div>
-      </el-col>
-
-      <el-col :span="8" class="footer-section">
-        <div>
-          <h3 class="el-typography">USEFUL LINKS</h3>
-          <el-link type="primary" underline="false">Home</el-link>
-          <el-link type="primary" underline="false">About Us</el-link>
-          <el-link type="primary" underline="false">Service</el-link>
-          <el-link type="primary" underline="false">Terms of Service</el-link>
-          <el-link type="primary" underline="false">Privacy Policy</el-link>
-        </div>
-      </el-col>
-
-      <el-col :span="8" class="footer-section">
-        <div>
-          <h3 class="el-typography">FOLLOW US</h3>
-          <!-- ...你的社交媒体图标... -->
-        </div>
-      </el-col>
-    </el-row>
-
-    <div class="footer-bottom">
-      <p>© Copyright Team Colon D All Rights Reserved | Designed by Monash IE Team TA 14</p>
-    </div>
-  </el-footer>
+         <footer-column></footer-column>
         </el-container>
     </div>
 </template>
@@ -131,13 +108,14 @@ import axios from 'axios';
 import { ElSelect,ElOption } from 'element-plus';
 import 'element-plus/dist/index.css';
 import { ref } from 'vue'
-
+import footerColumn from "../components/footer-column";
 
 export default {
     name: 'PlantPlanner',
     components: {
-    ElSelect,
-    ElOption
+        ElSelect,
+        ElOption,
+        footerColumn
     },
     setup() {
     const sunlight = ref('');
@@ -212,6 +190,7 @@ export default {
 .plant-section {
     text-align: center;
     padding: 80px;
+    color: white;
 }
 
 
@@ -259,9 +238,9 @@ export default {
 }
 
 .info-container {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 1);
     /* 半透明的白色底色 */
-    /* border: 1px solid #ccc; */
+    border: 1px solid #ccc;
     /* padding: 10px;  */
     border-radius: 5px;
     /* 圆角 */
@@ -269,6 +248,13 @@ export default {
     /* 最大宽度 */
     margin: 10px auto;
     /* 上下外边距为 10px，左右自动居中 */
+    padding: 10px;
+}
+.info-container .plant-image{
+    width: 100%;
+}
+.info-container p{
+    color: #333;
 }
 
 .input-fields {
@@ -330,17 +316,15 @@ select.input-field option {
     color: black !important;
     /* This will make the text visible */
 }
-
-
-
-
-
-
-
-
-
-
+.input-group{
+    width: 220px;
+}
+.input-field{
+    width: 100% !important;
+    height: 43px;
+    box-sizing: border-box;
+    margin-right: 0;
+}
 
 </style>
 <style src="./style.css"></style>
-
