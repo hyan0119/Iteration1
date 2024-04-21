@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+*{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+html{
+    height: 100%
+}
+
+body {
+    background-color: #3AAFA9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+svg{
+    background-color: #DEF2F1;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.bar{
+    background-color: #2B7A78;
+    border-color: #2B7A78;
+    fill: #2B7A78;
+}
+
+.bar:hover{
+    fill: #17252A
+}
+
+g{
+    color: #17252A
+}
+
+#tooltip{
+    margin-top: 10px;
+    color: #FEFFFF;
+    font-size: 28px;
+}
+
+#title{
+    font-size: 30px;
+    fill: #17252A;
+    align-items: center;
+    text-align: center;
+
+}
+
+#c{
+    display: inline-block;
+    font-size: 28px;
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    margin:0 auto 5%;
+    background-color: linear-gradient(90deg, #58c6ff 0%, #076ad9 40%, #ff3bef 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
