@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v7.js"></script>
+
+<!-- Load d3-cloud -->
+<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="my_dataviz"></div>
+
+<script>
+
+    // List of words
+    var myWords = ["Hello", "Everybody", "How", "Are", "You", "Today", "It", "Is", "A", "Lovely", "Day", "I", "Love", "Coding", "In", "My", "Van", "Mate", "fuck off"]
+    var myWords = ["City", "Temperature", "Asphalt", "Concrete", "Buildings", "Energy", "Absorption", "Radiation", "Heatwave", "Climate Change", "Greenhouse Gas", "Vegetation", "Trees", "Park", "Cooling", "Albedo", "Roofs", "Reflective Material", "Insulation", "Emissions", "Air Pollution", "Ventilation", "Urban Planning", "Density", "Solar Gain", "Infrastructure", "Water Bodies", "Nighttime", "Surface", "Sustainability", "Land Cover", "Urban Canopy", "Shade", "Heat", "Environmental Impact", "Urban Forestry", "Green Roofs", "Cool Roofs", "Energy Consumption", "Urban Design", "Green Spaces", "Green Infrastructure", "Building Materials", "Vegetation", "Heat Vulnerable", "Urban Heat Island Index", "Efficiency", "Temperature", "Urban", "Metropolitan", "warm", "Pollutant", "Green", "garden", "Rooftop", "Plant"]
+
+    // set the dimensions and margins of the graph
+    var margin = {top: 10, right: 10, bottom: 10, left: 10},
+        width = 500 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
+
+    // append the svg object to the body of the page
+    var svg = d3.select("#my_dataviz").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform",
+            "translate(" + margin.left + "," + margin.top + ")");
+
+    // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+    var layout = d3.layout.cloud()
+    .size([width, height])
+    .words(myWords.map(function(d) { return {text: d}; }))
+    .padding(5)
+    .fontSize(30)
+    .on("end", draw);
+
+    layout.start();
+
+    // This function takes the output of 'layout' above and draw the words
+    // Better not to touch it. To change parameters, play with the 'layout' variable above
+    function draw(words) {
+    svg
+        .append("g")
+        .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+        .selectAll("text")
+            .data(words)
+        .enter().append("text")
+            .style("font-size", function(d) { return d.size + "px"; })
+            .attr("text-anchor", "middle")
+            .attr("fill", "darkcyan")
+            // .attr("style", "font-family: Impact, Charcoal, sans-serif")
+            .attr("font-weight", "bold")
+            .attr("transform", function(d) {
+            return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            })
+            .text(function(d) { return d.text; });
+    }
+</script>
