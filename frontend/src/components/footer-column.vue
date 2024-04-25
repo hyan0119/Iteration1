@@ -3,25 +3,31 @@
     <el-row class="footer-top" >
       <el-col :span="8" class="footer-section">
           <h3 class="el-typography">COOLDOWN MELBOURNE</h3>
-          <el-link type="primary" underline="false">
-            <i class="el-icon-location"></i>
-            <span>Wellington Rd, Clayton, VIC 3800</span>
-          </el-link>
-          <el-link type="primary" underline="false">
-            <i class="el-icon-phone"></i>
-            <span>0424281773</span>
-          </el-link>
-          <el-link type="primary" underline="false">
-            <i class="el-icon-message"></i>
-            <span>info@cooldownmelbourne.com</span>
-          </el-link>
+         <div class="item">
+            <img :src="require('@/assets/footer/icon_01.png')" alt="">
+              <span>Wellington Rd, Clayton, VIC 3800</span>
+         </div>
+         <div class="item">
+            <img :src="require('@/assets/footer/icon_02.png')" alt="">
+              <span>0424281773</span>
+         </div>
+         <div class="item">
+            <img :src="require('@/assets/footer/icon_03.png')" alt="">
+              <span>info@cooldownmelbourne.com</span>
+         </div>
       </el-col>
 
-      <el-col :span="8" class="footer-section">
-          <h3 class="el-typography">USEFUL LINKS</h3>
-          <el-link type="primary" underline="false">Home</el-link>
-          <el-link type="primary" underline="false">About Us</el-link>
-          <el-link type="primary" underline="false">Privacy Policy</el-link>
+      <el-col :span="8" class="footer-section middle_section">
+          <h3 class="el-typography middle">USEFUL LINKS</h3>
+            <div class="item">
+                <span>Home</span>
+           </div>
+            <div class="item">
+                <span>About Us</span>
+           </div>
+            <div class="item">
+                <span>Privacy Policy</span>
+           </div>
       </el-col>
 
       <el-col :span="8" class="footer-section">
@@ -51,26 +57,43 @@ export default {
 </script>
 
 <style scoped>
+.el-footer{
+  padding: 0;
+}
   .footer-top {
       display: flex;
       background-color: #4CAF50;
-      padding: 8vh;
+      padding: 0vh;
       align-items: center;
   }
-
+  .item{
+    display: flex;
+    margin-bottom: 20px;
+  }
+  .item img{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
   .footer-bottom {
       background-color: rgb(28, 61, 52);
       color: white;
       text-align: center;
-      padding: 10px;
+      padding: 5px;
   }
 
   .el-typography {
       color: white;
       text-align: left;
+      padding-left: 20px;
       /* 可以添加更多排版样式，如字体大小、行高等 */
   }
-
+  .middle{
+     padding-left: 0px;
+  }
+  .middle_section .item{
+    cursor: pointer;
+  }
   .footer-section {
       flex-grow: 1; /* 添加这个属性 */
       padding: 20px 20px 20px 6vw;
@@ -93,6 +116,7 @@ export default {
   .footer-section:last-child {
       border-right: none;
       margin-right: 0;
+      margin-bottom: auto;
   }
 
   .footer-icons{

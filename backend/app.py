@@ -4,8 +4,12 @@ import pandas as pd
 from flask_dance.contrib.google import make_google_blueprint, google
 from flask_cors import CORS
 from get_plant import get_plant
+import pickle
 app = Flask(__name__)
+model = pickle.load(open('temp_reduction_estimate_model.pkl', 'rb'))
 CORS(app) 
+import os
+print("Current working directory:", os.getcwd())
 
 
 
@@ -32,6 +36,13 @@ def plant_match():
     # print(response_data)
     
     return jsonify(response_data)
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json(force=True)
+    prediction = model.predict([data['features']])
+    return jsonify(prediction.tolist()) 
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)

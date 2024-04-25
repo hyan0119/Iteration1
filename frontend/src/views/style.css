@@ -2,12 +2,20 @@ a {
     text-decoration: none;
 }
 
+#app {
+    background: #fff;
+}
+
 .router-link-active {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .filler {
     height: 10vh;
+}
+
+.el-menu {
+    border: none !important;
 }
 
 .header {
@@ -15,13 +23,13 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    height: 80px;
-    /* margin-bottom: 80px; */
+    height: 80px !important;
+    margin-bottom: 80px;
     background-color: #56A05B;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 20px !important;
     box-sizing: border-box;
     z-index: 1;
 }
@@ -37,15 +45,25 @@ a {
     display: flex;
 }
 
+.el-menu--horizontal .el-menu-item:not(.is-disabled):hover {
+    background: none !important;
+}
+
 .menu-item {
-    font-size: 1rem;
+    font-size: 1rem !important;
     padding: 0 15px;
     align-items: center;
     display: flex;
-    
+
 }
-.menu-item a{
-    color: white;
+
+.el-sub-menu__hide-arrow {
+    display: none !important;
+}
+
+.menu-item a {
+    color: white !important;
+    font-weight: 600;
 }
 
 .logo-item {
@@ -53,8 +71,8 @@ a {
 }
 
 .logo {
-    height: auto;
-    max-height: 80px;
+    height: 50px;
+    width: 50px;
 }
 
 @media (max-width: 768px) {
@@ -78,49 +96,54 @@ a {
 }
 
 
-.el-footer, .footer {
+.el-footer,
+.footer {
     width: 100%;
     margin: 0;
 }
 
-html, body {
-    margin: 0; /* 移除默认边距 */
-    padding: 0; /* 移除默认内边距 */
-    height: 100%; /* 设置为整个视口高度 */
-  }
+html,
+body {
+    margin: 0;
+    /* 移除默认边距 */
+    padding: 0;
+    /* 移除默认内边距 */
+    height: 100%;
+    /* 设置为整个视口高度 */
+}
 
-  body {
+body {
     background-color: #373a3a;
-  }
+}
 
-  #app {
-    min-height: 100vh; /* 确保 app 至少有 100% 的视口高度 */
+#app {
+    min-height: 100vh;
+    /* 确保 app 至少有 100% 的视口高度 */
     display: flex;
     flex-direction: column;
-  }
-  
-  .el-container {
-    flex: 1; /* 使用 flex 1 让 container 占据所有可用空间 */
-  }
-  
-  .el-header {
-    height: 80px; /* 你的 header 高度 */
-  }
-  
-  .el-main {
-    flex: 1; /* 让 main 占据所有剩余空间 */
+}
+
+.el-container {
+    display: block !important;
+    /* flex: 1; */
+    /* 使用 flex 1 让 container 占据所有可用空间 */
+}
+
+.el-header {
+    height: 80px;
+    /* 你的 header 高度 */
+}
+
+.el-main {
+    flex: 1;
+    /* 让 main 占据所有剩余空间 */
     /* 确保没有外边距或内边距影响高度 */
     margin: 0;
-    padding: 0;
-  }
-  
-  .el-footer {
-    height: 80px; /* 你的 footer 高度 */
-  }
+    padding: 0 !important;
+}
 
-  .common-layout {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
+.el-footer {
+    height: 80px;
+    /* 你的 footer 高度 */
+}
+

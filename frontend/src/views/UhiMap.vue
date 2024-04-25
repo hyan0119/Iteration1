@@ -1,38 +1,9 @@
 <template>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <div class="uhi-map">
-        <el-header class="header">
-            <div class="menu-container">
-                <el-menu mode="horizontal" class="menu left-menu" background-color="transparent">
-                    <el-menu-item index="0" class="menu-item logo-item">
-                        <router-link to="/">
-                            <img src="@/assets/logo.png" alt="Logo" class="logo" />
-                        </router-link>
-                    </el-menu-item>
-                    <el-menu-item index="1" class="menu-item home">
-                        <router-link to="/">Home</router-link>
-                    </el-menu-item>
-                </el-menu>
-  
-                <el-menu mode="horizontal" class="menu right-menu" background-color="transparent">
-                    <el-menu-item index="2" class="menu-item">
-                        <router-link to="/uhi-map">UHI MAP</router-link>
-                    </el-menu-item>
-                    <el-menu-item index="3" class="menu-item">
-                        <router-link to="/plant-planner">PLANT PLANNER</router-link>
-                    </el-menu-item>
-                    <el-menu-item index="4" class="menu-item">
-                        <router-link to="/my-plants">MY PLANTS</router-link>
-                    </el-menu-item>
-                    <el-menu-item index="5" class="menu-item">
-                        <router-link to="/info-page">INFO</router-link>
-                    </el-menu-item>
-                    <el-menu-item index="6" class="menu-item">
-                        <router-link to="/about-us">ABOUT US</router-link>
-                    </el-menu-item>
-                </el-menu>
-            </div>
-        </el-header>
+        <div>
+            <HeaderNavigation/>
+          </div>
         <el-main class="main-content">
   
   <!-- HVI map content -->
@@ -137,10 +108,12 @@
   <script>
   import * as d3 from 'd3';
   import footerColumn from "../components/footer-column";
+  import HeaderNavigation from "@/components/HeaderNavigation.vue";
   export default {
       name: 'UhiMap',
       components: {
-        footerColumn
+        footerColumn,
+        HeaderNavigation
       },
       data() {
           return {
@@ -335,32 +308,24 @@
   
           }
   }
-  // console.log('test')
-  
   </script>
-  
+<style scoped>
+    .menu-item {
+        font-size: 1.3rem !important;
+    }
+</style>
   <style scoped>
-  /* Add your CSS styles here */
+    /* Add your CSS styles here */
   
   @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
   
-  *{
-      font-family: 'Source Sans Pro', sans-serif;
-  }
+
   
   html, body{
       min-height: 100%
   }
   
-  /* body {
-      background-color: #2A2D2D;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #FDF1E7;
-      margin: none;
-  } */
+
   
   svg{
       /* background-color: #305555; */
@@ -399,7 +364,7 @@
       color: #FDF1E7;
       font-size: 24px;
       margin-bottom: 5px;
-      background-color: darkcyan;
+      background-color: rgb(255, 214, 153);
       border-radius: 5px;
       padding: 20px;
       /* margin-right: 0px; */
@@ -456,7 +421,7 @@
   }
   
   #resetButton{
-      background-color: #6A9C64;
+      background-color: rgb(255, 214, 153);
       border: none;
       padding: 10px;
       border-radius: 5px;
@@ -476,7 +441,7 @@
       align-items: top;
       margin-top: 20px;
       margin-bottom: 20px;
-      background-color: darkcyan;
+      background: linear-gradient(180deg, rgb(255, 214, 153) 0%, #076ad9 40%, #ff3bef 90%);
       border-radius: 5px;
       justify-content: center;
       align-items: top;
@@ -498,7 +463,7 @@
   
   #intro{
       font-size: 30px;
-      color: #FDF1E7;
+      color: #000;
       text-align: center;
       margin-top: 0px;
       margin-bottom: 40px;
@@ -532,7 +497,7 @@
 
   #promotion{
         font-size: 18px;
-        color: white;
+        color: #000;
         text-align: center;
         margin-top: 10px;
         margin-bottom: 10px;
@@ -562,7 +527,7 @@
       margin-top: 10px;
       /* margin-bottom: 10px; */
       margin-bottom: 30px;
-      background-color: darkcyan;
+      background-color: rgb(255, 214, 153);
       border-radius: 5px;
       padding: 20px;
       width: 450px;
@@ -593,8 +558,7 @@
 
   #explain{
         font-size: 20px;
-        color: #FDF1E7;
-
+        color: #000;
         text-align: center;
         margin-top: 0px;
         margin-bottom: 40px;
@@ -604,4 +568,5 @@
 
 
   </style>
+
   <style src="./style.css"></style>

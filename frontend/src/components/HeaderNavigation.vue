@@ -12,7 +12,7 @@
         </el-menu-item>
       </el-menu>
 
-      <el-menu mode="horizontal" class="menu right-menu" background-color="transparent">
+      <el-menu class="menu right-menu" background-color="transparent">
         <el-menu-item index="2" class="menu-item">
           <router-link to="/uhi-map">UHI MAP</router-link>
         </el-menu-item>

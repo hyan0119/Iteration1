@@ -1,38 +1,9 @@
 <template>
     <div class="common-layout">
     <el-container>
-        <el-header class="header">
-                <div class="menu-container">
-                    <el-menu mode="horizontal" class="menu left-menu" background-color="transparent">
-                        <el-menu-item index="0" class="menu-item logo-item">
-                            <router-link to="/">
-                                <img src="@/assets/logo.png" alt="Logo" class="logo" />
-                            </router-link>
-                        </el-menu-item>
-                        <el-menu-item index="1" class="menu-item home">
-                            <router-link to="/">Home</router-link>
-                        </el-menu-item>
-                    </el-menu>
-
-                    <el-menu mode="horizontal" class="menu right-menu" background-color="transparent">
-                        <el-menu-item index="2" class="menu-item">
-                            <router-link to="/uhi-map">UHI MAP</router-link>
-                        </el-menu-item>
-                        <el-menu-item index="3" class="menu-item">
-                            <router-link to="/plant-planner">PLANT PLANNER</router-link>
-                        </el-menu-item>
-                        <el-menu-item index="4" class="menu-item">
-                            <router-link to="/my-plants">MY PLANTS</router-link>
-                        </el-menu-item>
-                        <el-menu-item index="5" class="menu-item">
-                            <router-link to="/info-page">INFO</router-link>
-                        </el-menu-item>
-                        <el-menu-item index="6" class="menu-item">
-                            <router-link to="/about-us">ABOUT US</router-link>
-                        </el-menu-item>
-                    </el-menu>
-                </div>
-            </el-header>
+            <div>
+                <HeaderNavigation/>
+              </div>
             <el-main class="main-content">
                 <div class="plant-section">
                     <h2>PLANT PLANNER</h2>
@@ -67,7 +38,7 @@
                         </div>
 
 
-                        <button @click="viewPlantMatch">Match</button>
+                        <el-button @click="viewPlantMatch" size="large" :loading="loading">Match</el-button>
                     </div>
                     <div>
                         <!-- <p v-if="plantImageUrl" class="image-container">
@@ -109,13 +80,14 @@ import { ElSelect,ElOption } from 'element-plus';
 import 'element-plus/dist/index.css';
 import { ref } from 'vue'
 import footerColumn from "../components/footer-column";
-
+import HeaderNavigation from "@/components/HeaderNavigation.vue";
 export default {
     name: 'PlantPlanner',
     components: {
         ElSelect,
         ElOption,
-        footerColumn
+        footerColumn,
+        HeaderNavigation
     },
     setup() {
     const sunlight = ref('');
@@ -128,6 +100,7 @@ export default {
   },
     data() {
         return {
+            loading: false,
             no_image: '',
             plantImageUrl: '',
             plantName: '',
@@ -140,6 +113,7 @@ export default {
     },
     methods: {
         async viewPlantMatch() {
+            this.loading = true
             this.plantImageUrl = '',
                 this.plantName = '',
                 this.lifespan = 0,
@@ -173,6 +147,7 @@ export default {
                     this.text = "A 10-20% increase in vegetation cover is anticipated to reduce the UHI by 0.38-0.78 °C"
 
                 }
+                this.loading = false
                 // this.plantName = data.plantName;
                 // this.lifespan = data.lifespan;
                 // this.maintainingGuide = data.maintainingGuide;
@@ -190,7 +165,7 @@ export default {
 .plant-section {
     text-align: center;
     padding: 80px;
-    color: white;
+    color: #000;
 }
 
 
@@ -209,7 +184,7 @@ export default {
     width: 180px;
 }
 
-.postcode-input button {
+.postcode-input .el-button {
     padding: 8px 20px;
     background-color: #333;
     color: #fff;
@@ -325,6 +300,7 @@ select.input-field option {
     box-sizing: border-box;
     margin-right: 0;
 }
+
 
 </style>
 <style src="./style.css"></style>

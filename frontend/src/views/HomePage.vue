@@ -1,61 +1,38 @@
 <template>
   <div class="common-layout">
     <el-container>
-      <el-header class="header">
-        <div class="menu-container">
-          <el-menu mode="horizontal" class="menu left-menu" background-color="transparent">
-            <el-menu-item index="0" class="menu-item logo-item">
-              <router-link to="/">
-                <img src="@/assets/logo.png" alt="Logo" class="logo" />
-              </router-link>
-            </el-menu-item>
-            <el-menu-item index="1" class="menu-item home">
-              <router-link to="/">Home</router-link>
-            </el-menu-item>
-          </el-menu>
-
-          <el-menu mode="horizontal" class="menu right-menu" background-color="transparent">
-            <el-menu-item index="2" class="menu-item">
-              <router-link to="/uhi-map">UHI MAP</router-link>
-            </el-menu-item>
-            <el-menu-item index="3" class="menu-item">
-              <router-link to="/plant-planner">PLANT PLANNER</router-link>
-            </el-menu-item>
-            <el-menu-item index="4" class="menu-item">
-              <router-link to="/my-plants">MY PLANTS</router-link>
-            </el-menu-item>
-            <el-menu-item index="5" class="menu-item">
-              <router-link to="/info-page">INFO</router-link>
-            </el-menu-item>
-            <el-menu-item index="6" class="menu-item">
-              <router-link to="/about-us">ABOUT US</router-link>
-            </el-menu-item>
-          </el-menu>
-        </div>
-      </el-header>
+      <div>
+        <HeaderNavigation/>
+      </div>
       <!-- <div class="filler"></div> -->
       <el-main class="main-content">
         <section class="hero-section">
-          <div class="section first" >
-              <div class="content-and-image">
-                <div class="content">
-                  <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1>
-                  <p>The Urban Heat Island effect has caused overheat to our city for a long time!</p>
-                  <p>Find out the easiest ways for residents of Melbourne CBD to combat its dangers.</p>
-                  <div class="scorll-logo">
-                    <img src="@/assets/arrow_down.png" style="width: 20px; height: 20px;" alt="Logo"
-                      @click="scrollToElement" />
-                    <el-button @click="scrollToElement">Learn More</el-button>
-                  </div>
-                  <div ref="contentToScrollTo"></div>
+          <div class="section first" style="position: relative;" >
+            
+              <div class="video-background">
+                    <video autoplay muted loop>
+                      <source src="@/assets/impact_video2.mp4" type="video/mp4" >
+                    </video>
+                    <div class="content-and-image">
+                      <div class="content">
+                        <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1>
+                        <p>The Urban Heat Island effect has caused overheat to our city for a long time!</p>
+                        <p>&nbsp;</p>
+                        <div class="scorll-logo">
+                          <img src="@/assets/arrow_down.png" style="width: 20px; height: 20px;" alt="Logo"
+                            @click="scrollToElement" />
+                          <el-button @click="scrollToElement">Learn More</el-button>
+                        </div>
+                        <div class="contentToScrollTo" ref="contentToScrollTo"></div>
+                      </div>
                 </div>
-                <div class="image-container">
-                  <img src="@/assets/impact_image.png" alt="City" class="transform img-1">
-                </div>
-              </div>
+            </div>
           </div>
+       
+
           
-          <div class="section" id="urban-heat-effect">
+          
+          <div class="section section_item" id="urban-heat-effect">
             <div class="image-container">
               <img src="@/assets/city_image.png" alt="City" class="transform img-2">
               <span>Photo by Pat Wheelen on Unsplash</span>
@@ -77,7 +54,7 @@
             </div>
           </div>
 
-          <div class="section" id="negative-impact">
+          <div class="section section_item" id="negative-impact">
             <div class="content">
               <h1>THE NEGATIVE IMPACT</h1>
               <p>Elevated temperature caused by Urban Heat Island (UHI) effect can affect communities and environment in
@@ -95,13 +72,13 @@
             </div>
           </div>
 
-          <div class="section" id="mitigate">
+          <div class="section section_item" id="mitigate">
             <div class="image-container">
               <img src="@/assets/home3.png" alt="City" class="transform img-4">
               <span>Photo by Chromatograph on Wnsplash</span>
             </div>
             <div class="content">
-              <h2>WAYS TO MITIGATE IT</h2>
+              <h1>WAYS TO MITIGATE IT</h1>
               <p>Thankfully, everyone can help to reduce the negative impact from Urban Heat Island Effect in Melbourne
                 CBD.
                 Here are some solutions that any Melbourne CBD resident can do to mitigate its impact:</p>
@@ -113,6 +90,26 @@
               </ul>
             </div>
           </div>
+          <div class="section section_item">
+            <div class="image-container">
+              <div id="main" class="ecarts"></div>
+            </div>
+            <div class="content ecarts_content">
+              <div class="text">
+                Average January temperatures for five different areas of Melbourne between 2019 and 2024.
+                <p></p>
+                <p></p>
+                The data shows that temperatures in industrial areas and urban areas continue to rise in January (during the hot summer months), 
+                while parks and farms covered by green spaces have relatively cooler temperatures, reflecting the impact of the heat island effect. 
+                To mitigate this effect, measures such as increased greening and improved building materials could be considered in urban planning.
+              </div>
+              <div class="btn" @click="goInfo">Read More 
+                 <el-icon :size="20" color="#3ad345eb" class="icon">
+                    <Right />
+                  </el-icon>
+                 </div>
+            </div>
+          </div>
         </section>
       </el-main>
       <footer-column></footer-column>
@@ -122,18 +119,116 @@
 
 <script>
 import footerColumn from "../components/footer-column";
+import HeaderNavigation from "@/components/HeaderNavigation.vue";
+import * as echarts from 'echarts';
 export default {
   name: 'HomePageNew',
   components: {
-    footerColumn
+    footerColumn,
+    HeaderNavigation
+  },
+  data() {
+    return {
+
+    }
+  },
+  mounted() {
+    this.getEcharts()
   },
   methods: {
+    getEcharts() {
+      var chartDom = document.getElementById('main');
+      var myChart = echarts.init(chartDom);
+      var option;
+
+    option = {
+      title: {
+        text: ''
+      },
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        top: '10%',
+        data: ['Rural', 'Residential', 'Industrial', 'Town/City', 'Park', 'Farms']
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          dataZoom: {
+            yAxisIndex: 'none'
+          },
+          dataView: { readOnly: false },
+          magicType: { type: ['line', 'bar'] },
+          restore: {},
+          saveAsImage: {}
+        }
+      },
+      grid: {
+        left: '3%',
+        top: '30%',
+        right: '5%',
+        bottom: '0%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2019', '2020', '2021', '2022', '2023', '2024']
+      },
+      yAxis: {
+        type: 'value',
+        min: 25,
+        max: 35,
+        axisLabel: {
+          formatter: '{value} °C'
+        }
+      },
+      series: [
+        {
+          name: 'Rural',
+          type: 'line',
+          data: [27.0, 27.4, 27.8, 28.2, 28.6, 29.0]
+        },
+        {
+          name: 'Residential',
+          type: 'line',
+          data: [28.1, 28.5, 28.9, 29.3, 29.7, 30.1]
+        },
+        {
+          name: 'Industrial',
+          type: 'line',
+          data: [32.3, 32.5, 32.7, 32.9, 33.1, 33.3]
+        },
+        {
+          name: 'Town/City',
+          type: 'line',
+          data: [33.5, 33.3, 33.1, 32.9, 32.7, 32.5]
+        },
+        {
+          name: 'Park',
+          type: 'line',
+          data: [31.2, 31.0, 30.8, 30.6, 30.4, 30.2]
+        },
+        {
+          name: 'Farms',
+          type: 'line',
+          data: [30.0, 29.6, 29.2, 28.8, 28.4, 28.0]
+        }
+      ]
+};
+
+    option && myChart.setOption(option);
+    },
     scrollToElement() {
       // 使用 `this.$refs` 来获取模板中的元素
       const element = this.$refs.contentToScrollTo;
 
       // 使用 `scrollIntoView` 方法来平滑滚动到该元素
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: 'smooth' });                                                                                                                                                                                                                                                                                               
+    },
+    goInfo() {
+      this.$router.replace("/info-page")
     }
   }
 }
@@ -141,15 +236,27 @@ export default {
 
 <style scoped>
 .content-and-image {
-  display: flex;
-  align-items: center;
-  /* 如果你希望文本和图片垂直居中对齐 */
-  justify-content: space-between;
-  /* 在文本和图片之间提供一些空间 */
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
 }
-
+.content-and-image .content{
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: table;
+    font-size: 28px;
+}
+.content-and-image .content p{
+  font-size: 18px;
+}
 .content-and-image .text-content {
-  flex: 1;
   /* 文本内容占用可用空间 */
   padding-right: 20px;
   align-items: center;
@@ -180,42 +287,6 @@ export default {
   /* 图片居中显示 */
 }
 
-.transform.img-1{
-   transform: rotate(0deg) translate(0, 0);
-}
-.transform.img-2{
-   transform: rotate(0deg) translate(0, 0);
-}
-.transform.img-3{
-   transform: rotate(0deg) translate(0, 0);
-}
-.transform.img-4{
-   transform: rotate(0deg) translate(0, 0);
-}
-
-.header-content {
-  background-color: #56A05B;
-  /* Green background */
-  color: #fff;
-  padding: 20px;
-  text-align: center;
-}
-
-.title-container h2 {
-  margin-top: 0;
-}
-
-.learn-more {
-  color: #fff;
-  background-color: #333;
-  padding: 10px 20px;
-  border-radius: 4px;
-  text-decoration: none;
-}
-
-.image-content {
-  margin: 20px 0;
-}
 
 .image-container {
   text-align: center;
@@ -228,16 +299,17 @@ export default {
 
 .image-container span {
   display: block;
-  font-size: 0.8em;
+  font-size: 1.4em;
   color: #666;
   text-align: center;
   margin-top: 10px;
 }
 
 .main-content {
-  padding-top: 200px;
+  padding-top: 0px;
   /* 设置一个与头部高度相等的顶部边距 */
   color: white;
+  /* height: 600px; */
 }
 
 .urban-heat-container {
@@ -254,35 +326,87 @@ export default {
   align-content: center;
   justify-content: center;
 }
+.section_item{
+  color: #000;
+  width: 80%;
+  margin: 20px auto  30px auto;
+  display: flex;
 
-.section .content {
-  max-width: 40%;
-  margin-left: 5%;
-  margin-right: 5%;
 }
-
-.image-container {
+.ecarts{
+  width:130%;
+  height: 400px;
+}
+.ecarts_content{
+  background: #3ad345eb;
+  width: 25%;
+  padding: 20px;
+  margin-left: auto;
+}
+.ecarts_content .text{
+  width: 100%;
+  height: auto;
+  margin: 30px auto 0 auto;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+.ecarts_content .btn{
+  width: 140px;
+  height: 50px;
+  border-radius: 50px;
+  background: #fff;
+  color: #3ad345eb;
+  font-size: 16px;
   text-align: center;
+  line-height: 50px;
+  margin-top: 30px;
+  cursor: pointer;
+  position: relative;
+}
+.ecarts_content .btn .icon{
+ position: absolute;
+ margin: auto;
+ right: 5px;
+ top: 0;
+ bottom: 0;
+}
+.section_item .image-container {
+  text-align: center;
+  width: 30%;
   margin-left: 5%;
   margin-right: 5%;
 }
-
-.image-container img {
+.section_item .content {
   width: 50%;
+  padding: 0 40px;
+}
+.section_item .content h1{
+  display: table;
+  border-bottom: 1px solid #000;
+  padding-bottom: 5px;
+  font-size: 24px;
+  font-weight: 600;
+}
+.section_item .content p{
+  font-size: 20px;
+}
+.section_item .content ul li{
+   font-size: 20px;
+   margin-top: 10px;
+}
+.image-container img {
+  width: 100%;
   height: auto;
 }
-
-.image-container span {
-  display: block;
-  font-size: 0.8em;
-  margin-top: 5px;
-}
-
 .section.first{
-  height: 100vh;
-  margin-bottom: 0;
+  display: flex;
+  height: calc(100vh - 80px);
+  margin-bottom: 100px;
 }
-
+.contentToScrollTo{
+  margin-top: 350px;
+}
 .section.first .content-and-image{
    width: 1200px;
 }
@@ -290,16 +414,29 @@ export default {
    max-width: 60%;
 }
 .section.first .content h1{
-   margin-bottom: 65px;
+   margin-bottom: 45px;
 }
 .section.first .content p{
-   margin-bottom: 45px;
+   margin-bottom: 30px;
 }
 .section.first .image-container {
   margin-right: 0;
 }
 .section.first .image-container img {
   width: 100%;
+}
+
+.video-background {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  height: 100%;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cover the entire area of the container */
 }
 
 </style>
