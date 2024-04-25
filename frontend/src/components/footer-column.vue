@@ -44,7 +44,7 @@
     </el-row>
 
     <div class="footer-bottom">
-      <p>© Copyright Team Colon D All Rights Reserved | Designed by Monash IE Team TA 14</p>
+      <p>© Copyright Team Colon D All Rights Reserved | Designed by IE Team TA 14</p>
     </div>
   </el-footer>
 </template>
