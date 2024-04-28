@@ -20,7 +20,7 @@
           <router-link to="/plant-planner">PLANT PLANNER</router-link>
         </el-menu-item>
         <el-menu-item index="4" class="menu-item">
-          <router-link to="/my-plants">MY PLANTS</router-link>
+          <router-link to="/my-plants">COOL CITY</router-link>
         </el-menu-item>
         <el-menu-item index="5" class="menu-item">
           <router-link to="/info-page">INFO</router-link>

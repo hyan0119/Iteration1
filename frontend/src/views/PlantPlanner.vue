@@ -121,7 +121,7 @@ export default {
                 this.no_matched_plant = ''
             this.text = ''
             try {
-                const response = await axios.post('https://cooldownmelbourne.com/api/plant_match', {
+                const response = await axios.post('http://127.0.0.1:8000/plant_match', {
                     apartmentSize: this.apartmentSize,
                     sunlight: this.sunlight,
                     cycle: "perennial",

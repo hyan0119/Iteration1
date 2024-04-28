@@ -2,10 +2,13 @@ import re
 import pandas as pd
 import requests
 import datetime as dt
-
+import string
+import os 
 # make a call using openweather api
 import requests
 
+PREFIX = "backend/"
+PREFIX = ""
 def get_weather_data():
     API_key = "5ddf500fc63209d20e002a8cd26adf96"
     url = f"https://api.openweathermap.org/data/2.5/weather?q=Melbourne,AU&appid={API_key}"
@@ -56,52 +59,76 @@ def get_current_hour():
 
     return flags
 
-building_final= pd.read_csv('building_final.csv') 
+building_final= pd.read_csv(os.path.join(PREFIX, 'CBD.csv')) 
+building_final = building_final[building_final["postcode"] == 3000]
+building_final = building_final.drop_duplicates(subset=["address"])
+# building_final.to_csv("final.csv", index=False)
 
-building_final = building_final.drop_duplicates()
+# def extract_range(info: str):
+#     fields = info.split()
+#     index = 0
+#     find = False
+#     for i, field in enumerate(fields):
+#         for j in range(10):
+#             if str(j) in field:
+#                 index = i
+#                 find = True
+#                 break
+#         if find:
+#             break
+#     field = str(fields[index])
+#     lowercase_letters = string.ascii_lowercase
 
+#     # 获取所有大写字母
+#     uppercase_letters = string.ascii_uppercase
 
-def get_green_area_by_input(df, user_input):
-    # Check if user input is a postcode (all digits) or a suburb (includes letters)
-    if user_input.isdigit():
-        # User input is a postcode, so filter by postcode
-        results = df[df['postcode'] == int(user_input)].sum()
-    else:
-        # User input is a suburb, so filter by suburb
-        results = df[df['suburb'].str.lower() == user_input.lower()]
-
-    # Check if any results were found
-    if not results.empty:
-        return results['green_area']
-    else:
-        return "Error: The postcode or suburb entered is incorrect or not found."
-
-
+#     # 合并小写和大写字母
+#     all_letters = lowercase_letters + uppercase_letters
+#     field = field.strip(all_letters)
     
-input_data = [
-    get_weather_data()[0],
-    get_weather_data()[1],
-    get_weather_data()[2],
-    get_weather_data()[3],
-    get_green_area_by_input(building_final, '3000'),
-    get_current_hour()['Afternoon'],
-    get_current_hour()['Early_afternoon'],
-    get_current_hour()['Early_evening'],
-    get_current_hour()['Early_morning'],
-    get_current_hour()['Evening'],
-    get_current_hour()['Late_afternoon'],
-    get_current_hour()['Late_morning'],
-    get_current_hour()['Night']
-]
+#     if '-' in field:
+#         nums = field.split('-')
+#         if (len(nums) != 2 or not nums[0].isdigit() or not nums[1].isdigit()):
+#             return None
+#         val1 = int(nums[0])
+#         val2 = int(nums[1])
+#         if val1 > val2:
+#             return None
+#         return val1, val2
+#     elif field.isdigit():
+#         val = int(field)
+#         return val, val  
+#     else:
+#         return None
+    
+    
 
+def get_green_area_by_input(df, street, postcode = "3000"):
+    # Check if user input is a postcode (all digits) or a suburb (includes letters)
+    if postcode.isdigit():
+        # User input is a postcode, so filter by postcode
+        tmp = df[df['postcode'] == int(postcode)]
+        streets = tmp["address"].tolist()
+        green_areas = tmp['green_area'].tolist()
+        for i, loc in enumerate(streets):
+            if loc.strip() == street.strip():
+                return green_areas[i]
+    return "error, no green_areas"
+
+def get_root_type(street, postcode = '3000'):
+    tmp = building_final[building_final['postcode'] == int(postcode)]
+    streets = tmp["address"].tolist()
+    roof_types = tmp['roof_type'].tolist()
+    for i, loc in enumerate(streets):
+        if loc.strip() == street.strip():
+            return roof_types[i]
+    return "error, no_root_type"
 
 import pickle
 # Load the model from disk
-with open('temp_reduction_estimate_model.pkl', 'rb') as file:
+with open(os.path.join(PREFIX, 'temp_reduction_estimate_model.pkl'), 'rb') as file:
     loaded_model = pickle.load(file)
 
-# Define a new observation
-new_observation = input_data
 
 # get the columns from the model
 feature_columns = ['temperature', 'humidity', 'air_pressure', 'wind_speed', 'green_area',
@@ -109,15 +136,40 @@ feature_columns = ['temperature', 'humidity', 'air_pressure', 'wind_speed', 'gre
        'timing_Early_morning', 'timing_Evening', 'timing_Late_afternoon',
        'timing_Late_morning', 'timing_Night']
 
-# add the columns to the new observation
-new_observation = pd.DataFrame([new_observation])
-# make a dummy dataframe with feature columns as columns
-df = pd.DataFrame(columns=feature_columns)
-# link the columns to the new observation
-new_observation.columns = feature_columns
 
 
-# Use the loaded model to make predictions
-prediction = loaded_model.predict(new_observation)
+def get_green_area(street, postcode = '3000'):
+    return get_green_area_by_input(building_final, street, postcode)
 
-print(f"Prediction: {prediction}")
+def get_prediction(street: str, postcode:str = "3000") :
+    green_area = get_green_area_by_input(building_final, street, postcode)
+    input_data = [
+        get_weather_data()[0],
+        get_weather_data()[1],
+        get_weather_data()[2],
+        get_weather_data()[3],
+        green_area,
+        get_current_hour()['Afternoon'],
+        get_current_hour()['Early_afternoon'],
+        get_current_hour()['Early_evening'],
+        get_current_hour()['Early_morning'],
+        get_current_hour()['Evening'],
+        get_current_hour()['Late_afternoon'],
+        get_current_hour()['Late_morning'],
+        get_current_hour()['Night']
+    ]
+    # print(get_green_area_by_input(building_final, street, postcode))
+    new_observation = input_data
+    new_observation = pd.DataFrame([new_observation])
+    df = pd.DataFrame(columns=feature_columns)
+    # link the columns to the new observation
+    new_observation.columns = feature_columns
+
+
+    # Use the loaded model to make predictions
+    prediction = loaded_model.predict(new_observation)
+    # print(prediction)
+    # print(f"Prediction: {prediction}")
+    return prediction[0]
+    
+# get_prediction("13-15 Exploration Lane", "3000")
