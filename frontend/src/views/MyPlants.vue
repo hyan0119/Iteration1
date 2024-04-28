@@ -148,7 +148,7 @@ export default {
     async remoteMethod(query) {
       if (query !== '') {
         this.loading = true;
-        axios.get('http://127.0.0.1:8000/search', {
+        axios.get('https://cooldownmelbourne.com/api/search', {
           params: { key_word: query }  // 将参数从 'q' 改为 'search'
         })
           .then(response => {
@@ -170,7 +170,7 @@ export default {
       // Fetch temperature reduction from the predict API
       if (this.selectValue) {
         this.loading = true;
-        axios.get('http://127.0.0.1:8000/search', {
+        axios.get('https://cooldownmelbourne.com/api/search', {
         params: { key_word: this.selectValue }
       })
       .then(response => {
@@ -182,7 +182,7 @@ export default {
         this.loading = false;
       })
 
-      axios.get('http://127.0.0.1:8000/predict', {
+      axios.get('https://cooldownmelbourne.com/api/predict', {
         params: { street: this.selectValue }  // Assuming `value` is the address
       })
       

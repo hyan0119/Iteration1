@@ -48,6 +48,7 @@ def predict():
         return jsonify({"result": rtn})
     else:
         return jsonify({"error": "Street parameter is required"}), 400
+# http://127.0.0.1:8000/predict?street=480-490%20Collins%20Street
 
 @app.route("/get_green_area", methods=["GET"])
 def get_green():
