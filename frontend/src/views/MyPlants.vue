@@ -7,7 +7,8 @@
       <div class="filler"></div>
       <el-main class="main-content">
         <div class="coming-soon-container">
-          <img src="@/assets/comingsoon.png" alt="Coming Soon" />
+          <h1>Coming Soon</h1>
+          
         </div>
       </el-main>
       <footer-column></footer-column>
