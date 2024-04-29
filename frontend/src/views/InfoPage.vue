@@ -213,8 +213,9 @@ export default {
   width: 100%;
   font-weight: 500;
   font-size: 24px;
-  color: #999;
+  /* color: #999; */
   margin-top: 30px;
+  text-align: center;
 }
 .artles,.videos{
   width: 100%;

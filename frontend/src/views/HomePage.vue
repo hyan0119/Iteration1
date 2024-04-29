@@ -15,14 +15,17 @@
                     </video>
                     <div class="content-and-image">
                       <div class="content">
-                        <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1>
-                        <p>The Urban Heat Island effect has caused overheat to our city for a long time!</p>
-                        <p>&nbsp;</p>
-                        <div class="scorll-logo">
-                          <img src="@/assets/arrow_down.png" style="width: 20px; height: 20px;" alt="Logo"
-                            @click="scrollToElement" />
+                        <div class="content_text">
+                          <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1>
+                          <p>Let's save our city from excessive heat during the summer!</p>
+                          <div class="scorll-logo">
+                          <!-- <img src="@/assets/arrow_down.png" style="width: 20px; height: 20px;" alt="Logo"
+                            @click="scrollToElement" /> -->
                           <el-button @click="scrollToElement">Learn More</el-button>
                         </div>
+                      </div>
+                        <!-- <p>&nbsp;</p> -->
+
                         <div class="contentToScrollTo" ref="contentToScrollTo"></div>
                       </div>
                 </div>
@@ -96,12 +99,12 @@
             </div>
             <div class="content ecarts_content">
               <div class="text">
-                Average January temperatures for five different areas of Melbourne between 2019 and 2024.
+                <div id="context_header">Average January temperatures for five different areas of Melbourne</div>
                 <p></p>
                 <p></p>
-                The data shows that temperatures in industrial areas and urban areas continue to rise in January (during the hot summer months), 
+                <div id="content_text">The data shows that temperatures in industrial areas and urban areas continue to rise in January (during the hot summer months), 
                 while parks and farms covered by green spaces have relatively cooler temperatures, reflecting the impact of the heat island effect. 
-                To mitigate this effect, measures such as increased greening and improved building materials could be considered in urban planning.
+                To mitigate this effect, measures such as increased greening and improved building materials could be considered in urban planning.</div>
               </div>
               <div class="btn" @click="goInfo">Read More 
                  <el-icon :size="20" color="#3ad345eb" class="icon">
@@ -236,12 +239,13 @@ export default {
 
 <style scoped>
 .content-and-image {
-  position: absolute;
+  /* position: absolute; */
   margin: auto;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
+  text-align: center;
 }
 .content-and-image .content{
     position: absolute;
@@ -251,10 +255,20 @@ export default {
     top: 0;
     bottom: 0;
     display: table;
-    font-size: 28px;
+    font-size: 50px;
+
+    
 }
 .content-and-image .content p{
-  font-size: 18px;
+  font-size: 30px;
+  text-align: center;
+  /* background-color: dodgerblue; */
+}
+.content-and-image .content_text{
+  background-color: rgba(9, 134, 28, 0.9);
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 100px
 }
 .content-and-image .text-content {
   /* 文本内容占用可用空间 */
@@ -299,7 +313,7 @@ export default {
 
 .image-container span {
   display: block;
-  font-size: 1.4em;
+font-size: 12px;
   color: #666;
   text-align: center;
   margin-top: 10px;
@@ -338,25 +352,26 @@ export default {
   height: 400px;
 }
 .ecarts_content{
-  background: #3ad345eb;
+  /* background: #17b34e; */
   width: 25%;
   padding: 20px;
   margin-left: auto;
+  margin-left: 80px;
 }
 .ecarts_content .text{
   width: 100%;
   height: auto;
   margin: 30px auto 0 auto;
   font-size: 16px;
-  font-weight: 600;
-  color: #fff;
+  /* font-weight: 600; */
+  /* color: #fff; */
 }
 .ecarts_content .btn{
   width: 140px;
   height: 50px;
   border-radius: 50px;
   background: #fff;
-  color: #3ad345eb;
+  color: rgba(9, 134, 28);
   font-size: 16px;
   text-align: center;
   line-height: 50px;
@@ -437,6 +452,37 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Cover the entire area of the container */
+}
+
+.scorll-logo{
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+#negative-impact{
+margin-top: 50px;
+}
+.content{
+  margin-top: 50px;
+}
+.image-container{
+  margin-top: 50px;
+
+}
+#context_header{
+  display: table;
+  border-bottom: 1px solid #000;
+  padding-bottom: 5px;
+  font-size: 24px;
+  font-weight: 600;
+}
+#content_text{
+  font-size: 20px;
+  margin-top: 10px;
+}
+.text{
+  font-size: 20px;
+   margin-top: 10px;
 }
 
 </style>

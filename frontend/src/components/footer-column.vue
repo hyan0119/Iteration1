@@ -62,7 +62,9 @@ export default {
 }
   .footer-top {
       display: flex;
-      background-color: #4CAF50;
+      /* background-color: #4CAF50; */
+      /* background-color: rgb(48, 144, 63); */
+      background-color: #11ad48;
       padding: 0vh;
       align-items: center;
   }

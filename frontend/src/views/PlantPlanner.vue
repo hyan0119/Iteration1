@@ -236,6 +236,7 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
 }
 
 .input-group {
@@ -300,6 +301,7 @@ select.input-field option {
     box-sizing: border-box;
     margin-right: 0;
 }
+
 
 
 </style>

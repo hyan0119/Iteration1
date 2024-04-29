@@ -219,7 +219,6 @@ export default {
 .title{
   width: 100%;
   height: 78px;
-  font-family: Inter;
   font-size: 34px;
   font-weight: 700;
   line-height: 78px;
@@ -229,7 +228,6 @@ export default {
 .sub{
   width: 85%;
   height: auto;
-  font-family: Inter;
   font-size: 28px;
   font-weight: 400;
   text-align: center;
@@ -240,7 +238,6 @@ export default {
   margin: 50px auto 0 auto;
 }
 .subTile{
-  font-family: Inter;
   font-size: 30px;
   font-weight: 700;
   text-align: left;
@@ -250,13 +247,13 @@ export default {
   width: 100%;
   height: 150px;
   padding: 20px 60px;
-  font-family: Inter;
   font-size: 26px;
   font-weight: 700;
   background: #FFD74D;
   border-radius: 30px;
   margin-top: 30px;
   position: relative;
+  border-radius: 20px;
  
 }
 .yellow_inner{
@@ -296,7 +293,7 @@ export default {
   margin-top: 50px;
 }
 .results{
-  font-family: Inter;
+  /* font-family: Inter; */
   font-size: 36px;
   font-weight: 700;
   width: 100%;
@@ -308,10 +305,11 @@ export default {
   width: 100%;
   height: 322px;
   margin-top: 50px;
+  border-radius: 20px;
 }
 .results_item_title{
   text-align: center;
-  font-family: Inter;
+  /* font-family: Inter; */
   font-size: 28px;
   font-weight: 700;
   position: relative;
@@ -320,10 +318,10 @@ export default {
   width: 100%;
   height: 251px;
   overflow: hidden;
+  /* border-radius: 20px; */
 }
 
 .results_item_content_txt{
-  font-family: Inter;
   font-size: 28px;
   font-weight: 400;
   color: #000;
@@ -355,7 +353,6 @@ export default {
 
 }
 .fileText{
-  font-family: Inter;
   font-size: 16px;
   font-weight: 400;
   margin-top: 20px;
@@ -374,6 +371,7 @@ export default {
 }
 .blue{
   background: #0BA6D7;
+
 }
 .skyBlue{
   background: #A6EAFF;
@@ -397,4 +395,4 @@ export default {
   background: #FFD8CF;
 }
 </style>
-<style src="./style.css"></style>
+
