@@ -97,7 +97,7 @@
                     about what is “urban heat island effect” and its potential adverse effect on your well-being, you
                     can
                     check
-                    our “Urban Heat Island Encyclopedia” feature and educate yourself about the issue. <a href="/info-page">Click here to learn more</a></div>
+                    our “Urban Heat Island Encyclopedia” feature and educate yourself about the issue. <button><a href="/info-page">Click here to learn more</a></button></div>
             </div>
         </el-main>
         <footer-column></footer-column>
@@ -364,7 +364,7 @@
       color: #FDF1E7;
       font-size: 24px;
       margin-bottom: 5px;
-      background-color: rgb(255, 214, 153);
+      background-color: darkcyan;
       border-radius: 5px;
       padding: 20px;
       /* margin-right: 0px; */
@@ -403,7 +403,7 @@
   
   #description {
       text-decoration: none;
-      color: #FDF1E7;
+      color: #58c6ff;
       text-align: center;
       margin: auto;
   }
@@ -421,7 +421,7 @@
   }
   
   #resetButton{
-      background-color: rgb(255, 214, 153);
+      background-color: #58c6ff;
       border: none;
       padding: 10px;
       border-radius: 5px;
@@ -441,7 +441,9 @@
       align-items: top;
       margin-top: 20px;
       margin-bottom: 20px;
-      background: linear-gradient(180deg, rgb(255, 214, 153) 0%, #076ad9 40%, #ff3bef 90%);
+      /* background: linear-gradient(180deg, rgb(255, 214, 153) 0%, #076ad9 40%, #ff3bef 90%); */
+      background: darkcyan;
+    
       border-radius: 5px;
       justify-content: center;
       align-items: top;
@@ -510,7 +512,7 @@
 
   #instruction{
       /* font-size: 18px; */
-      color: #FDF1E7;
+      color: darkcyan;
       text-align: left;
       /* margin-top: 10px;
       margin-bottom: 10px;
@@ -527,7 +529,7 @@
       margin-top: 10px;
       /* margin-bottom: 10px; */
       margin-bottom: 30px;
-      background-color: rgb(255, 214, 153);
+      background-color: darkcyan;
       border-radius: 5px;
       padding: 20px;
       width: 450px;
