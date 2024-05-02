@@ -264,12 +264,12 @@ export default {
   text-align: center;
   /* background-color: dodgerblue; */
 }
-.content-and-image .content_text{
+/* .content-and-image .content_text{
   background-color: rgba(9, 134, 28, 0.9);
   border-radius: 10px;
   padding: 10px;
   margin-top: 100px
-}
+} */
 .content-and-image .text-content {
   /* 文本内容占用可用空间 */
   padding-right: 20px;
