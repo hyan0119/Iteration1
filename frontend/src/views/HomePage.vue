@@ -16,8 +16,8 @@
                     <div class="content-and-image">
                       <div class="content">
                         <div class="content_text">
-                          <!-- <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1> -->
-                          <!-- <p>Let's save our city from excessive heat during the summer!</p> -->
+                          <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1>
+                          <p>Let's save our city from excessive heat during the summer!</p>
                           <div class="scorll-logo">
                           <!-- <img src="@/assets/arrow_down.png" style="width: 20px; height: 20px;" alt="Logo"
                             @click="scrollToElement" /> -->
