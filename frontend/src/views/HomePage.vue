@@ -10,14 +10,14 @@
           <div class="section first" style="position: relative;" >
             
               <div class="video-background">
-                    <video autoplay muted loop>
-                      <source src="@/assets/impact_video.mp4" type="video/mp4" >
+                    <video autoplay muted loop style="background-color: rgba(0,0,0,0.3); filter: brightness(0.5);">
+                      <source src="@/assets/impact_video2.mp4" type="video/mp4" >
                     </video>
                     <div class="content-and-image">
                       <div class="content">
                         <div class="content_text">
-                          <!-- <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1> -->
-                          <!-- <p>Let's save our city from excessive heat during the summer!</p> -->
+                          <h1>JOIN OUR FIGHT AGAINST URBAN HEAT ISLAND</h1>
+                          <p>Let's save our city from excessive heat during the summer!</p>
                           <div class="scorll-logo">
                           <!-- <img src="@/assets/arrow_down.png" style="width: 20px; height: 20px;" alt="Logo"
                             @click="scrollToElement" /> -->
@@ -286,9 +286,12 @@ export default {
 .content-and-image .content .scorll-logo {
   display: flex;
   flex-direction: column;
+  /* 以列的方式排列子元素 */
   align-items: center;
+  /* 水平居中对齐子元素 */
   justify-content: left;
-  margin-top: 270px;
+  /* 如果需要，也可以在垂直方向上居中 */
+
 }
 
 .content-and-image .image-container {
@@ -480,6 +483,9 @@ margin-top: 50px;
 .text{
   font-size: 20px;
    margin-top: 10px;
+}
+.video-background {
+  background-color: rgba(0,0,0,0.4);
 }
 
 </style>
