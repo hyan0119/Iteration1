@@ -10,7 +10,7 @@
           <div class="section first" style="position: relative;" >
             
               <div class="video-background">
-                    <video autoplay muted loop>
+                    <video autoplay muted loop style="background-color: rgba(0,0,0,0.3); filter: brightness(0.5);">
                       <source src="@/assets/impact_video2.mp4" type="video/mp4" >
                     </video>
                     <div class="content-and-image">
@@ -483,6 +483,9 @@ margin-top: 50px;
 .text{
   font-size: 20px;
    margin-top: 10px;
+}
+.video-background {
+  background-color: rgba(0,0,0,0.4);
 }
 
 </style>
