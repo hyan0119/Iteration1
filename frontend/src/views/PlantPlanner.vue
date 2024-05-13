@@ -57,17 +57,7 @@
                             </el-select>
                         </div>
                     </div>
-                    <div class="seletc_item">
-                            <div class="label">
-                                <span>Postcode</span>
-                                <el-tooltip class="item" effect="dark" content="Enter your postcode" placement="top-start">
-                                    <img src="@/assets/info.png" alt="" class="info" />
-                                </el-tooltip>
-                            </div>
-                            <div class="select_input">
-                                <input placeholder="ex: 3000" type="number" id="postcode" v-model="postcode" class="input-field" min="1000" max="9999">
-                            </div>
-                        </div>
+
                     <div class="seletc_item">
                         <div class="label">
                             <span>Watering Needs</span>
@@ -89,7 +79,7 @@
 
 
                     </div>
-                    <!-- <div class="seletc_item">
+                    <div class="seletc_item">
                         <div class="label">
                             <span>Postcode</span>
                             <el-tooltip class="item" effect="dark" content="Enter your postcode" placement="top-start">
@@ -99,7 +89,7 @@
                         <div class="select_input">
                             <input placeholder="ex: 3000" type="text" id="postcode" v-model="postcode" class="input-field">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="generate-button">
                         <el-button @click="viewPlantMatch" size="large" :loading="loading">GENERATE PLANT</el-button>
                     </div>
@@ -438,7 +428,6 @@ select.input-field option {
 .select_input input {
     width: 100%;
     height: 54px;
-    box-shadow: 0px 4px 4px 0px #00000040;
     background: #EDEDED;
     font-size: 24px;
     margin-top: 10px;

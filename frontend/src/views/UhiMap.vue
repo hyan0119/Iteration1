@@ -293,11 +293,11 @@ export default {
     
 <style>
 .info {
-    padding: 6px 8px;
+    
     font: 20px/30px Arial, Helvetica, sans-serif;
     background: white;
     background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    
     border-radius: 5px;
     text-align: center;
 }
@@ -335,4 +335,5 @@ h3 {
         height: 700px;
     } */
 </style>
+
 <style src="./style.css"></style>
