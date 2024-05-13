@@ -11,7 +11,6 @@
 <div id="instrcution">
 <div>Hover over a suburb to see the Heat Vulnerability Index (HVI) of that suburb.</div>
 <div>Click on a suburb to zoom in and see the HVI of that suburb.</div>
-<div>Click on the suburb again to zoom out.</div>
 </div>
 <button @click="handleButtonClick">Reset View</button>
 <!-- <button @click="switchMap">switch view</button> -->
