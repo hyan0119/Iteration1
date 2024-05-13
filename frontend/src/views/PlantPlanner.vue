@@ -58,6 +58,17 @@
                         </div>
                     </div>
                     <div class="seletc_item">
+                            <div class="label">
+                                <span>Postcode</span>
+                                <el-tooltip class="item" effect="dark" content="Enter your postcode" placement="top-start">
+                                    <img src="@/assets/info.png" alt="" class="info" />
+                                </el-tooltip>
+                            </div>
+                            <div class="select_input">
+                                <input placeholder="ex: 3000" type="number" id="postcode" v-model="postcode" class="input-field" min="1000" max="9999">
+                            </div>
+                        </div>
+                    <div class="seletc_item">
                         <div class="label">
                             <span>Watering Needs</span>
                             <el-tooltip class="item" effect="dark" content="Low: Water every 2 to 3 weeks
@@ -75,6 +86,8 @@
                                 <el-option label="low" value="low"></el-option>
                             </el-select>
                         </div>
+
+
                     </div>
                     <!-- <div class="seletc_item">
                         <div class="label">
@@ -164,10 +177,12 @@ export default {
     setup() {
         const sunlight = ref('');
         const watering = ref('');
+        const postcode = ref('');
 
         return {
             sunlight,
             watering,
+            postcode
         };
     },
     data() {
@@ -197,7 +212,8 @@ export default {
                     apartmentSize: this.apartmentSize,
                     sunlight: this.sunlight,
                     cycle: "perennial",
-                    watering: this.watering
+                    watering: this.watering,
+                    postcode: this.postcode
                 });
                 const data = response.data;
                 if (data.plantImageUrl == null) {

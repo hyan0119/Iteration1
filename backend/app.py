@@ -25,17 +25,15 @@ def get_head_index():
 
 @app.route('/plant_match', methods=['POST'])
 def plant_match():
-    
     data = request.json
-    
-    
+
+    postcode = data.get('postcode')
     balcony_size = data.get('apartmentSize')
     sunlight = data.get('sunlight')
     watering = data.get('watering')
-    
-    print(balcony_size, sunlight, watering)
-    response_data = get_plant(float(balcony_size), sunlight, watering)
-    # print(response_data)
+
+    print(postcode, balcony_size, sunlight, watering)
+    response_data = get_plant(float(balcony_size), sunlight, watering, int(postcode))
     
     return jsonify(response_data)
 
