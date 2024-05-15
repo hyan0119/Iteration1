@@ -393,7 +393,7 @@ export default {
   top: 0;
   bottom: 0;
   display: table;
-  font-size: 50px;
+  font-size: 70px;
 
 
 }
@@ -1095,8 +1095,6 @@ export default {
 .block {
   height: 50px;
 }
-
-
 
 </style>
 <style src="./style.css"></style>
