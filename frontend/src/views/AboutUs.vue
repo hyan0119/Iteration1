@@ -248,9 +248,7 @@ export default {
 .line_end{
   border-radius: 0 30px 30px 0;
 }
-.line_middle{
 
-}
 .randor{
   width: 220px;
   height: 80px;

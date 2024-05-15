@@ -30,9 +30,6 @@
         <el-menu-item index="4" :class="['menu-item',activeIndex =='4'?'activeItem':'']">
           <router-link to="/info-page">INFO</router-link>
         </el-menu-item>
-        <el-menu-item index="5" :class="['menu-item',activeIndex =='5'?'activeItem':'']">
-          <router-link to="/about-us">ABOUT US</router-link>
-        </el-menu-item>
       </el-menu>
     </div>
   </el-header>
@@ -60,8 +57,6 @@ export default {
           this.activeIndex = '3'
         } else if(to.path == '/info-page'){
           this.activeIndex = '4'
-        } else if(to.path == '/about-us'){
-          this.activeIndex = '5'
         }
       },
       deep: true,
