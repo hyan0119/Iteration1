@@ -6,7 +6,7 @@
       </div>
       <!-- <div class="filler"></div> -->
       <el-main class="main-content">
-        <section class="hero-section">
+        <section class="hero-section" >
           <div class="section first" style="position: relative;">
 
             <div class="video-background">
@@ -33,16 +33,16 @@
           </div>
 
 
-          <div class="title">
+          <div class="title" data-aos="fade-up">
             <img src="@/assets/card.png" alt="" class="title_more_img img_left" />
             EXPLORE WITH US!
             <img src="@/assets/card.png" alt="" class="title_more_img img_right" />
           </div>
-          <div class="section section_item" id="urban-heat-effect">
+          <div class="section section_item" id="urban-heat-effect"  data-aos="fade-left">
             <div class="image-container">
               <img src="@/assets/city_image.png" alt="City" class="transform img-2">
             </div>
-            <div class="content">
+            <div class="content" data-aos="fade-right">
               <h1>COOL MAP</h1>
               <p>Discover relevant Urban Heat Island Effects in your area. Learn your area’s Urban Heat Island Index level
                 and tree canopies around your area. Explore practical solutions to reduce the heat in your area.</p>
@@ -50,23 +50,23 @@
             </div>
           </div>
 
-          <div class="section section_item" id="negative-impact">
+          <div class="section section_item" id="negative-impact" data-aos="fade-up">
             <div class="content">
               <h1>PLANT PLANNER</h1>
               <p>Discover the ideal plant for your lovely home. Find out the perfect plan based on the available area and
                 your commitment to water it!</p>
               <div class="text_btn" @click="goMore(1)">Explore more</div>
             </div>
-            <div class="image-container">
+            <div class="image-container" data-aos="fade-down">
               <img src="@/assets/home2.png" alt="City" class="transform img-3">
             </div>
           </div>
 
-          <div class="section section_item" id="mitigate">
+          <div class="section section_item" id="mitigate" data-aos="zoom-in">
             <div class="image-container">
               <img src="@/assets/home3.png" alt="City" class="transform img-4">
             </div>
-            <div class="content">
+            <div class="content" data-aos="zoom-in-up">
               <h1>COOL CITY SOLUTIONS</h1>
               <p>Find out how vegetation around your home help reduces the heat. Prepare to uncover how effective
                 vegetation can be for heat reduction. Explore possibilities of installing green roof on your home!</p>
@@ -75,18 +75,18 @@
           </div>
 
 
-          <div class="title_more">
+          <div class="title_more" data-aos="fade-down">
             <img src="@/assets/card.png" alt="" class="title_more_img img_left" />
             INFORMATION SECTION
             <img src="@/assets/card.png" alt="" class="title_more_img img_right" />
           </div>
 
-          <div class="title_line">
+          <div class="title_line" data-aos="fade-up">
             <div class="line left_line"></div>
             <div class="text">URBAN HEAT ISLAND</div>
             <div class="line right_line"></div>
           </div>
-          <div class="urban">
+          <div class="urban" data-aos="fade-right">
             <div class="urban_inner">
               <div class="urban_inner_text">
                 Urban Heat Island effect makes cities hotter, more polluted, and dangerous in summer.
@@ -94,61 +94,61 @@
               <div class="text_btn" @click="goMore(3)">Learn more</div>
             </div>
           </div>
-          <div class="CAUSES_line">
+          <div class="CAUSES_line" data-aos="fade-left">
             <div class="line left_line"></div>
             <div class="text">WHAT CAUSES URBAN HEAT ISLAND?</div>
             <div class="line right_line"></div>
           </div>
-          <div class="card">
+          <div class="card" data-aos="fade-up">
             <div class="card_item">
               <img src="@/assets/card_01.jpg" alt="">
               <div class="card_text">Photo by Inna Mikova on Unsplash</div>
               <div class="air">
                 AIR POLLUTION
               </div>
-              <div class="card_content">
+              <div class="card_content" data-aos="zoom-in">
                 Abundance of air pollution & dark building materials in the city trap heat in the city
               </div>
             </div>
-            <div class="card_item">
+            <div class="card_item" data-aos="zoom-in">
               <img src="@/assets/card_02.jpg" alt="">
               <div class="card_text">Photo from Freepik</div>
               <div class="air">
                 DECLINING VEGETATION SPACE
               </div>
-              <div class="card_content">
+              <div class="card_content" data-aos="zoom-in">
                 Less vegetation leads to less evapotranspiration and cool shades.
               </div>
             </div>
-            <div class="card_item">
+            <div class="card_item" data-aos="zoom-in">
               <img src="@/assets/card_03.jpg" alt="">
               <div class="card_text">Photo by Chromatograph on Unsplash</div>
               <div class="air">
                 EXCESSIVE ENERGY USAGE
               </div>
-              <div class="card_content">
+              <div class="card_content" data-aos="zoom-in">
                 Excessive energy consumption generates heat as byproduct.
               </div>
             </div>
           </div>
-          <div class="more_btn">
+          <div class="more_btn" data-aos="fade-up">
             <div class="more_btn_text" @click="goMore(3)">Learn more</div>
           </div>
-          <div class="CAUSES_line NEGATIVE">
+          <div class="CAUSES_line NEGATIVE" data-aos="fade-left">
             <div class="line left_line"></div>
             <div class="text">NEGATIVE IMPACTS OF URBAN HEAT ISLAND</div>
             <div class="line right_line"></div>
           </div>
-          <div class="NEGATIVE_card">
+          <div class="NEGATIVE_card" data-aos="fade-right">
             <div class="NEGATIVE_card_inner">
               <div class="NEGATIVE_card_box">
-                <div class="NEGATIVE_card_item">
+                <div class="NEGATIVE_card_item" data-aos="zoom-in">
                   <img src="@/assets/icon_01.jpg" alt="" class="NEGATIVE_icon">
                   <div class="NEGATIVE_text">
                     Temperature continuing to rise and cause health issues
                   </div>
                 </div>
-                <div class="NEGATIVE_card_item">
+                <div class="NEGATIVE_card_item" data-aos="zoom-in">
                   <img src="@/assets/icon_02.jpg" alt="" class="NEGATIVE_icon">
                   <div class="NEGATIVE_text">
                     Lower people’s well-being and health condition
@@ -156,13 +156,13 @@
                 </div>
               </div>
               <div class="NEGATIVE_card_box">
-                <div class="NEGATIVE_card_item">
+                <div class="NEGATIVE_card_item" data-aos="zoom-in">
                   <img src="@/assets/icon_03.jpg" alt="" class="NEGATIVE_icon">
                   <div class="NEGATIVE_text">
                     Impaired Water Quality
                   </div>
                 </div>
-                <div class="NEGATIVE_card_item">
+                <div class="NEGATIVE_card_item" data-aos="zoom-in">
                   <img src="@/assets/icon_04.jpg" alt="" class="NEGATIVE_icon">
                   <div class="NEGATIVE_text">
                     The extra heat increases energy usage and energy bills
@@ -174,12 +174,12 @@
               <div class="NEGATIVE_btn_text" @click="goMore(3)">Learn more</div>
             </div>
           </div>
-          <div class="CAUSES_line MITIGATION">
+          <div class="CAUSES_line MITIGATION" data-aos="fade-left">
             <div class="line left_line"></div>
             <div class="text">MITIGATION EFFORT</div>
             <div class="line right_line"></div>
           </div>
-          <div class="MITIGATION_content">
+          <div class="MITIGATION_content" data-aos="fade-up">
             <div class="MITIGATION_item">
               <img src="@/assets/line_01.jpg" alt="">
               <div class="MITIGATION_item_text">
@@ -212,17 +212,17 @@
               <div class="MITIGATION_btn_text" @click="goMore(3)">Learn more</div>
             </div>
           </div>
-          <div class="CAUSES_line MITIGATION">
+          <div class="CAUSES_line MITIGATION" data-aos="fade-left">
             <div class="line left_line"></div>
             <div class="text">VISUALISATION</div>
             <div class="line right_line"></div>
           </div>
-          <div class="echarts_title">
+          <div class="echarts_title" data-aos="fade-up">
             Average Temperature Across Five Different types of Locations around Melbourne - January
           </div>
-          <div class="echarts_content">
+          <div class="echarts_content" data-aos="fade-right">
             <div id="main" class="ecarts"></div>
-            <div class="echarts_content_box">
+            <div class="echarts_content_box" data-aos="fade-left">
               <ul>
                 <li>The temperature at industrial areas continues to rise indicating increasing air pollution.</li>
                 <li>The temperature at urban areas such as densely populated city/town continues to be higher than 32°C.
@@ -232,7 +232,7 @@
                   Effect”</li>
               </ul>
             </div>
-            <div class="more_btn">
+            <div class="more_btn" data-aos="fade-up">
               <div class="NEGATIVE_btn_text" @click="goMore(3)">Learn more</div>
             </div>
           </div>
@@ -261,6 +261,7 @@ export default {
   },
   mounted() {
     this.getEcharts()
+    this.$aos.refresh();
   },
   methods: {
     goMore(index) {
@@ -1093,5 +1094,9 @@ export default {
 
 .block {
   height: 50px;
-}</style>
+}
+
+
+
+</style>
 <style src="./style.css"></style>

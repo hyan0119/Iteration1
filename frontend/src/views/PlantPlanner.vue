@@ -50,7 +50,6 @@
                         <div class="select_input">
                             <el-select v-model="sunlight" placeholder="Select the sunlight availability at your home"
                                 class="select-field">
-                                <!-- <option disabled value="" selected>Sunlight</option> -->
                                 <el-option label="high" value="high"></el-option>
                                 <el-option label="medium" value="medium"></el-option>
                                 <el-option label="low" value="low"></el-option>
@@ -70,7 +69,6 @@
                         <div class="select_input">
                             <el-select v-model="watering"
                                 placeholder="Select the Watering Needs for the plant that you desire" class="select-field">
-                                <!-- <option selected value="">Watering</option> -->
                                 <el-option label="high" value="high"></el-option>
                                 <el-option label="medium" value="medium"></el-option>
                                 <el-option label="low" value="low"></el-option>
@@ -87,29 +85,24 @@
                             </el-tooltip>
                         </div>
                         <div class="select_input">
-                            <input placeholder="ex: 3000" type="text" id="postcode" v-model="postcode" class="input-field">
+                            <el-select v-model="postcode" placeholder="ex: 3000" class="select-field">
+                                <el-option
+                                    v-for="item in postcodes"
+                                    :key="item"
+                                    :label="item"
+                                    :value="item">
+                                </el-option>
+                            </el-select>
                         </div>
                     </div>
                     <div class="generate-button">
                         <el-button @click="viewPlantMatch" size="large" :loading="loading">GENERATE PLANT</el-button>
                     </div>
                     <div>
-                        <!-- <p v-if="plantImageUrl" class="image-container">
-                            <img :src="plantImageUrl" alt="Plant Image" class="plant-image">
-                        </p>
-                        <div class="info-container">
-                            <p v-if="no_image">image: {{ no_image }}</p>
-                            <p v-if="plantName">Name of the plant: {{ plantName }}</p>
-                            <p v-if="lifespan">Lifespan: {{ lifespan }}</p>
-                            <p v-if="maintainingGuide">Maintaining Guide: {{ maintainingGuide }}</p>
-                            <p v-if="text">Contribution to the heat island effect: {{ text }}</p>
-                            <p v-if="no_matched_plant">Error: {{ no_matched_plant }}</p>
-                        </div> -->
-
-                        <div class="info-container" v-if="plantImageUrl">
-                            <img :src="plantImageUrl" alt="Plant Image" class="plant-image">
-                            <div class="Unsplash">Photo by Prudence Earl on Unsplash</div>
-                            <div class="info-container_inner">
+                        <div class="info-container" v-if="plantImageUrl || no_matched_plant">
+                            <img :src="plantImageUrl" alt="Plant Image" v-if="plantImageUrl" class="plant-image">
+                            <div v-if="plantImageUrl" class="Unsplash">Photo by Prudence Earl on Unsplash</div>
+                            <div class="info-container_inner" v-if="plantImageUrl || no_matched_plant">
                                 <div class="container_inner_top">
                                     <div v-if="no_image" class="container_inner_top_item">
                                         <div class="label">image</div>
@@ -121,27 +114,22 @@
                                         <div class="dot">:</div>
                                         <div class="value">{{ plantName }}</div>
                                     </div>
-                                    <div v-if="lifespan" class="container_inner_top_item">
-                                        <div class="label">Lifespan</div>
-                                        <div class="dot">:</div>
-                                        <div class="value">{{ lifespan }}</div>
-                                    </div>
-                                    <div v-if="maintainingGuide" class="container_inner_top_item">
-                                        <div class="label">Maintaining Guide</div>
-                                        <div class="dot">:</div>
-                                        <div class="value">{{ maintainingGuide }}</div>
-                                    </div>
                                 </div>
-                                <div v-if="text" class="text_item">Contribution to the heat island effect: {{ text }}</div>
+                                <h2 v-if="plantImageUrl">Day Care</h2>
+                                <div v-if="watering_guide" class="text_item">{{ watering_guide }}</div>
+                                <h2 v-if="plantImageUrl">Watering Guide</h2>
+                                <div v-if="watering_guide_description" class="text_item">{{ watering_guide_description }}</div>
+                                <h2 v-if="plantImageUrl">Sunlight Guide</h2>
+                                <div v-if="sunlight_guide_description" class="text_item">{{ sunlight_guide_description }}</div>
+                                <h2 v-if="plantImageUrl">Pruning Guide</h2>
+                                <div v-if="pruning_guide_description" class="text_item">{{ pruning_guide_description }}</div>
+                                <h2 v-if="plantImageUrl">Energy Save</h2>
+                                <div v-if="energy_save" class="text_item">{{ energy_save }}</div>
+                                
                                 <div v-if="no_matched_plant" class="text_item">Error: {{ no_matched_plant }}</div>
                             </div>
-
                         </div>
-                        <!-- <p v-if="temperatureContribution">Contribution towards temperature reduce: {{ temperatureContribution }}
-                </p>
-                <p v-if="requiredTools">Required tools to grow the plant: {{ requiredTools }}</p> -->
                     </div>
-
                 </div>
             </el-main>
             <footer-column></footer-column>
@@ -156,6 +144,7 @@ import 'element-plus/dist/index.css';
 import { ref } from 'vue'
 import footerColumn from "../components/footer-column";
 import HeaderNavigation from "@/components/HeaderNavigation.vue";
+
 export default {
     name: 'PlantPlanner',
     components: {
@@ -181,22 +170,24 @@ export default {
             no_image: '',
             plantImageUrl: '',
             plantName: '',
-            lifespan: 0,
-            maintainingGuide: '',
-            no_matched_plant: '',
-            text: '',
-
+            watering_guide: '',
+            watering_guide_description: '',
+            sunlight_guide_description: '',
+            pruning_guide_description: '',
+            energy_save:'',
+            postcodes: [
+                '3000', '3002', '3003', '3004', '3005', '3006', '3008',
+                '3010', '3031', '3032', '3050', '3051', '3052', '3053',
+                '3054', '3141', '3207'
+            ],
+            no_matched_plant: ''
         };
     },
     methods: {
         async viewPlantMatch() {
-            this.loading = true
-            this.plantImageUrl = '',
-                this.plantName = '',
-                this.lifespan = 0,
-                this.maintainingGuide = '',
-                this.no_matched_plant = ''
-            this.text = ''
+            this.loading = true;
+            this.resetData();
+
             try {
                 const response = await axios.post('https://cooldownmelbourne.com/api/plant_match', {
                     apartmentSize: this.apartmentSize,
@@ -205,36 +196,45 @@ export default {
                     watering: this.watering,
                     postcode: this.postcode
                 });
+
                 const data = response.data;
-                if (data.plantImageUrl == null) {
-                    if (data.lifespan == null && data.plantName == null && data.maintainingGuide == null) {
-                        this.no_matched_plant = "no match plant"
-                    } else {
-                        this.no_image = "no image for " + data.plantName + "!"
-                        this.plantName = data.plantName;
-                        this.lifespan = data.lifespan;
-                        this.maintainingGuide = data.maintainingGuide;
-                        this.text = "A 10-20% increase in vegetation cover is anticipated to reduce the UHI by 0.38-0.78 °C"
-                    }
 
+                if (Object.keys(data).length === 0 || data.plantName == null) {
+                    this.no_matched_plant = "No matched plant found.";
                 } else {
-                    this.plantImageUrl = data.plantImageUrl;
-                    this.plantName = data.plantName;
-                    this.lifespan = data.lifespan;
-                    this.maintainingGuide = data.maintainingGuide;
-                    this.text = "A 10-20% increase in vegetation cover is anticipated to reduce the UHI by 0.38-0.78 °C"
-
+                    this.updatePlantData(data);
                 }
-                this.loading = false
-                // this.plantName = data.plantName;
-                // this.lifespan = data.lifespan;
-                // this.maintainingGuide = data.maintainingGuide;
-                // this.temperatureContribution = data.temperatureContribution;
-                // this.requiredTools = data.requiredTools;
             } catch (error) {
+                this.no_matched_plant = "Error fetching data. Please try again.";
                 console.error('Error fetching data:', error);
+            } finally {
+                this.loading = false;
             }
         },
+        resetData() {
+            this.plantImageUrl = '';
+            this.plantName = '';
+            this.watering_guide = '';
+            this.watering_guide_description = '';
+            this.sunlight_guide_description = '';
+            this.pruning_guide_description = '';
+            this.energy_save = '';
+            this.no_matched_plant = '';
+        },
+        updatePlantData(data) {
+            if (data.plantImageUrl == null) {
+                this.no_image = "No image for " + data.plantName + "!";
+            } else {
+                this.plantImageUrl = data.plantImageUrl;
+            }
+
+            this.plantName = data.plantName;
+            this.watering_guide = data.watering_guide;
+            this.watering_guide_description = data.watering_guide_description;
+            this.sunlight_guide_description = data.sunlight_guide_description;
+            this.pruning_guide_description = data.pruning_guide_description;
+            this.energy_save = data.energy_save;
+        }
     }
 };
 </script>
@@ -246,14 +246,12 @@ export default {
     color: #000;
 }
 
-
 .generate-button {
     margin-top: 20px;
     align-items: center;
     flex-direction: column;
     display: flex;
 }
-
 
 .generate-button .el-button {
     width: 274px;
@@ -268,16 +266,11 @@ export default {
     color: #fff;
 }
 
-
 .info-container {
     background-color: rgba(255, 255, 255, 1);
-    /* padding: 10px;  */
     border-radius: 5px;
-    /* 圆角 */
     width: 50%;
-    /* 最大宽度 */
     margin: 10px auto 0 auto;
-    /* 上下外边距为 10px，左右自动居中 */
     padding: 10px;
 }
 
@@ -295,53 +288,39 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
 }
 
 .input-group {
     margin-bottom: 20px;
-    /* Add space between input groups */
 }
-
-
 
 .input-group label {
     display: block;
-    /* Ensure labels are on their own line */
     margin-bottom: 5px;
-    /* Add space between label and input field */
 }
 
-
-
-
-/* Apply this class to both inputs and selects */
-input.input-field,
-select.input-field {
+.input-group input,
+.input-group select {
     font-size: 16px;
-    /* Adjust font size as needed */
     line-height: 1.5;
-    /* This can affect the height, so it should be the same for both */
 }
 
-/* Additional styling for selects */
 select.input-field {
     background-size: 12px 12px;
-    /* Adjust size as needed */
     padding-right: 14px;
-    /* Add padding to not overlap the arrow icon */
+    font-size: 14px;
+    padding: 8px; 
+    box-sizing: border-box;
+    
 }
 
-/* Ensuring text is visible in the select options */
 select.input-field option {
     color: black !important;
-    /* This will make the text visible */
 }
 
 .input-group {
     width: 220px;
 }
-
 
 .title {
     width: 100%;
@@ -436,9 +415,7 @@ select.input-field option {
 
 .input-field {
     width: 100%;
-    /* Adjust width as needed */
     height: 35px;
-    /* Adjust height as needed */
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: white;

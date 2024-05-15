@@ -81,6 +81,6 @@ def get_plant(balcony_size, sunlight, watering, postcode):
         return response_data
 
     
-# res = get_plant(3.3, "high", "high", 3000)
-# # # res = get_plant(3.3, "sun-part_shade", "perennial", "frequent")
-# print(res)
+res = get_plant(2, "medium", "high", 3000)
+# # res = get_plant(3.3, "sun-part_shade", "perennial", "frequent")
+print(res)

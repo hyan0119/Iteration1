@@ -7,12 +7,12 @@
       <div class="filler"></div>
       <el-main class="main-content">
         <div class="coming-soon-container">
-          <div class="title">
+          <div class="title" data-aos="fade-up">
             <img src="@/assets/card.png" alt="" class="title_more_img img_left" />
             ADDITIONAL INFORMATION
             <img src="@/assets/card.png" alt="" class="title_more_img img_right" />
           </div>
-          <div class="urban">
+          <div class="urban" data-aos="fade-right">
             <div class="urban_inner">
               <div class="urban_inner_text">
                 Are you confused about which information to trust regarding Urban Heat Island Effect? Check out our
@@ -21,14 +21,14 @@
             </div>
           </div>
           <div class="artles">
-            <div class="title_line">
+            <div class="title_line" data-aos="fade-left">
               <div class="line left_line"></div>
               <div class="title_text">ARTICLES</div>
               <div class="line right_line"></div>
             </div>
-            <div class="artles_content">
+            <div class="artles_content" data-aos="fade-up">
               <div class="artles_item" v-for="(item, index) in artlesData" :key="index" @click="artlesClick(item)">
-                <div class="artles_item_img">
+                <div class="artles_item_img" data-aos="zoom-in">
                   <img :src="item.img" alt="" class="item_img">
                 </div>
                 <div class="artles_item_title">{{ item.title }}</div>
@@ -193,6 +193,9 @@ export default {
         top: 0,
         behavior: "smooth"
       });
+      this.$nextTick(() => {
+      this.$aos.refresh();
+    });
     })
     console.log(11111)
   },
