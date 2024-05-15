@@ -393,7 +393,7 @@ export default {
   top: 0;
   bottom: 0;
   display: table;
-  font-size: 70px;
+  font-size: 50px;
 
 
 }
