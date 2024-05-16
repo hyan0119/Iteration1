@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "CoolDownMelbourne",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "aos": "^2.3.4",
     "axios": "^1.6.8",
     "core-js": "^3.8.3",
     "d3": "^7.9.0",
