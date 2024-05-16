@@ -345,6 +345,7 @@ export default {
     padding: 20px;
     border-radius: 10px;
     font-size: 20px;
+    color: white;
 }
 
 .imf {
