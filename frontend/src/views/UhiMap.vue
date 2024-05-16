@@ -212,7 +212,7 @@ export default {
 
 
                 this._div.innerHTML = '<h4>Urban Heat Vulnerability Map</h4>' + (props ?
-                    '<b>' + "Suburb:  " + props.SA2_NAME16 + '</b><br/>' + 'HVI:  ' + props.HVI + '</b><br/>' + 'Verdict:  ' + verdict + '</b><br/>' + "<h4>Recommendations</h4>" + '</b><br/>' + 'Exposure:  ' + exposure + '</b><br/>' + 'Mitigation:  ' + mitigation + '</b><br/>' + 'Growing:  ' + growing
+                     '<b>' + "Suburb:  " + props.SA2_NAME16 + '</b><br/>' + 'HVI:  ' + props.HVI + '</b><br/>' + 'Verdict:  ' + verdict + '</b><br/>' + '<div id="suburb-info">' + "<h4>Recommendations</h4>" +'</div>'+ '</b><br/>' + 'Exposure:  ' + exposure + '</b><br/>' + 'Mitigation:  ' + mitigation + '</b><br/>' + 'Growing:  ' + growing
                     : 'Hover over a suburb');
             };
 
@@ -353,17 +353,21 @@ export default {
     font-family: 'fredoka one', cursive;
     background: white;
     background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px;
     text-align: center;
-    max-width: 400px;
+    max-width: 350px;
     margin: 0 auto;
     
 }
 
 .imf h4 {
     margin: 0 0 5px;
-    color: #777;
+    font-size: 25px;
+    /* color: #777; */
+    background: #09B845;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 h2 {
@@ -378,8 +382,9 @@ h3 {
 
 .lgd {
     line-height: 18px;
-    color: #555;
+    /* color: #555; */
     background: white;
+    padding: 10px;
 }
 
 .lgd i {
@@ -406,6 +411,17 @@ h3 {
   margin: 30px auto 0 auto;
   cursor: pointer;
 
+}
+
+.imf #suburb-info {
+    font-size: 25px;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 400;
+    color: #000;
+    /* margin: 10px 0; */
+    background: #09B845;
+    border-radius: 20px;
+    padding: 10px;
 }
 
 /* #test {
