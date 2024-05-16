@@ -22,7 +22,7 @@
                     </div>
                     <div class="seletc_item">
                         <div class="label">
-                            <span>Balcony Size (sqm)</span>
+                            <span style="font-family: 'Fredoka One', cursive;">Balcony Size (sqm)</span>
                             <el-tooltip class="item" effect="dark"
                                 content="Enter a number to the plot size field. Make sure to enter your plot size area in sqm."
                                 placement="top-start">
@@ -32,8 +32,7 @@
 
                         </div>
                         <div class="select_input">
-                            <input placeholder="ex: 2" type="text" id="apartmentSize" v-model="apartmentSize"
-                                class="input-field">
+                            <input placeholder="ex: 2" type="text" id="apartmentSize" v-model="apartmentSize" class="input-field" style="font-family: 'Fredoka One', cursive;">
                         </div>
                         <div class="Plot"></div>
                     </div>
@@ -105,7 +104,7 @@
                             <div class="info-container_inner" v-if="plantImageUrl || no_matched_plant">
                                 <div class="container_inner_top">
                                     <div v-if="no_image" class="container_inner_top_item">
-                                        <div class="label">image</div>
+                                        <div class="label" style="font-family: Fredoka One', cursive;">image</div>
                                         <div class="dot">:</div>
                                         <div class="value">{{ no_image }}</div>
                                     </div>
@@ -258,7 +257,7 @@ export default {
     height: 86px;
     background: #09B845;
     border-radius: 30px;
-    font-family: Fredoka One;
+    font-family: 'Fredoka One', cursive;
     font-size: 24px;
     font-weight: 600;
     line-height: 86px;
@@ -288,15 +287,18 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    font-family: 'Fredoka One', cursive;
 }
 
 .input-group {
     margin-bottom: 20px;
+    font-family: 'Fredoka One', cursive;
 }
 
 .input-group label {
     display: block;
     margin-bottom: 5px;
+    font-family: 'Fredoka One', cursive;
 }
 
 .input-group input,
@@ -325,7 +327,7 @@ select.input-field option {
 .title {
     width: 100%;
     height: 150px;
-    font-family: Fredoka One;
+    font-family: 'Fredoka One', cursive;
     font-size: 50px;
     font-weight: 600;
     line-height: 150px;
@@ -368,7 +370,7 @@ select.input-field option {
 }
 
 .urban_inner_text {
-    font-family: Fredoka;
+    font-family: 'Fredoka One', cursive;
     font-size: 32px;
     font-weight: 400;
     text-align: center;
@@ -384,7 +386,7 @@ select.input-field option {
 }
 
 .seletc_item .label {
-    font-family: Fredoka One;
+    font-family: 'Fredoka One', cursive;
     font-size: 36px;
     font-weight: 600;
     text-align: left;
@@ -402,6 +404,7 @@ select.input-field option {
 
 .select_input {
     width: 100%;
+    font-family: 'Fredoka One', cursive;
 }
 
 .select_input input {
@@ -447,7 +450,7 @@ select.input-field option {
 }
 
 .Unsplash {
-    font-family: Fredoka;
+    font-family: 'Fredoka One', cursive;
     font-size: 12px;
     font-weight: 400;
     text-align: center;
@@ -483,7 +486,7 @@ select.input-field option {
 
 .label {
     width: 45%;
-    font-family: Fredoka One;
+    font-family: 'Fredoka One', cursive;
     font-size: 28px;
     font-weight: 600;
     text-align: left;
@@ -492,7 +495,7 @@ select.input-field option {
 
 .dot {
     width: 10%;
-    font-family: Fredoka One;
+    font-family: 'Fredoka One', cursive;
     font-size: 28px;
     font-weight: 400;
     text-align: center;
@@ -501,11 +504,36 @@ select.input-field option {
 
 .value {
     width: 45%;
-    font-family: Fredoka One;
+    font-family: 'Fredoka One', cursive;
     font-size: 28px;
     font-weight: 400;
     text-align: left;
     color: #000;
 }
+
+.el-option {
+    font-family: 'Fredoka One', cursive;
+    font-size: 24px;
+    font-weight: 400;
+    color: #000;
+}
+
+h2{
+    font-size: 40px;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+
+}
+
+.text_item{
+    font-size: 24px;
+    font-family: 'Fredoka One', cursive;
+    font-weight: 100;
+    text-align: center;
+    color: #000;
+}
+
 </style>
 <style src="./style.css"></style>

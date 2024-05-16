@@ -136,10 +136,11 @@ export default {
   margin: 0 auto;
   min-height: 50vh;
 }
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 .coming-soon-container .title{
   width: 100%;
   height: 150px;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 64px;
   font-weight: 600;
   line-height: 150px;
@@ -175,7 +176,7 @@ export default {
   margin: 0 auto;
 }
 .urban_inner_text{
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 32px;
   font-weight: 400;
   text-align: center;
@@ -186,7 +187,7 @@ export default {
   width: 100%;
   height: 86px;
   margin: 100px auto  30px auto;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   position: relative;
 
@@ -200,7 +201,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 58px;
   font-weight: 600;
   line-height: 86px;
@@ -258,7 +259,8 @@ export default {
   left: 0;
   border-radius: 30px;
   white-space: wrap;
-  font-family: Lora;
+  /* font-family: Lora; */
+  font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 700;
   line-height: 80px;
@@ -276,7 +278,7 @@ export default {
   width: 200px;
   height: 80px;
   line-height: 80px;
-  font-family: Lora;
+  font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 700;
   text-align: center;
@@ -331,7 +333,7 @@ export default {
   margin: 50px auto 0 auto;
 }
 .tackle_title{
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   font-weight: 600;
   text-align: center;
@@ -342,7 +344,7 @@ export default {
   height: auto;
   padding: 20px;
   background: #3AE03C;
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 400;
   color: #000;
@@ -370,7 +372,7 @@ export default {
   height: 100px;
   line-height: 100px;
   color: #000;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 36px;
   font-weight: 600;
   line-height: 100px;
@@ -401,7 +403,7 @@ export default {
   margin: auto;
   top: 0;
   bottom: 0;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 26px;
   font-weight: 600;
   text-align: center;

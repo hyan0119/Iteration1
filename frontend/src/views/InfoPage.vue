@@ -223,7 +223,7 @@ export default {
 .coming-soon-container .title {
   width: 100%;
   height: 150px;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 50px;
   font-weight: 600;
   line-height: 150px;
@@ -266,7 +266,7 @@ export default {
 }
 
 .urban_inner_text {
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 32px;
   font-weight: 400;
   text-align: center;
@@ -278,7 +278,7 @@ export default {
   width: 100%;
   height: 86px;
   margin: 20px auto 30px auto;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   position: relative;
 
@@ -293,7 +293,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   font-weight: 600;
   line-height: 86px;
@@ -379,6 +379,7 @@ export default {
 .artles_item_title {
   width: 80%;
   height: auto;
+  font-family: 'Fredoka One', cursive;
   font-weight: 600;
   font-size: 32px;
   color: #000;
@@ -395,9 +396,9 @@ export default {
 .artles_content_item {
   width: 90%;
   margin: 0 auto;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 0;
   color: #000;
 }
 
@@ -411,7 +412,7 @@ export default {
   margin: 50px auto 0 auto;
   background: #09BA88;
   border-radius: 30px;
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 28px;
   font-weight: 700;
   line-height: 59px;
@@ -540,4 +541,16 @@ ul {
   left: 0;
   z-index: 99999;
   cursor: pointer;
-}</style>
+}
+
+.videos_title {
+  width: 100%;
+  height: 50px;
+  font-weight: 600;
+  font-size: 40px;
+  color: #000;
+  text-align: center;
+  line-height: 50px;
+  font-family: 'Fredoka One', cursive;
+}
+</style>

@@ -12,7 +12,10 @@
                 <div>Hover over a suburb to see the Heat Vulnerability Index (HVI) of that suburb.</div>
                 <div>Click on a suburb to zoom in and see the HVI of that suburb.</div>
             </div>
-            <button @click="handleButtonClick">Reset View</button>
+            <div style="text-align: center;">
+                <button id="reset" @click="handleButtonClick">Reset View</button>
+            </div>
+            <!-- < @click="goMore(0)">Explore more</div> -->
             <!-- <button @click="switchMap">switch view</button> -->
 
             <!-- <div id="test"></div> -->
@@ -120,17 +123,17 @@ export default {
                     layer.bringToFront();
                 }
 
-                info.update(layer.feature.properties);
+                imf.update(layer.feature.properties);
             }
 
             function resetHighlight(e) {
                 geojson.resetStyle(e.target);
-                info.update();
+                imf.update();
             }
 
-            function zoomToFeature(e) {
-                this.map.fitBounds(e.target.getBounds());
-            }
+            // function zoomToFeature(e) {
+            //     this.map.fitBounds(e.target.getBounds());
+            // }
 
             var geojson;
             // geojson = L.geoJson();
@@ -139,7 +142,7 @@ export default {
                 layer.on({
                     mouseover: highlightFeature,
                     mouseout: resetHighlight,
-                    click: zoomToFeature.bind(this)
+                    click: highlightFeature
                 });
             }
 
@@ -148,26 +151,76 @@ export default {
                 onEachFeature: onEachFeature.bind(this)
             }).addTo(this.map);
 
-            var info = L.control();
+            var imf = L.control({ position: 'topright' });
 
-            info.onAdd = function (map) {
-                this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+            imf.onAdd = function (map) {
+                this._div = L.DomUtil.create('div', 'imf'); // create a div with a class "imf"
                 this.update();
                 return this._div;
             };
 
             // method that we will use to update the control based on feature properties passed
-            info.update = function (props) {
+            imf.update = function (props) {
+
+
+                if (props) {
+                    var label_txt = "";
+                    var exposure = "";
+                    var mitigation = "";
+                    var growing = "";
+                    var verdict = "";
+                    if (props.HVI == 0) {
+                        label_txt = "Low";
+                        exposure = "It is typically safe outdoors during peak hot summer times, but remember to stay hydrated and take sun precautions"
+                        mitigation = "While not urgent, planting trees for shade and using light-colored materials for buildings can enhance comfort in the area."
+                        growing = "Additional vegetation is not truly necessary in this area, but you can still choose to do so."
+                        verdict = "This area is at low risk of heat vulnerability."
+
+                    } else if (props.HVI == 1) {
+                        label_txt = "Low-Moderate";
+                        exposure = "It is typically safe outdoors during peak hot summer times, but remember to stay hydrated and take sun precautions"
+                        mitigation = "While not urgent, planting trees for shade and using light-colored materials for buildings can enhance comfort in the area."
+                        growing = "Additional vegetation is not truly necessary in this area, but you can still choose to do so."
+                        verdict = "This area is at low-moderate risk of heat vulnerability."
+                    } else if (props.HVI == 2) {
+                        label_txt = "Moderate";
+                        exposure = "Those with health conditions or heat sensitivity should take extra care while in this area, limiting outdoor activities during the hottest hours and seeking shade when possible"
+                        mitigation = "While not urgent, planting trees for shade and using light-colored materials for buildings can enhance comfort in the area."
+                        growing = "Additional vegetation is not truly necessary in this area, but you can still choose to do so."
+                        verdict = "This area is at moderate risk of heat vulnerability."
+                    } else if (props.HVI == 3) {
+                        label_txt = "Moderate-High";
+                        exposure = "It is advisable to minimize prolonged outdoor exposure, especially for vulnerable groups like the elderly and children in this area. If outdoor activities are necessary, opt for cooler early morning or late evening hours"
+                        mitigation = "Reducing heat here would be vital. You might want to consider adding green spaces, implementing cool roofs, and encouraging the use of reflective materials."
+                        growing = "Consider growing plants in this area as a means to reduce the heat if you reside here."
+                        verdict = "This area is at moderate-high risk of heat vulnerability."
+                    } else if (props.HVI == 4) {
+                        label_txt = "High";
+                        exposure = "It is advisable to minimize prolonged outdoor exposure, especially for vulnerable groups like the elderly and children in this area. If outdoor activities are necessary, opt for cooler early morning or late evening hours"
+                        mitigation = "Reducing heat here would be vital. You might want to consider adding green spaces, implementing cool roofs, and encouraging the use of reflective materials."
+                        growing = "Consider growing plants in this area as a means to reduce the heat if you reside here."
+                        verdict = "This area is at high risk of heat vulnerability."
+                    } else if (props.HVI == 5) {
+                        label_txt = "Very High";
+                        exposure = "It is advisable to minimize prolonged outdoor exposure, especially for vulnerable groups like the elderly and children in this area. If outdoor activities are necessary, opt for cooler early morning or late evening hours"
+                        mitigation = "Reducing heat here would be vital. You might want to consider adding green spaces, implementing cool roofs, and encouraging the use of reflective materials."
+                        growing = "Consider growing plants in this area as a means to reduce the heat if you reside here."
+                        verdict = "This area is at very high risk of heat vulnerability."
+                    }
+                }
+
+
+
                 this._div.innerHTML = '<h4>Urban Heat Vulnerability Map</h4>' + (props ?
-                    '<b>' + props.SA2_NAME16 + '</b><br />' + 'HVI:  ' + props.HVI
+                    '<b>' + "Suburb:  " + props.SA2_NAME16 + '</b><br/>' + 'HVI:  ' + props.HVI + '</b><br/>' + 'Verdict:  ' + verdict + '</b><br/>' + "<h4>Recommendations</h4>" + '</b><br/>' + 'Exposure:  ' + exposure + '</b><br/>' + 'Mitigation:  ' + mitigation + '</b><br/>' + 'Growing:  ' + growing
                     : 'Hover over a suburb');
             };
 
-            info.addTo(this.map);
+            imf.addTo(this.map);
 
-            var legend = L.control({ position: 'bottomright' });
-            legend.onAdd = function (map) {
-                var div = L.DomUtil.create('div', 'info legend'),
+            var lgd = L.control({ position: 'bottomleft' });
+            lgd.onAdd = function (map) {
+                var div = L.DomUtil.create('div', 'imf lgd'),
                     grades = [0, 1, 2, 3, 4, 5],
                     labels = [];
                 div.innerHTML += '<h4>Heat Vulnerability Index</h4>';
@@ -180,7 +233,7 @@ export default {
                 }
                 return div;
             };
-            legend.addTo(this.map);
+            lgd.addTo(this.map);
 
 
 
@@ -251,11 +304,15 @@ export default {
 };
 
 </script>
+
+<style src="./style.css"></style>
     
-<style scoped>
+<style>
 /* Add your CSS styles here */
+
 .menu-item {
     font-size: 1.3rem !important;
+    font-family: 'Fredoka One', cursive;
 }
 
 #map {
@@ -289,20 +346,21 @@ export default {
     border-radius: 10px;
     font-size: 20px;
 }
-</style>
-    
-<style>
-.info {
-    
-    font: 20px/30px Arial, Helvetica, sans-serif;
+
+.imf {
+    /* font: 20px/30px Arial, Helvetica, sans-serif; */
+    font-family: 'fredoka one', cursive;
     background: white;
     background: rgba(255, 255, 255, 0.8);
-    
+    padding: 20px;
     border-radius: 5px;
     text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    
 }
 
-.info h4 {
+.imf h4 {
     margin: 0 0 5px;
     color: #777;
 }
@@ -317,12 +375,13 @@ h3 {
 
 }
 
-.legend {
+.lgd {
     line-height: 18px;
     color: #555;
+    background: white;
 }
 
-.legend i {
+.lgd i {
     width: 18px;
     height: 18px;
     float: left;
@@ -330,10 +389,29 @@ h3 {
     opacity: 0.9;
 }
 
+#reset {
+  width: 150px;
+  height: 66px;
+  border-radius: 30px;
+  background: #09B845;
+  color: #fff;
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px;
+  font-weight: 400;
+  border: none;
+  outline: none;
+  line-height: 66px;
+  text-align: center;
+  margin: 30px auto 0 auto;
+  cursor: pointer;
+
+}
+
 /* #test {
         width: 1000px;
         height: 700px;
     } */
 </style>
+    
 
-<style src="./style.css"></style>
+

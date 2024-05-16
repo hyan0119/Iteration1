@@ -77,7 +77,8 @@ export default {
   cursor: pointer;
 }
 .logo_text{
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
+
   font-size: 16px;
   font-weight: 700;
   line-height: 28px;

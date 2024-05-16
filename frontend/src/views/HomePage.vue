@@ -394,6 +394,8 @@ export default {
   bottom: 0;
   display: table;
   font-size: 50px;
+  font-family: 'Fredoka One', cursive;
+  font-weight: 600;
 
 
 }
@@ -402,6 +404,8 @@ export default {
   font-size: 30px;
   text-align: center;
   /* background-color: dodgerblue; */
+  font-family: 'Fredoka One', cursive;
+  font-weight: lighter;
 }
 
 /* .content-and-image .content_text{
@@ -465,9 +469,9 @@ export default {
   color: white;
   /* height: 600px; */
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 .urban-heat-container {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Fredoka One', cursive;
   margin: 0 auto;
   width: 90%;
   max-width: 1200px;
@@ -505,6 +509,7 @@ export default {
   font-size: 16px;
   /* font-weight: 600; */
   /* color: #fff; */
+  font-family: 'Fredoka One', cursive;
 }
 
 .ecarts_content .btn {
@@ -532,6 +537,7 @@ export default {
 .section_item .content {
   width: 50%;
   padding: 0 40px;
+  font-family: 'Fredoka One', cursive;
 }
 
 .section_item .content h1 {
@@ -549,7 +555,7 @@ export default {
 .section_item .content p {
   width: 80%;
   margin: 30px auto 0 auto;
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 32px;
   font-weight: 400;
   line-height: 38px;
@@ -560,6 +566,7 @@ export default {
 .section_item .content ul li {
   font-size: 20px;
   margin-top: 10px;
+  font-family: 'Fredoka One', cursive;
 }
 
 .image-container img {
@@ -672,7 +679,7 @@ export default {
 .title {
   width: 100%;
   height: 200px;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 50px;
   font-weight: 600;
   line-height: 200px;
@@ -691,7 +698,7 @@ export default {
   border-radius: 30px;
   background: #09B845;
   color: #fff;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 400;
   line-height: 66px;
@@ -704,7 +711,7 @@ export default {
   width: 100%;
   height: 200px;
   margin: 20px auto 30px auto;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 50px;
   font-weight: 600;
   line-height: 200px;
@@ -736,7 +743,7 @@ export default {
   width: 100%;
   height: 86px;
   margin: 20px auto 30px auto;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   position: relative;
 
@@ -751,7 +758,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   font-weight: 600;
   line-height: 86px;
@@ -790,7 +797,7 @@ export default {
 }
 
 .urban_inner_text {
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 36px;
   font-weight: 400;
   text-align: center;
@@ -802,7 +809,7 @@ export default {
   width: 100%;
   height: 86px;
   margin: 20px auto 30px auto;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   position: relative;
 
@@ -817,7 +824,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 50px;
   font-weight: 600;
   line-height: 60px;
@@ -865,7 +872,7 @@ export default {
 }
 
 .card_text {
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 12px;
   text-align: center;
   color: #000;
@@ -876,7 +883,7 @@ export default {
   width: 100%;
   height: auto;
   color: #000;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 30px;
   font-weight: 1000;
   line-height: 30px;
@@ -888,7 +895,7 @@ export default {
 }
 
 .card_content {
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 28px;
   font-weight: 400;
   line-height: 40px;
@@ -910,7 +917,7 @@ export default {
   background: #85E0C4;
   text-align: center;
   line-height: 56px;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 600;
   color: #000;
@@ -954,7 +961,7 @@ export default {
 }
 
 .NEGATIVE_text {
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 28px;
   font-weight: 400;
   text-align: center;
@@ -969,7 +976,7 @@ export default {
   background: #3AE03C;
   text-align: center;
   line-height: 56px;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 600;
   color: #000;
@@ -1013,7 +1020,7 @@ export default {
   bottom: 0;
   top: 0;
   right: 0;
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 28px;
   text-align: center;
   color: #000;
@@ -1022,7 +1029,7 @@ export default {
 .MITIGATION_tip {
   width: 100%;
   color: #000;
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 12px;
   text-align: left;
   margin: 20px 0;
@@ -1036,7 +1043,7 @@ export default {
   background: #3AA7E0;
   text-align: center;
   line-height: 56px;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 600;
   color: #000;
@@ -1047,7 +1054,7 @@ export default {
 .echarts_title {
   width: 80%;
   margin: 0 auto;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 38px;
   font-weight: 600;
   text-align: center;
@@ -1084,7 +1091,7 @@ export default {
 }
 
 .echarts_content_box ul li {
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 32px;
   font-weight: 400;
   line-height: 38.72px;

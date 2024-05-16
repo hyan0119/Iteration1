@@ -33,11 +33,12 @@
                 <el-select v-model="selectValue" placeholder="Please enter a keyword" filterable remote reserve-keyword
                   :remote-method="remoteMethod" :loading="loading">
                   <el-option v-for="item in list" :key="item.value" :label="item.label" :value="item.value">
-                    <span style="float: left">{{ item.label }}</span>
+                    <!-- <span style="float: left">{{ item.label }}</span> -->
                     <span style="
-                            float: right;
+                            float: center;
                             color: var(--el-text-color-secondary);
                             font-size: 13px;
+                            font-family: 'Fredoka One', cursive;
                           ">
                       {{ item.value }}
                     </span>
@@ -84,7 +85,7 @@
                   </div>
                   <div class="results_item_content skyOrgin">
                     <div class="results_item_content_txt">
-                      This building was designed with a
+                      This building was designed with a rooftop of
                     </div>
                     <div class="text">{{ roofType }}</div>
                   </div>
@@ -216,12 +217,13 @@ export default {
   width: 100%;
   height: auto;
   margin: 0 auto;
+  font-family: 'Fredoka One', cursive;
 }
 
 .title {
   width: 100%;
   height: 150px;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 50px;
   font-weight: 600;
   line-height: 150px;
@@ -264,7 +266,7 @@ export default {
 }
 
 .urban_inner_text {
-  font-family: Fredoka;
+  font-family: 'Fredoka One', cursive;
   font-size: 32px;
   font-weight: 400;
   text-align: center;
@@ -275,6 +277,7 @@ export default {
 .container_top {
   width: 70%;
   margin: 50px auto 0 auto;
+  font-family: 'Fredoka One', cursive;
 }
 
 .subTile {
@@ -312,6 +315,7 @@ export default {
 
 .subSelect {
   margin-top: 20px;
+  font-family: 'Fredoka One', cursive;
 }
 
 .find {
@@ -319,6 +323,7 @@ export default {
   height: 70px;
   margin-top: 50px;
   margin-bottom: 50px;
+  font-family: 'Fredoka One', cursive;
 }
 
 .find_btn {
@@ -327,7 +332,7 @@ export default {
   height: 86px;
   background: #09B845;
   border-radius: 30px;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 600;
   line-height: 86px;
@@ -342,7 +347,7 @@ export default {
   width: 100%;
   height: 86px;
   margin: 20px auto 30px auto;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   position: relative;
 
@@ -357,7 +362,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  font-family: Fredoka One;
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   font-weight: 600;
   line-height: 86px;
@@ -388,10 +393,12 @@ export default {
   height: auto;
   margin-top: 50px;
   margin-bottom: 50px;
+  font-family: 'Fredoka One', cursive;
 }
 
 .results {
   /* font-family: Inter; */
+  font-family: 'Fredoka One', cursive;
   font-size: 36px;
   font-weight: 700;
   width: 100%;
@@ -413,12 +420,14 @@ export default {
   height: auto;
   margin-top: 50px;
   border-radius: 20px;
+  font-family: 'Fredoka One', cursive;
   /* overflow: hidden; */
 }
 
 .results_item_title {
   text-align: center;
   /* font-family: Inter; */
+  font-family: 'Fredoka One', cursive;
   font-size: 40px;
   font-weight: 700;
   color: #fff;
@@ -445,6 +454,7 @@ export default {
   height: 351px;
   overflow: hidden;
   border-radius: 0 0 20px 20px;
+  font-family: 'Fredoka One', cursive;
 }
 
 .results_item_content_txt {
@@ -453,13 +463,15 @@ export default {
   color: #000;
   width: 90%;
   margin: 20px auto 0 auto;
+  font-family: 'Fredoka One', cursive;
 }
 
 .text {
   border: 3px solid #000;
   padding: 10px 20px;
   background: #fff;
-  font-family: Inter;
+  /* font-family: Inter; */
+  font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 700;
   text-align: center;
@@ -516,26 +528,29 @@ export default {
 }
 
 .green {
-  background: #3AE0AD;
+  /* background: #3AE0AD; */
+  /* border: 5px solid #3AA7E0; */
+
+  background: #3AA7E0;
 }
 
 .skyGreen {
-  border: 5px solid #3AE0AD;
+  border: 5px solid #3AA7E0;
 }
 
 .orgin {
-  background: #09BA88;
+  background: #3AA7E0;
 }
 
 .skyOrgin {
-  border: 5px solid #09BA88;
+  border: 5px solid #3AA7E0;
 }
 
 .red {
-  background: #3AE03C;
+  background: #3AA7E0;
 }
 
 .skyRed {
-  border: 5px solid #3AE03C;
+  border: 5px solid #3AA7E0;
 }</style>
 
