@@ -13,7 +13,7 @@
 <div>Click on a suburb to zoom in and see the HVI of that suburb.</div>
 </div>
 <button @click="handleButtonClick">Reset View</button>
-<!-- <button @click="switchMap">switch view</button> -->
+<button @click="switchMap">switch view</button>
 
 <!-- <div id="test"></div> -->
 <div id="map"></div>
@@ -48,6 +48,7 @@ this.loadMapData();
 methods: {
 loadMapData() {
 let hvi = '/output_file.geojson';
+let canopy = '/tree.geojson';
 
 fetch(hvi)
 .then(response => response.json())
@@ -58,6 +59,16 @@ this.initMap();
 .catch(error => {
 console.log('Error loading map data:', error);
 });
+fetch(canopy)
+.then(response => response.json())
+.then(data => {
+this.canopyData = data;
+})
+.catch(error => {
+console.log('Error loading map data:', error);
+});
+
+
 },
 initMap() {
 this.map = L.map('map').setView([-37.8136, 144.9631], 10);
@@ -220,34 +231,68 @@ handleButtonClick() {
 
 },
 
+
 // switchMap() {
-//     //load a new entire map
-//     this.map.remove();
-//     this.map = L.map('map').setView([-37.8136, 144.9631], 10);
-//     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-//     maxZoom: 19,
-//     }).addTo(this.map);
-
-//     let canopy = '/tree.geojson';
-//     fetch(canopy)
-//     .then(response => response.json())
-//     .then(data => {
-//     this.canopy = data;
-//     this.initMap();
-//     })
-//     .catch(error => {
-//     console.log('Error loading map data:', error);
-//     });
-
-    
+//     //switch view
+//     if (this.map.hasLayer(this.hviData)) {
+//         this.map.removeLayer(this.hviData);
+//     } else {
+//         this.map.addLayer(this.hviData);
+//     }
 // },
+
+switchMap() {
+    // set a new map view
+    // Remove existing map container
+    if (this.map) {
+        this.map.options.zoomAnimation = false;
+        this.map.remove();
+    }
+
+    // Initialize new map container
+    this.map_new = L.map('map', { zoomAnimation: true }).setView([-37.8136, 144.9631], 14);
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    maxZoom: 19,
+    }).addTo(this.map_new);
+
+    // // Add pins to the map
+    // L.geoJson(this.canopy, {
+    //     onEachFeature: (feature, layer) => {
+    //         layer.bindPopup(`<h3>${feature.properties.common_name}</h3><p>Heat Vulnerability Index: ${feature.properties.genus}</p>`);
+    //     }
+    // }).addTo(this.map);
+
+    // add canopy data to the map by plotting a dot with green
+    L.geoJson(this.canopyData, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, {
+                radius: 5,
+                fillColor: "green",
+                color: "#000",
+                weight: 2,
+                opacity: 0.8,
+                fillOpacity: 0.8
+            });
+        },
+        onEachFeature: (feature, layer) => {
+            layer.bindPopup(`<h3>${feature.properties.common_name}</h3><p>Heat Vulnerability Index: ${feature.properties.genus}</p>`);
+        }
+    }).addTo(this.map_new);
+    
+
+}
+
+
+
 
 
 
 
 
 }
+
+
 };
 
 </script>
