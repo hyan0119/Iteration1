@@ -862,7 +862,7 @@ export default {
 .card_item {
   width: 25%;
   height: auto;
-  border: 4px solid #85E0C4;
+  border: 4px solid #09B845;
   border-radius: 30px;
   padding: 20px;
 }
@@ -889,7 +889,7 @@ export default {
   font-weight: 1000;
   line-height: 30px;
   text-align: center;
-  background: #85E0C4;
+  background: #09B845;
   border-radius: 30px;
   padding: 30px 0px;
   white-space: pre-wrap;
@@ -915,7 +915,7 @@ export default {
   width: 190px;
   height: 56px;
   margin: 0 auto;
-  background: #85E0C4;
+  color: #09B845;
   text-align: center;
   line-height: 56px;
   font-family: 'Fredoka One', cursive;
@@ -949,7 +949,7 @@ export default {
 .NEGATIVE_card_item {
   width: 43%;
   height: 277px;
-  border: 4px solid #3AE03C;
+  border: 4px solid #09B845;
   border-radius: 30px;
   padding: 20px;
   margin-top: 80px;
@@ -974,7 +974,7 @@ export default {
   width: 190px;
   height: 56px;
   margin: 0 auto;
-  background: #3AE03C;
+  background: #09B845;
   text-align: center;
   line-height: 56px;
   font-family: 'Fredoka One', cursive;
@@ -998,7 +998,7 @@ export default {
   width: 100%;
   height: 210px;
   border-radius: 30px;
-  border: 4px solid #3AA7E0;
+  border: 4px #09B845;
   display: flex;
 }
 
@@ -1041,7 +1041,7 @@ export default {
   width: 190px;
   height: 56px;
   margin: 0 auto;
-  background: #3AA7E0;
+  color: #09B845;
   text-align: center;
   line-height: 56px;
   font-family: 'Fredoka One', cursive;

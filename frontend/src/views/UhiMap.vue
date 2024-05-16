@@ -212,7 +212,7 @@ export default {
 
 
                 this._div.innerHTML = '<h4>Urban Heat Vulnerability Map</h4>' + (props ?
-                     '<b>' + "Suburb:  " + props.SA2_NAME16 + '</b><br/>' + 'HVI:  ' + props.HVI + '</b><br/>' + 'Verdict:  ' + verdict + '</b><br/>' + '<div id="suburb-info">' + "<h4>Recommendations</h4>" +'</div>'+ '</b><br/>' + 'Exposure:  ' + exposure + '</b><br/>' + 'Mitigation:  ' + mitigation + '</b><br/>' + 'Growing:  ' + growing
+                     '<b>' + "Suburb:  " + props.SA2_NAME16 + '</b><br/>' + 'HVI:  ' + props.HVI + '</b><br/>' + 'Verdict:  ' + verdict + '</b><br/>' + '<div id="suburb-info">' + "<h4>Recommendations</h4>" +'</div>'+  'Exposure:  ' + exposure + '</b><br/>' + 'Mitigation:  ' + mitigation + '</b><br/>' + 'Growing:  ' + growing
                     : 'Hover over a suburb');
             };
 
@@ -354,7 +354,7 @@ export default {
     background: white;
     background: rgba(255, 255, 255, 0.8);
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
     text-align: center;
     max-width: 350px;
     margin: 0 auto;
@@ -386,7 +386,7 @@ h3 {
     /* color: #555; */
     background: white;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
 .lgd i {
@@ -415,16 +415,17 @@ h3 {
 
 }
 
-.imf #suburb-info {
+/* .imf #suburb-info {
     font-size: 25px;
     font-family: 'Fredoka One', cursive;
     font-weight: 400;
     color: #000;
-    /* margin: 10px 0; */
+
     background: #09B845;
     border-radius: 20px;
     padding: 10px;
-}
+    margin: 0 0 5px;
+} */
 
 /* #test {
         width: 1000px;
