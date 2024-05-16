@@ -222,14 +222,14 @@ export default {
             lgd.onAdd = function (map) {
                 var div = L.DomUtil.create('div', 'imf lgd'),
                     grades = [0, 1, 2, 3, 4, 5],
-                    labels = [];
+                    labels = ["Very Low", "Low", "Moderate", "High", "Very High", "Extreme"];
                 div.innerHTML += '<h4>Heat Vulnerability Index</h4>';
 
                 // loop through our density intervals and generate a label with a colored square for each interval
                 for (var i = 0; i < grades.length; i++) {
                     div.innerHTML +=
                         '<i style="background:' + getColor(grades[i]) + '"></i> ' +
-                        grades[i] + ' ' + (grades[i + 1] ? '&ndash;' + ' ' + grades[i + 1] + '<br>' : '+');
+                        grades[i] + ' ' + (grades[i + 1] ? '&ndash;' + ' ' + grades[i + 1] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"  +labels[i] +'<br>' : '+' + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +labels[i] +'<br>');
                 }
                 return div;
             };
@@ -358,6 +358,7 @@ export default {
     text-align: center;
     max-width: 350px;
     margin: 0 auto;
+    font-size: 17px;
     
 }
 
@@ -381,10 +382,11 @@ h3 {
 }
 
 .lgd {
-    line-height: 18px;
+    /* line-height: 18px; */
     /* color: #555; */
     background: white;
     padding: 10px;
+    border-radius: 5px;
 }
 
 .lgd i {
