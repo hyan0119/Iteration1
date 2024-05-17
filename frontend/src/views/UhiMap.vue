@@ -13,7 +13,7 @@
                 <div>Click on a suburb to zoom in and see the HVI of that suburb.</div>
             </div>
             <div style="text-align: center;">
-                <button id="reset" @click="handleButtonClick">Reset View</button>
+                <button id="reset" @click="handleButtonClick">Reset</button>
             </div>
             <!-- < @click="goMore(0)">Explore more</div> -->
             <!-- <button @click="switchMap">switch view</button> -->
@@ -369,6 +369,7 @@ export default {
     background: #09B845;
     border-radius: 20px;
     padding: 10px;
+    color: #fff;
 }
 
 h2 {

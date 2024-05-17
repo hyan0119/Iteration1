@@ -921,7 +921,7 @@ export default {
   font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 600;
-  color: #000;
+  color: #fff;
   border-radius: 30px;
   cursor: pointer;
 }
@@ -980,7 +980,7 @@ export default {
   font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 600;
-  color: #000;
+  color: #fff;
   border-radius: 30px;
   cursor: pointer;
 }
@@ -1047,7 +1047,7 @@ export default {
   font-family: 'Fredoka One', cursive;
   font-size: 24px;
   font-weight: 600;
-  color: #000;
+  color: #fff;
   border-radius: 30px;
   cursor: pointer;
 }

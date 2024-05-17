@@ -293,11 +293,12 @@ export default {
   padding: 20px 0px;
   font-size: 26px;
   font-weight: 400;
-  background: #85E0C4;
+  background: #09B845;
   border-radius: 30px;
   margin-top: 30px;
   position: relative;
   border-radius: 30px;
+  color: #fff;
 
 }
 

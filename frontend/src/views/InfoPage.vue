@@ -360,7 +360,7 @@ export default {
   height: 995px;
   margin-top: 30px;
   cursor: pointer;
-  border: 4px solid #09BA88;
+  border: 4px solid #09B845;
   border-radius: 30px;
 }
 
@@ -410,7 +410,7 @@ export default {
   width: 208px;
   height: 59px;
   margin: 50px auto 0 auto;
-  background: #09BA88;
+  background: #09B845;
   border-radius: 30px;
   font-family: 'Fredoka One', cursive;
   font-size: 28px;

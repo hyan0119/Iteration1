@@ -16,7 +16,7 @@
 
       <el-menu class="menu right-menu" background-color="transparent">
         <el-menu-item index="0" :class="['menu-item',activeIndex =='0'?'activeItem':'']">
-          <router-link to="/">Home</router-link>
+          <router-link to="/">HOME</router-link>
         </el-menu-item>
         <el-menu-item index="1" :class="['menu-item',activeIndex =='1'?'activeItem':'']">
           <router-link to="/uhi-map">UHI MAP</router-link>
