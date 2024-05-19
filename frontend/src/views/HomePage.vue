@@ -59,6 +59,7 @@
             </div>
             <div class="image-container" data-aos="fade-down">
               <img src="@/assets/home2.png" alt="City" class="transform img-3">
+              <!-- <img src="@/assets/ai_1.jpg" alt="City" class="transform img-3"> -->
             </div>
           </div>
 
@@ -229,7 +230,7 @@
                 </li>
                 <li>Melbourne’s rural areas’ temperature is lower compared to that of urban and industrial areas. </li>
                 <li>This significant temperature differences between urban and rural areas is known as “Urban Heat Island
-                  Effect”</li>
+                  Effect”.</li>
               </ul>
             </div>
             <div class="more_btn" data-aos="fade-up">
@@ -470,6 +471,7 @@ export default {
   /* height: 600px; */
 }
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka&display=swap');
 .urban-heat-container {
   font-family: 'Fredoka One', cursive;
   margin: 0 auto;
@@ -555,7 +557,7 @@ export default {
 .section_item .content p {
   width: 80%;
   margin: 30px auto 0 auto;
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka', cursive;
   font-size: 32px;
   font-weight: 400;
   line-height: 38px;
@@ -798,7 +800,7 @@ export default {
 }
 
 .urban_inner_text {
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka', cursive;
   font-size: 36px;
   font-weight: 400;
   text-align: center;
@@ -883,7 +885,7 @@ export default {
 .air {
   width: 100%;
   height: auto;
-  color: #000;
+  color: #fff;
   font-family: 'Fredoka One', cursive;
   font-size: 30px;
   font-weight: 1000;
@@ -896,7 +898,7 @@ export default {
 }
 
 .card_content {
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka', cursive;
   font-size: 28px;
   font-weight: 400;
   line-height: 40px;
@@ -962,12 +964,12 @@ export default {
 }
 
 .NEGATIVE_text {
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka', cursive;
   font-size: 28px;
   font-weight: 400;
   text-align: center;
   color: #000;
-  margin-top: 10px;
+  margin-top: 70px;
 }
 
 .NEGATIVE_btn_text {
@@ -1092,7 +1094,7 @@ export default {
 }
 
 .echarts_content_box ul li {
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka', cursive;
   font-size: 32px;
   font-weight: 400;
   line-height: 38.72px;

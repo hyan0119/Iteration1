@@ -266,7 +266,7 @@ export default {
 }
 
 .urban_inner_text {
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka', cursive;
   font-size: 32px;
   font-weight: 400;
   text-align: center;
@@ -309,9 +309,10 @@ export default {
   right: 0;
   top: 0;
   bottom: 0;
-  width: 80%;
+  width: 65%;
   display: table;
   line-height: 50px;
+  font-family: 'Fredoka One', cursive;
 }
 
 .subSelect {

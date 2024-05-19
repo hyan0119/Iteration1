@@ -97,7 +97,7 @@ export default {
           url: "https://www.epa.gov/heatislands/heat-island-impacts",
           list: [
             {
-              text: "U.S. Environmental Protection Agency"
+              text: "U.S. Environmental Protection Agency",
             },
 
           ]
@@ -266,7 +266,7 @@ export default {
 }
 
 .urban_inner_text {
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka', cursive;
   font-size: 32px;
   font-weight: 400;
   text-align: center;
@@ -396,7 +396,7 @@ export default {
 .artles_content_item {
   width: 90%;
   margin: 0 auto;
-  font-family: 'Fredoka One', cursive;
+  font-family: 'Fredoka', cursive;
   font-size: 28px;
   font-weight: 0;
   color: #000;

@@ -370,7 +370,7 @@ select.input-field option {
 }
 
 .urban_inner_text {
-    font-family: 'Fredoka One', cursive;
+    font-family: 'Fredoka', cursive;
     font-size: 32px;
     font-weight: 400;
     text-align: center;
@@ -405,6 +405,7 @@ select.input-field option {
 .select_input {
     width: 100%;
     font-family: 'Fredoka One', cursive;
+    align-self: center;
 }
 
 .select_input input {
