@@ -13,7 +13,11 @@
                 <div>Click on a suburb to zoom in and see the HVI of that suburb.</div>
             </div>
             <div style="text-align: center;">
+<<<<<<< HEAD
                 <button id="reset" @click="handleButtonClick">Reset</button>
+=======
+                <button id="reset" @click="handleButtonClick">Reset View</button>
+>>>>>>> main
             </div>
             <!-- < @click="goMore(0)">Explore more</div> -->
             <!-- <button @click="switchMap">switch view</button> -->
@@ -212,7 +216,11 @@ export default {
 
 
                 this._div.innerHTML = '<h4>Urban Heat Vulnerability Map</h4>' + (props ?
+<<<<<<< HEAD
                      '<b>' + "Suburb:  " + props.SA2_NAME16 + '</b><br/>' + 'HVI:  ' + props.HVI + '</b><br/>' + 'Verdict:  ' + verdict + '</b><br/>' + '<div id="suburb-info">' + "<h4>Recommendations</h4>" +'</div>'+  'Exposure:  ' + exposure + '</b><br/>' + 'Mitigation:  ' + mitigation + '</b><br/>' + 'Growing:  ' + growing
+=======
+                    '<b>' + "Suburb:  " + props.SA2_NAME16 + '</b><br/>' + 'HVI:  ' + props.HVI + '</b><br/>' + 'Verdict:  ' + verdict + '</b><br/>' + "<h4>Recommendations</h4>" + '</b><br/>' + 'Exposure:  ' + exposure + '</b><br/>' + 'Mitigation:  ' + mitigation + '</b><br/>' + 'Growing:  ' + growing
+>>>>>>> main
                     : 'Hover over a suburb');
             };
 
@@ -353,12 +361,20 @@ export default {
     font-family: 'fredoka one', cursive;
     background: white;
     background: rgba(255, 255, 255, 0.8);
+<<<<<<< HEAD
     padding: 10px;
     border-radius: 20px;
     text-align: center;
     max-width: 350px;
     margin: 0 auto;
     font-size: 17px;
+=======
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+>>>>>>> main
     
 }
 
@@ -383,11 +399,17 @@ h3 {
 }
 
 .lgd {
+<<<<<<< HEAD
     /* line-height: 18px; */
     /* color: #555; */
     background: white;
     padding: 10px;
     border-radius: 20px;
+=======
+    line-height: 18px;
+    color: #555;
+    background: white;
+>>>>>>> main
 }
 
 .lgd i {
@@ -416,6 +438,7 @@ h3 {
 
 }
 
+<<<<<<< HEAD
 /* .imf #suburb-info {
     font-size: 25px;
     font-family: 'Fredoka One', cursive;
@@ -428,11 +451,16 @@ h3 {
     margin: 0 0 5px;
 } */
 
+=======
+>>>>>>> main
 /* #test {
         width: 1000px;
         height: 700px;
     } */
 </style>
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 
