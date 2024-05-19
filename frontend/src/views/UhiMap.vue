@@ -13,15 +13,7 @@
                 <div>Click on a suburb to zoom in and see the HVI of that suburb.</div>
             </div>
             <div style="text-align: center;">
-<<<<<<< HEAD
-                <button id="reset" @click="handleButtonClick">Reset</button>
-<<<<<<< Updated upstream
-=======
                 <button id="reset" @click="handleButtonClick">Reset View</button>
->>>>>>> main
-=======
-                <button id="swith" @click="switchMap">Switch View</button>
->>>>>>> Stashed changes
             </div>
             <!-- < @click="goMore(0)">Explore more</div> -->
             <!-- <button @click="switchMap">switch view</button> -->
@@ -220,11 +212,7 @@ export default {
 
 
                 this._div.innerHTML = '<h4>Urban Heat Vulnerability Map</h4>' + (props ?
-<<<<<<< HEAD
-                     '<b>' + "Suburb:  " + props.SA2_NAME16 + '</b><br/>' + 'HVI:  ' + props.HVI + '</b><br/>' + 'Verdict:  ' + verdict + '</b><br/>' + '<div id="suburb-info">' + "<h4>Recommendations</h4>" +'</div>'+  'Exposure:  ' + exposure + '</b><br/>' + 'Mitigation:  ' + mitigation + '</b><br/>' + 'Growing:  ' + growing
-=======
                     '<b>' + "Suburb:  " + props.SA2_NAME16 + '</b><br/>' + 'HVI:  ' + props.HVI + '</b><br/>' + 'Verdict:  ' + verdict + '</b><br/>' + "<h4>Recommendations</h4>" + '</b><br/>' + 'Exposure:  ' + exposure + '</b><br/>' + 'Mitigation:  ' + mitigation + '</b><br/>' + 'Growing:  ' + growing
->>>>>>> main
                     : 'Hover over a suburb');
             };
 
@@ -234,14 +222,14 @@ export default {
             lgd.onAdd = function (map) {
                 var div = L.DomUtil.create('div', 'imf lgd'),
                     grades = [0, 1, 2, 3, 4, 5],
-                    labels = ["Very Low", "Low", "Moderate", "High", "Very High", "Extreme"];
+                    labels = [];
                 div.innerHTML += '<h4>Heat Vulnerability Index</h4>';
 
                 // loop through our density intervals and generate a label with a colored square for each interval
                 for (var i = 0; i < grades.length; i++) {
                     div.innerHTML +=
                         '<i style="background:' + getColor(grades[i]) + '"></i> ' +
-                        grades[i] + ' ' + (grades[i + 1] ? '&ndash;' + ' ' + grades[i + 1] + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"  +labels[i] +'<br>' : '+' + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" +labels[i] +'<br>');
+                        grades[i] + ' ' + (grades[i + 1] ? '&ndash;' + ' ' + grades[i + 1] + '<br>' : '+');
                 }
                 return div;
             };
@@ -262,7 +250,7 @@ export default {
         //     // Write your code here
         // },
 
-        // switchMap() {
+        // handleButtonClick() {
         //     const getCurrentLocation = () => {
         //         if (navigator.geolocation) {
         //             navigator.geolocation.getCurrentPosition(position => {
@@ -285,49 +273,28 @@ export default {
 
         },
 
-        switchMap() {
-            // Disable animations
-            if (this.map) {
-                this.map.options.zoomAnimation = false;
-                this.map.remove();
-            }
+        // switchMap() {
+        //     //load a new entire map
+        //     this.map.remove();
+        //     this.map = L.map('map').setView([-37.8136, 144.9631], 10);
+        //     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        //     maxZoom: 19,
+        //     }).addTo(this.map);
 
-            // Initialize new map container
-            this.map = L.map('map', { zoomAnimation: true }).setView([-37.8136, 144.9631], 14);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            maxZoom: 19,
-            }).addTo(this.map);
-
-            let canopy = '/tree.geojson';
-            fetch(canopy)
-            .then(response => response.json())
-            .then(data => {
-                this.canopy = data;
-                L.geoJson(this.canopy, {
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, {
-                    radius: 5,
-                    fillColor: "green",
-                    color: "#000",
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 0.8
-                    });
-                },
-                onEachFeature: function (feature, layer) {
-                    layer.bindPopup(feature.properties.common_name);
-                }
+        //     let canopy = '/tree.geojson';
+        //     fetch(canopy)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //     this.canopy = data;
+        //     this.initMap();
+        //     })
+        //     .catch(error => {
+        //     console.log('Error loading map data:', error);
+        //     });
 
 
-                
-                }).addTo(this.map);
-
-            })
-            .catch(error => {
-                console.log('Error loading map data:', error);
-            });
-        },
+        // },
 
 
 
@@ -386,31 +353,17 @@ export default {
     font-family: 'fredoka one', cursive;
     background: white;
     background: rgba(255, 255, 255, 0.8);
-<<<<<<< HEAD
-    padding: 10px;
-    border-radius: 20px;
-    text-align: center;
-    max-width: 350px;
-    margin: 0 auto;
-    font-size: 17px;
-=======
     padding: 20px;
     border-radius: 5px;
     text-align: center;
     max-width: 400px;
     margin: 0 auto;
->>>>>>> main
     
 }
 
 .imf h4 {
     margin: 0 0 5px;
-    font-size: 25px;
-    /* color: #777; */
-    background: #09B845;
-    border-radius: 20px;
-    padding: 10px;
-    color: #fff;
+    color: #777;
 }
 
 h2 {
@@ -424,17 +377,9 @@ h3 {
 }
 
 .lgd {
-<<<<<<< HEAD
-    /* line-height: 18px; */
-    /* color: #555; */
-    background: white;
-    padding: 10px;
-    border-radius: 20px;
-=======
     line-height: 18px;
     color: #555;
     background: white;
->>>>>>> main
 }
 
 .lgd i {
@@ -460,52 +405,12 @@ h3 {
   text-align: center;
   margin: 30px auto 0 auto;
   cursor: pointer;
-  margin-right: 20px;
 
 }
 
-#swith {
-  width: 150px;
-  height: 66px;
-  border-radius: 30px;
-  background: #09B845;
-  color: #fff;
-  font-family: 'Fredoka One', cursive;
-  font-size: 20px;
-  font-weight: 400;
-  border: none;
-  outline: none;
-  line-height: 66px;
-  text-align: center;
-  margin: 30px auto 0 auto;
-  cursor: pointer;
-  margin-left: 20px;
-
-}
-
-<<<<<<< HEAD
-/* .imf #suburb-info {
-    font-size: 25px;
-    font-family: 'Fredoka One', cursive;
-    font-weight: 400;
-    color: #000;
-
-    background: #09B845;
-    border-radius: 20px;
-    padding: 10px;
-    margin: 0 0 5px;
-} */
-
-=======
->>>>>>> main
 /* #test {
         width: 1000px;
         height: 700px;
     } */
 </style>
     
-<<<<<<< HEAD
-
-=======
->>>>>>> main
-
